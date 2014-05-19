@@ -1,0 +1,24 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h2>SSH Pubkey Authentication</h2>
+<p>1. Generate keys in local machine (ssh client)</p>
+<pre>
+ssh-keygen -t rsa
+</pre>
+It will generate files in <em>$HOME/.ssh/</em>
+<strong>id_rsa</strong>: the private key, keep it secret
+<strong>id_rsa.pub</strong>: the public key
+
+<p>2. Copy <strong>id_rsa.pub</strong> to remote machine (ssh server) $HOME(remote login home)/.ssh as name "authorized_keys" (file name)
+<pre></p>
+scp $HOME/.ssh/id_rsa.pub remoteLogin@remoteMachine:/home/remoteLogin/.ssh/authorized_keys
+</pre>
+or
+<pre>
+ssh-copy-id [-i [identity_file]] [user@]machine
+</pre>
+</body>
+</html>
