@@ -1,4 +1,7 @@
 pre {
 background: #f7f7f7;
 color: #222;
+line-height: 21px;
+padding: 1.5em;
+display: block;
 }
