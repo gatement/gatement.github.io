@@ -1,0 +1,46 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Vim Plugin: Eclim</h3>
+<pre>
+http://eclim.org
+
+-Start eclimd:
+eclipse/eclimd
+
+-Stop eclimd
+eclipse/eclim -command shutdown
+:ShutdownEclim
+kill
+
+:PingEclim
+:EclimValidate
+:ShutdownEclim
+
+android create project
+:ProjectCreate /path/to/my_project -n java
+edit .classpath:
+	&lt;classpathentry kind="lib" path="libs/xpgconnectcli.jar"/&gt;
+	&lt;classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/&gt;
+	&lt;classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/&gt;
+	&lt;classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/&gt;
+:ProjectList
+:lopen (view all file errors)
+
+&lt;C-x&gt;&lt;C-u&gt;|gu (auto complete)
+
+:JavaImport
+:JavaImportOrganize
+
+:JavaHierarchy
+:JavaCallHierarchy
+:JavaCallHierarchy!
+
+:JavaDocComment
+
+:%JavaFormat (format code)
+</pre>
+</body>
+</html>

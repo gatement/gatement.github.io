@@ -1,0 +1,50 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>MQTT</h3>
+<pre>
+http://mqtt.org/
+
+Pub/Sub!
+Qos!
+No encryption!
+No compression!
+
+* Fixed Header
+-Message Type/DUP/QoS/RETAIN (1B)
+-Remaining length (1B - 4B)
+
+* Variable Header
+-Protocal name (UTF8, CONNECT)
+-Protocal version (1B, CONNECT)
+-Connect flags: UserName/UserPwd/WillRetain/WillQos/Will/CleanSession (1B, CONNECT)
+-Keep Alive timer (2B, CONNECT)
+-Connect return code (1B, CONNACK)
+-Topic name (UTF8, PUB)
+-Message ID (2B, Qos > 0 PUB/SUB/UNSUB)
+
+* Payload
+-CONNECT: Client identifier, [Will topic, Will message, User name, User pwd] p15
+-CONNACK: Return code p18
+
+-PUBLISH: Payload p19
+-PUBACK: p22
+-PUBREC: p23
+-PUBREL: p24
+-PUBCOMP: p25
+
+-SUBSCRIBE: [Topic name, Request Qos] p26
+-SUBACK: [Granted Qos] p29
+-UNSUBSCRIBE: [Topic name] p31
+-UNSUBACK: p33
+
+-PINGREQ: p33
+-PINGRESP: p34
+
+-DISCONNECT: p35
+
+</pre>
+</body>
+</html>

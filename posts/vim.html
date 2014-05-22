@@ -1,0 +1,235 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Vim</h3>
+<pre>
+@: (repeat last cmd)
+
+--move screen
+C-y (move the screen up)
+C-e (move the screen down)
+zz (center the current line)
+
+source ~/.vim/vimrc (reload vimrc)
+
+hex display mode
+------------------
+:%!xxd (go into hex display mode)
+:%!xxd -r (exit hex display mode)
+
+-----------------
+edit(i I  s S  a A  o O  r R  C-w C-u)
+select(v V C-v) -> copy(y) | paste(p) | delete(x d) | edit(c I A)
+-----------------
+[number] operator(x X  d dd D  y yy Y  c  v V C-v) 
+[number] motion(h <backspace>  j <CR>  k  l <space>  0 ^ $  b B  w W  e E  t T  f F  gg G  i* a*  C-u C-d C-f C-b)
+-----------------
+
+--bookmark
+m{a-zA-Z`'} (lowercase in a single file, UPPERCASE across files)
+`{a-zA-Z`'} '{a-zA-Z} (go to bookmark)
+
+--fold
+set foldenable (C-z)
+set foldmethod=indent
+za (fold/unfold current)
+zr/zR (unfold one/all level in current file)
+zm/zM (fold one/all level in current file)
+
+--session
+:mks/mksession filename
+:so/source filename
+
+--buffer(:help files)
+:ls :files :buffers
+
+:b/buffer blur_buffer_name
+:b/buffer buffer_num
+bufferb_num C-^
+C-^(between top two buffers)
+:e #(between top two buffers)
+
+--indent
+:set autoindent
+:set smartindent
+:set cindent
+
+:set tabstop=width(define tab width)
+:set softtabstop=width('tab' key width)
+:set shiftwidth=width(auto indent width)
+
+:set expandtab
+:set noexpandtab
+:retab!(whole file)
+
+<< #<< #1,#2<<
+>> #>> #1,#2>>
+v< v#<
+v> v#>
+v=(auto indent selected lines)
+
+--line
+#G #gg :#<CR>
+C-g (current line info)
+:set nu/number
+:set ruler
+
+--edit
+u C-r
+U(recover current line)
+J(join next line with a space)
+
+C-P (auto-complete)
+C-N (previous selection)
+
+:set nocp (not compatible with VI)
+Tab C-d (list candidates)
+
+% (find bracket)
+. (repeat)
+
+--file
+:q
+:qa (quit all)
+:wq, ZZ
+:q!, ZQ
+
+:!cmd
+
+:w filename
+:#1,#2 w filename
+v :w filename(unit:line)
+
+:r filename(paste content at below)
+:r !cmd
+
+:e filename
+:e folder
+:e!(revert file)
+:e #(go to last buffer)
+
+--search
+/pattern[\c][\C] 
+?pattern[\c][\C]
+* (search current word forward)
+# (search current word backward)
+\c (ignore case)
+\C (case sensitive)
+
+search whole word:
+/\v<ip>
+/\<ip\>
+
+:set ic/ignorecase
+:set hls/hlsearch
+:set is/incsearch
+:set wrapscan
+
+--replace
+:s/old/new (first occurence)
+:s/old/new/g (entire line)
+:s/old/new/gc (entire line with confirmation)
+:#1,#2s/old/new/g (from line #1 to line #2)
+:#1,$s/old/new/g (from line #1 to the last line)
+:%s/old/new/g (whole file)
+
+--jumps
+:jumps
+C-o(older)
+C-i(newer)
+`` (jump between last two)
+
+--window
+:new :vnew :sp :vsp :tabnew [filename]
+:close :tabclose C-wq(close window)
+
+C-w +/-/_/=  C-w[#]-  C-w[#]+ (change window size)
+C-w w/p/h/l/j/k(move cursor between windows)
+C-w H/L/J/K (move window)
+
+gt (goto tab)
+#gt (goto #st tab)
+gT (goto previous tab)
+
+:pwd 
+:cd
+
+--reg
+:register/reg (show)
+:let @reg='val' (set)
+C-r reg (edit mode)
+"reg (selection mode)
+
+--copy & paste
+"*y  "*yy  "*dd (copy to clipboard)
+"*p  "*P  C-r* [at insert mode] (paste from clipboard)
+:#y (copy line #)
+:#,#y (copy from line # to line #)
+
+--settings
+:set key (set or get value)
+:set nokey
+:set key! (not)
+:set key& (set to default)
+:set key? (get value)
+:set key* (dialog)
+
+--encoding
+:set enc/encoding=utf8
+:set fenc/fileencoding
+:set fencs/fileencodings
+:set bomb/nobomb (unicode BOM)
+
+--blur open
+:find **/rebar.cm*
+:echo globpath('.', '**/rebar*')
+
+--vimgrep (:help vimgrep)
+:[#]vim/vimgrep /pattern[\c][\C]/[g][j] **/*.erl
+#(only search for the first # matches)
+\c(ignore case)
+\C(case sensitive)
+\g(every match is added, otherwise matched same line only added once)
+\j(no jump to the first match, other will jump to the first match)
+
+:copen (open quickfix list)
+:cclose (close quickfix list)
+:cc (go to current match)
+:cn (go to next match)
+:cp (go to previous match)
+
+--syntax highlight
+:syntax enable/on/off
+:set bg/background=dark
+:set bg/background=light
+
+--window size
+:set lines=# columns=#(set window width and height)
+Alt (wait) <space> x (maximize window at Windows)
+
+--file type/format
+:set filetype=cpp/erlang (list in /syntax folder)
+:set fileformat=unix
+
+--help
+:h :help F1 [sth]
+
+--line wrap
+:set wrap/nowrap
+
+--backspace
+:set backspace=0/1/2 (0/1 - delete just inputed, 2 - delete any characters)
+
+--conf files
+vimrc (run config)
+viminfo (edit history)
+.filename.swp (file backup while editing)
+filename~ (file backup when saving, [:set backup/nobackup]) 
+
+--key map
+map/nmap/vmap/imap <C-j> <ESC>^x<ESC> (map=nmap+vmap)
+</pre>
+</body>
+</html>
