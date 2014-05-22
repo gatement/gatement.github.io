@@ -1,4 +1,4 @@
-#.tmux.conf
+#~/.tmux.conf
 
 # Home row movement between panes
 bind h select-pane -L
