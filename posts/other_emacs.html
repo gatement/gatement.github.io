@@ -1,0 +1,118 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>emacs</h3>
+Control = CTRL = CTL = C: C-&lt;chr&gt;<br/>
+META = ALT = EDIT = M: M-&lt;chr&gt;<br/>
+<br/>
+C-x Character eXtend. Followed by one character(and its key modifier).<br/>
+M-x Named command eXtend. Followed by a long name.<br/>
+<br/>
+(C-u &lt;number&gt; | M-&lt;number&gt;) &lt;command&gt;: Command prefix argument, usually is execution times<br/>
+<br/>
+Use &lt;SPC&gt; or &lt;TAB&gt; to auto-complete.<br/>
+<br/>
+C-x C-c: Exit<br/>
+C-g: Quit a partially entered command<br/>
+&lt;ESC&gt; &lt;ESC&gt; &lt;ESC&gt;: To get out of recursive editing levels<br/>
+<br/>
+C-v: Page down<br/>
+M-v: Page up<br/>
+C-M-v: Scroll the other window down without move the focus, == &lt;Esc&gt; C-v<br/>
+C-l: Adjust cursor position(middle, up, bottom)<br/>
+<br/>
+C-f: Cursor right (Forward)<br/>
+C-b: Cursor left (Backward)<br/>
+<br/>
+M-f: Word right (Forward)<br/>
+M-b: Word left (Backward)<br/>
+<br/>
+C-p: Cursor up (Previous)<br/>
+C-n: Cursor down (Next)<br/>
+<br/>
+C-a: Beginning of line<br/>
+C-e: End of line<br/>
+<br/>
+M-a: Beginning of sentence<br/>
+M-e: End of sentence<br/>
+<br/>
+M- M-&gt;: End of whole text<br/>
+<br/>
+C-h k KEYS: Show help on the KEYS (e.g. C-f)<br/>
+C-h c KEYS: Show a brief help(the name of the function) on the KEYS in the echo area<br/>
+C-h m: Check current enabled minor modes<br/>
+<br/>
+&lt;Backspace&gt;: Delete the character just before the cursor<br/>
+C-d: Delete the next character after the cursor<br/>
+<br/>
+M-&lt;Backspace&gt;: Kill the word immediately before the cursor<br/>
+M-d: Kill the next word after the cursor<br/>
+<br/>
+C-k: Kill from the cursor position to end of line (Cutting)<br/>
+M-k: Kill to the end of the current sentence (Cutting)<br/>
+<br/>
+C-&lt;SPC&gt; | C-@: Mark the beginning and ending of a selection<br/>
+C-w: Kill selected text<br/>
+<br/>
+C-y: Yank the killed back (Pasting)<br/>
+C-y M-y M-y...: Yank previous killed text<br/>
+<br/>
+C-/: Undo<br/>
+C-x u: Undo<br/>
+C-_: Undo<br/>
+<br/>
+C-x C-f: Find a file (Open or create a file)<br/>
+<br/>
+C-x C-s: Save the current file<br/>
+C-x s: Save modified buffers<br/>
+<br/>
+C-x C-b: List buffers<br/>
+C-x b Buffer-name: Switch to buffer<br/>
+<br/>
+M-x replace-string &lt;FROM&gt; &lt;TO&gt;: Replace string after the current cursor<br/>
+M-x query-replace | M-%: confirm for each replacement<br/>
+<br/>
+M-x recover-file: Recover file from the file #filename#<br/>
+<br/>
+M-x "modename"-mode: switch to a major mode, e.g. "fundamental", "text", "lisp", "erlang" (major modes)<br/>
+<br/>
+M-x auto-fill-mode: auto word-wrap (a minor mode)<br/>
+C-u &lt;number&gt; C-x f: set the line width to &lt;number&gt; for the auto-fill-mode (default 70)<br/>
+M-q: Re-fill the current paragraph with the current line width<br/>
+<br/>
+C-s: incremental search, go next occurrence with C-s, go previous occurrence with C-r or &lt;Backspace&gt;, terminate with &lt;Enter&gt; or C-g<br/>
+C-r: backward incremental search<br/>
+<br/>
+C-x 1: One window with the cursor<br/>
+C-x 2: Two windows horizontally<br/>
+C-x 3: Two windows vertically<br/>
+<br/>
+M-x make-frame: make frame for the current buffer<br/>
+M-x delete-frame: delete selected frame<br/>
+<br/>
+C-x 4 C-f: Open file in another window<br/>
+C-x 5 C-f: Open file in another frame<br/>
+<br/>
+C-x o: Move the cursor to the other frame<br/>
+<br/>
+C-x d | M-x dired: File manager mode<br/>
+C-x C-q: Switches to Editable Dired mode (to save the changes C-c C-c | C-x C-s, to discard changes C-c &lt;ESC&gt;)<br/>
+<br/>
+M-x shell: Starts a shell in the buffer named *shell*<br/>
+<br/>
+C-&lt;up&gt; | M-P: Move to the previous line in the input history<br/>
+C-&lt;down&gt; | M-n: Move to the next line in the input history<br/>
+<br/>
+M-x erlang-mode: Switch to major mode to "Erlang"<br/>
+M-x erlang-shell | C-c C-z: Starts an erlang shell in the buffer named *erlang*<br/>
+M-x erlang-compile | C-c C-k: Compile the current erlang source file<br/>
+<br/>
+M-x cua-mode: (cua-mode t)<br/>
+M-x linum-mode | M-x global-linum-mode: (global-linum-mode 1), show line number at left side<br/>
+M-x goto-line: (global-set-key [?\C-\M-g] 'goto-line), set shortcut "C-M-g" for goto-line<br/>
+<br/>
+<a href="https://github.com/dimitri/el-get" target="_blank">el-get</a>: An emacs package manager<br/>
+</body>
+</html>

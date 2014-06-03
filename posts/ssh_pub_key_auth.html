@@ -9,8 +9,9 @@
 ssh-keygen -t rsa
 </pre>
 <p>It will generate files in <em>$HOME/.ssh/</em></p>
-<strong>id_rsa</strong>: the private key, keep it secret</br>
-<strong>id_rsa.pub</strong>: the public key</br>
+<strong>id_rsa</strong>: the private key, keep it secret<br/>
+<strong>id_rsa.pub</strong>: the public key<br/>
+<br/>
 <p>2. Copy <strong>id_rsa.pub</strong> to remote machine (ssh server) $HOME(remote login home)/.ssh as name "authorized_keys" (file name)</p>
 <pre>
 scp $HOME/.ssh/id_rsa.pub remoteLogin@remoteMachine:/home/remoteLogin/.ssh/authorized_keys

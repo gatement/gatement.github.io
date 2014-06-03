@@ -1,0 +1,60 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Bash - MAC</h3>
+
+<hr/>
+cmd:<span style="color: #0000ff;"><strong>brew</strong></span> command<br/>
+<a title="http://mxcl.github.com/homebrew/" href="http://mxcl.github.com/homebrew/" target="_blank">http://mxcl.github.com/homebrew/</a><br/>
+the Homebrew, a packages manager.<br/>
+&gt;update: update the meta data<br/>
+&gt;install: install app<br/>
+&gt;uninstall: uninstall app<br/>
+&gt;search: search app<br/>
+&gt;list: list installed app<br/>
+<br/>
+
+<hr/>
+cmd:<span style="color: #0000ff;"><strong>port</strong></span> command<br/>
+<a href="http://www.macports.org" target="_blank">www.macports.org</a><br/>
+&gt;selfupdate: update self and the ports tree<br/>
+&gt;search app_name: search application<br/>
+&gt;install app_name: install application<br/>
+&gt;uninstall app_name: uninstall application<br/>
+&gt;outdated: show outdated applications<br/>
+&gt;upgrade outdated: update outdated applica<br/>tions
+&gt;installed: show installed applications<br/>
+<br/>
+
+<hr/>
+cmd:<span style="color: #0000ff;"><strong>launchctl</strong></span> command<br/>
+<a href="http://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man1/launchctl.1.html" target="_blank">launchctl man page</a><br/>
+the interface of launchd.<br/>
+Mac has three ways to start up a application when boot/login:<br/>
+1. System Preferences &gt;  Accounts &gt; Login Items<br/>
+2. /Library/StartupItems &amp; /System/Library/StartupItems<br/>
+3.<br/>
+/Library/LaunchAgents<br/>
+/Library/LaunchDaemons<br/>
+/System/Library/LaunchAgents<br/>
+/System/Library/LaunchDaemons<br/>
+~/Library/LaunchAgents<br/>
+/var/db/launchd.db/: store overrides.plist<br/>
+<br/>
+The /Library: for administrator to store 3rd part applications across the OS<br/>
+The /System/Library: to store Apple's applications<br/>
+The ~/Library: for user to store 3rd part applications<br/>
+<br/>
+LaunchAgents: store applications that will start up after log in<br/>
+LaunchDaemons: store applications that will start up even haven't logged in<br/>
+<br/>
+Please copy the plist file to one of the above folder if want it to start automatically.<br/>
+<br/>
+&gt;load -wF plist file:  load the specified config file. -w, overrides the Disabled key and sets it to false. -F, ignore the Disabled key and force the loading the plist.<br/>
+&gt;unload -w plist file:  stop the job and unload the specified config file. -w, overrides the Disabled key and sets it to true.<br/>
+&gt;list: list job status<br/>
+<br/>
+</body>
+</html>

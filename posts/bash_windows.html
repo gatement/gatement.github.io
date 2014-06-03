@@ -1,0 +1,51 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Bash - Windows</h3>
+
+<hr/>
+cmd:<span style="color: #0000ff;"><strong>sc </strong></span><br/>
+Window services management.<br/>
+- Create a service: <br/>
+<pre>
+sc create ServerName binPath= C:\dev\goagent\local\goagent.exe(path to exe file)
+</pre>
+- Delete a service<br/>
+<pre>
+sc delete ServerName
+</pre>
+<br/>
+
+<hr/>
+cmd:<span style="color: #0000ff;"><strong>netstat </strong></span><br/>
+View machine net connection/listening status.<br/>
+<br/>
+
+<hr/>
+cmd:<span style="color: #0000ff;"><strong>netsh </strong></span><br/>
+- Enable/disable network interface:<br/>
+<pre>
+netsh interface set interface "Wireless Network Connection" DISABLED
+netsh interface set interface "Wireless Network Connection" ENABLED
+</pre>
+<br/>
+
+<hr/>
+cmd:<span style="color: #0000ff;"><strong>tasklist</strong></span><br/>
+Displays a list of currently running processes on either a local or remote machine.<br/>
+<br/>
+
+<hr/>
+cmd:<span style="color: #0000ff;"><strong>findstr</strong></span><br/>
+Searches for strings in files.<br/>
+- Find out which process occupys a specific net port:<br/>
+<pre>
+netstat -aon | findstr "&lt;port&gt;"
+tasklist | findstr "&lt;pid&gt;"
+</pre>
+<br/>
+
+</body>
+</html>
