@@ -1,0 +1,610 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Bash - Linux</h3>
+						<p>change zonetime:<br />
+1. backup /etc/localtime<br />
+2. copy /usr/share/zoneinfo/posix/Asia/Shanghai to /etc/localtime</p>
+<p>change language:<br />
+export LANG=en_US.UTF-8</p>
+<p>cmd:lynx<br />
+A text-based web browser</p>
+<p>== Fedora16 ==<br />
+cmd:<span style="color: #0000ff;"><strong>systemctl </strong></span><br />
+/lib/systemd/system/*.service<br />
+<strong>status </strong>sshd.service: view service status<br />
+<strong>enable </strong>sshd.service: enable auto-start<br />
+<strong>disable </strong>sshd.service: disable auto-start<br />
+<strong>start </strong>sshd.service: start service<br />
+<strong>restart </strong>sshd.service: restart service<br />
+<strong>stop </strong>sshd.service: stop service</p>
+<p>cmd:<span style="color: #0000ff;"><strong>gnome-terminal </strong></span><br />
+Fefora terminal (cmd/command line)</p>
+<p>== Ubuntu ==<br />
+cmd:<span style="color: #0000ff;"><strong>pgrep </strong></span>servicename<br />
+to check service is running or not</p>
+<p>cmd:<span style="color: #0000ff;"><strong>update-rc.d</strong></span> servicename defaults<br />
+add service to startup service list</p>
+<p>cmd:<span style="color: #0000ff;"><strong>dict </strong></span>[option] word<br />
+server: dictd<br />
+client: dict<br />
+configure: dictdconfig<br />
+etc: /etc/dictd<br />
+english-chinese dictionaries: dict-xdict, dict-stardic<br />
+english dictionries: dict-gcide</p>
+<p>cmd:<span style="color: #0000ff;"><strong>alsamixer</strong></span><br />
+sound controller</p>
+<p>cmd:<span style="color: #0000ff;"><strong>mysql </strong></span>-uroot -p<br />
+import data: mysql -uroot -p database_name &lt; file.sql</p>
+<p>== Dev ==<br />
+/dev/zero<br />
+/dev/null</p>
+<p>== X window ==<br />
+p482    startx<br />
+p483    X</p>
+<p>== daemon ==<br />
+p432    /etc/services (port)</p>
+<p>p434    /etc/xinetd.conf<br />
+/etc/xinetd.d/*</p>
+<p>p434    service service_name start,restart,stop</p>
+<p>p440    tcp_wrappers<br />
+/usr/sbin/tcpd<br />
+/usr/sbin/safe_finger<br />
+/etc/hosts.allow<br />
+/etc/hosts.deny</p>
+<p>cmd:<span style="color: #0000ff;"><strong>gcc</strong></span> -I. -L. -shared -fPIC -lxxx -o target -c file.c</p>
+<p>cmd:<span style="color: #0000ff;"><strong>chkconfig </strong></span>(p443)<br />
+&#8211;list: list all the startup services<br />
+&#8211;add servicename: add a service to the startup service list<br />
+&#8211;del servicename: delete a service from the startup service list<br />
+&#8211;level 0123456 servicename on/off: turn on/off service at specified run level</p>
+<p>p444    ntsysv &#8211;level 0123456<br />
+p500    setup</p>
+<p>== rpm/yum/dpkg/apt ==<br />
+cmd:<span style="color: #0000ff;"><strong>rpm </strong></span>(p414)<br />
+-i(vh) *.rpm: install<br />
+-U(vh) *.rpm: update, update or install<br />
+-F(vh) *.rpm: freshen, just update but no installation<br />
+-v: verbose<br />
+-h: show progress<br />
+&#8211;test: just test it, but don&#8217;t install it actually</p>
+<p>-qa: list all packages<br />
+-q(licdR) pkgname: query installed package<br />
+-qp(licdR) *.rpm: query package file<br />
+-qf file: query which package contains the file<br />
+-l: list all contents<br />
+-i: information<br />
+-c: configure file<br />
+-ccd: document filecccc<br />
+-R: required packages</p>
+<p>-Va: verify all installed packages<br />
+-V pkgname: verify installed package<br />
+-Vp *.rpm: verify package file<br />
+-Vf filename: verify file</p>
+<p>-e pkgname: uninstall package<br />
+&#8211;rebuilddb</p>
+<p>cmd:<span style="color: #0000ff;"><strong>rpmbuild </strong></span>(p421)<br />
+source rpm (SRPM)<br />
+&#8211;rebuild *.src.rmp<br />
+&#8211;recompile *.src.rmp<br />
+-bb *.spec<br />
+-ba *.spec</p>
+<p>cmd:<span style="color: #0000ff;"><strong>yum </strong></span>command<br />
+search pkgname: search package in the repository<br />
+info pkgname: show package info<br />
+install pkgname: install package<br />
+erase pkgname: unstall package</p>
+<p>cmd:<span style="color: #0000ff;"><strong>add-apt-repository</strong></span> &#8216;source line&#8217; or PPA Shortcut<br />
+&#8216;source line&#8217;: e.g., &#8216;deb http://&#8230;&#8217;<br />
+PPA Shortcut: e.g., ppa:user/repostory<br />
+Repository files will be save to /etc/apt/sources.list.d<br />
+&#8211;remove: remove it from the list</p>
+<p>cmd:<span style="color: #0000ff;"><strong>apt-get</strong></span><br />
+update: retrive new lists of packages<br />
+install pkgname: install package<br />
+remove pkgname: uninstall package<br />
+purge pkgname: uninstall package and remove config files</p>
+<p>cmd:<span style="color: #0000ff;"><strong>apt-cache</strong></span><br />
+search pkgname: search package in the repository</p>
+<p>cmd:<span style="color: #0000ff;"><strong>dpkg</strong></span><br />
+-i *.deb: &#8211;install<br />
+&#8211;contents *.deb: list contents of the package<br />
+&#8211;info *.deb: show info of the package</p>
+<p>&#8211;remove pkgname: remove(uninstall) package<br />
+&#8211;purge pkgname: purge(uninstall) package and config files<br />
+&#8211;listfiles pkgname: list contents of the package<br />
+&#8211;status pkgname: show status of the package</p>
+<p>&#8211;list: list all installed package</p>
+<p>&#8211;search file: query which package contains the file</p>
+<p>== Tarball ==<br />
+p396 gcc -coO -lm -LI -Wall (cc)</p>
+<p>gcc-c++</p>
+<p>glibc<br />
+/lib/*.so<br />
+/usr/lib/*so</p>
+<p>glibc-headers<br />
+/usr/include/*.h</p>
+<p>p397 make<br />
+p401 ./configure &#8211;help &#8211;prefix<br />
+make clean<br />
+make<br />
+make install</p>
+<p>cmd:<span style="color: #0000ff;"><strong>ldconfig</strong></span> (p407)<br />
+mean: load dll(.so) into cache (/etc/ld.so.cache)<br />
+config: /etc/ld.so.conf &lt; /etc/ld.so.conf.d/* (reference directories not .so files)<br />
+-p: print current loaded dlls in /etc/ld.so.cache<br />
+(add to env LD_LIBRARY_PATH can make it loadable)<br />
+(libxxx.a: static lib<br />
+libxxx.so: shared lib<br />
+libxxx.ko: kernel lib)</p>
+<p>cmd:<span style="color: #0000ff;"><strong>ldd</strong></span> (p407) -v filename</p>
+<p>p408 md5sum filename &gt; filename.md5<br />
+md5sum -c filename.md5<br />
+(sha1sum, sha224sum, sha256sum, sha512sum)</p>
+<p>== boot ==<br />
+BIOS -&gt; Boot Loader -&gt; Kernel -&gt; /sbin/init -&gt; /etc/inittab -&gt; /etc/rc[runlevel].d/S##.ln -&gt; /etc/rc.d/init.d/*<br />
+BIOS -&gt; Boot Loader -&gt; Kernel -&gt; /bin/systemd -&gt;</p>
+<p>p364 /etc/inittab</p>
+<p>p370 init (0-6)<br />
+p371 runlevel</p>
+<p>p371 depmod<br />
+/lib/modules/`uname -r`/modules.dep<br />
+p372 lsmod<br />
+p372 modinfo (module_name, filename)<br />
+p373 insmod<br />
+p373 rmmod<br />
+p373 modprobe</p>
+<p>p374 GRUB<br />
+/etc/grub.conf -&gt;<br />
+/boot/grub/menu.lst -&gt;<br />
+/boot/grub/grub.conf<br />
+p382 LILO<br />
+p386 kernel ro root=/dev/sda1 init=/bin/bash (runlevel)<br />
+p387 chroot (dir)</p>
+<p>== job ==<br />
+cmd:<span style="color: #0000ff;"><strong>&amp;</strong></span> (p341)<br />
+usage: place it to the end of a command<br />
+mean: run command and put it to background running</p>
+<p>cmd:<span style="color: #0000ff;"><strong>Ctrl-z</strong></span> (p342)<br />
+mean: pause the current job and put it to background</p>
+<p>cmd:<span style="color: #0000ff;"><strong>jobs</strong></span> (p342)<br />
+mean: list background jobs of current bash session<br />
+-l: list PID as well</p>
+<p>cmd:<span style="color: #0000ff;"><strong>fg</strong></span> %jobId (p342)<br />
+mean: fetch job from background to foreground and run it</p>
+<p>cmd:<span style="color: #0000ff;"><strong>bg</strong></span> %jobId (p343)<br />
+mean: let a background job run in background</p>
+<p>cmd:<span style="color: #0000ff;"><strong>kill</strong></span> -9 %jobId / PID (p343)<br />
+mean: kill a job by jobId(with %) or by PID</p>
+<p>cmd:<span style="color: #0000ff;"><strong>killall</strong></span> -9 -e [commandName] (p350)<br />
+mean: kill jobs by command name<br />
+-e: exactly command name match<br />
+-i: interactive confirm before kill</p>
+<p>cmd:<span style="color: #0000ff;"><strong>pkill</strong></span> [commandName]<br />
+mean: kill jobs by command name</p>
+<p>cmd:<span style="color: #0000ff;"><strong>top</strong></span> (p346)<br />
+mean: show running jobs dashboard<br />
+-p [PID]: only show the PID in dashboard<br />
+after in the dashboard:<br />
+h: show helps<br />
+k: kill job (with signal 9)</p>
+<p>cmd:<span style="color: #0000ff;"><strong>ps</strong></span> aux (p344)<br />
+mean: show all running jobs</p>
+<p>p348 pstree -pu</p>
+<p>P351 free<br />
+p351 uname -r<br />
+p351 uptime</p>
+<p>cmd:<strong>netstat</strong> (p352)<br />
+mean: show all active service ports<br />
+-tupln: show listening tcp/udp ports<br />
+-tpln: show connecting tcp sockets</p>
+<p>p353 dmesg<br />
+/var/log/dmesg<br />
+p353 sar -ur<br />
+p354 nice -n 10 (cmd)<br />
+p355 renice 10 (pid)</p>
+<p>p357 fuser -k file/dir<br />
+p358 lsof<br />
+p359 pidof (cmd)</p>
+<p>== at/cron ==<br />
+p330 /etc/init.d/atd<br />
+/etc/at.allow<br />
+/etc/at.deny<br />
+/var/spool/at<br />
+p330 at<br />
+p331 atq<br />
+p331 atrm</p>
+<p>cmd:<span style="color: #0000ff;"><strong>crontab </strong></span>[option] (p332)<br />
+-u username: operate user&#8217;s cron tasks<br />
+-l: list cron tasks<br />
+-e: edit cron tasks<br />
+-r: remove all cron tasks<br />
+/etc/init.d/crond: system service<br />
+/etc/crontab: saved system&#8217;s cron tasks<br />
+/var/spool/cron/&#8221;username&#8221;: saved user&#8217;s current cron tasks<br />
+/etc/cron.allow: list the permitted user to use crond<br />
+/etc/cron.denny: list the unpermitted users to use crond<br />
+/var/log/cron: log file<br />
+format: minute(0-59) hour(0-23) day(1-31) month(1-12) week(0-7) command<br />
+*: any<br />
+,: and, 2,3<br />
+-: range, 2-5<br />
+/n: period, */5<br />
+example(user): */5 2-5 12,13 * * cmd<br />
+example(system): */5 2-5 12,13 * * root run-parts /etc/cron.daily</p>
+<p>== Script ==<br />
+p267 test<br />
+p270 [ condition ]<br />
+p277 function<br />
+p272 if elif else fi<br />
+p275 case esac<br />
+p279 while do done<br />
+p279 until do done<br />
+p280 for(()) do done<br />
+p281 for var in do done<br />
+p282 bash -nx</p>
+<p>== Regexp ==<br />
+p250 Regexp TABLE (p252)<br />
+p252 printf<br />
+p254 sed<br />
+p257 awk</p>
+<p>cmd:<span style="color: #0000ff;"><strong>diff </strong></span>[option] oldfile newfile [&gt; patchfile] (p258)<br />
+-Naur: make patchfile</p>
+<p>p259 cmp<br />
+p260 patch -p(n), file &lt; patchFile (p404)<br />
+p260 pr</p>
+<p>== Shell ==<br />
+p221 /etc/issue<br />
+/etc/issue.net<br />
+/etc/motd<br />
+p222 /etc/sysconfig/i18n<br />
+/etc/profile<br />
+/etc/profile.d/*<br />
+/etc/bashrc<br />
+/etc/inputrc<br />
+/etc/man.config<br />
+p223 ~/.bash_profile (recommended)<br />
+~/.bash_login<br />
+~/.profile<br />
+~/.bashrc<br />
+~/.bash_logout<br />
+~/.bash_history</p>
+<p>p079 date<br />
+p079 cal m y<br />
+p080 bc scale=2</p>
+<p>p205 echo -e(p264)<br />
+p208 env export<br />
+p209 set typeset declare<br />
+p212 locale LANG=en_US.utf8 zh_CN.utf8<br />
+p213 read -pt<br />
+p214 declare -iaxr typeset unset</p>
+<p>cmd:<span style="color: #0000ff;"><strong>ulimit</strong></span> (p215)<br />
+-a: print all limit info (then can set any limit according to the tip)</p>
+<p>p217 alias unalias<br />
+p218 history -c !number !partname !!<br />
+p224 source (.)<br />
+p225 stty -a<br />
+p225 set -+<br />
+p228 &lt; &lt;&lt; &gt; &gt;&gt; 2&gt; 2&gt;&gt;<br />
+p231 ; &amp;&amp; ||</p>
+<p>== pipe cmd ==<br />
+p232 cut -d -f -c</p>
+<p>cmd:<span style="color: #0000ff;"><strong>grep</strong></span>/egrep [option] key/&#8217;key&#8217;/&#8221;key&#8221; [file] (p233, p251)<br />
+&#8220;egrep&#8221;=&#8221;grep -E&#8221;, supports advance regular expressions, that is +, ?, |, ()<br />
+-i: &#8211;ignore-case<br />
+-v: &#8211;invert-match, return lines that doesn&#8217;t contain the key<br />
+base:<br />
+^: head<br />
+$: tail<br />
+.: any single character<br />
+\: escape special character<br />
+[ab], [a-c], [^a-c]: one of the character within or out of(^) the range<br />
+\{n,m\}, \{n,\}: repeat fore-character n to m times<br />
+*: repeat fore-character zero or multiple times<br />
+advance:<br />
++: repeat fore-character one or multiple times<br />
+?: repeat fore-character zero or one times<br />
+|: or<br />
+():</p>
+<p>p234 sort -tkrn<br />
+p235 uniq -ic<br />
+p235 wc -l<br />
+p236 tee -a<br />
+p236 tr -d<br />
+p337 join<br />
+p238 paste<br />
+p237 col -x<br />
+p239 expand<br />
+p239 split -bl<br />
+p240 xargs<br />
+p241 -</p>
+<p>== vi ==<br />
+cmd:<span style="color: #0000ff;"><strong>vi </strong></span>file (p184)<br />
+vim, its temp file is &#8220;.(filename).swp&#8221;</p>
+<p>0: navigate cursor to the starting of the line<br />
+$: navigate cursor to the end of the line<br />
+gg: navigate cursor to the first line of the file<br />
+G: navigate cursor to the last line of the fle</p>
+<p>/key: search forward<br />
+?key: search backward<br />
+n: next search result<br />
+N: previous search result</p>
+<p>x: delete character forward<br />
+X: delete character backward<br />
+(n)dd: cut 1 line or n lines forward<br />
+(n)yy: copy 1 line or n lines forward</p>
+<p>p: paste clipboard after the current line<br />
+P: paste clipboard before the current line</p>
+<p>u: undo<br />
+ctrol+r: redo</p>
+<p>i: start inserting at the current cursor position<br />
+o: new a line under the current sursor position and start inserting<br />
+O: new a line above the current sursor position and start inserting</p>
+<p>:n1,n2s/replaced/replacing/g: substitute &#8220;replaced&#8221; with &#8220;replacing&#8221; within lines from line n1 to line n2<br />
+:n1,$s/treplaced/replacing/gc: substitute &#8220;replaced&#8221; with &#8220;replacing&#8221; within lines from line n1 to the end of file, with confirmation</p>
+<p>:w(!) [file]: write (force) [save as another file]<br />
+:q(!): quit (force)<br />
+:e!: erase(abandon) changes and restore the file to original status</p>
+<p>:set nu/nonu: show or hide line number<br />
+:set fileformat=unix: set file format to unix [line feed ("\n")]<br />
+:set fileformat=dos: set file format to dos [carriage return and line feed ("\r\n")]</p>
+<p>go to a specified(e.g. 123) line:<br />
+:123<CR><br />
+123G<br />
+123gg</p>
+<p>cmd:<span style="color: #0000ff;"><strong>dos2unix </strong></span>[option] file [newfile] (p196)<br />
+transform CRLF(^M$) to LF($)<br />
+-n: save the result to a new file</p>
+<p>cmd:<span style="color: #0000ff;"><strong>unix2dos </strong></span>[option] file [newfile] (p196)<br />
+transform LF($) to CRLF(^M$)<br />
+-n: save the result to a new file</p>
+<p>== User and Group ==<br />
+p287 /etc/passwd<br />
+p288 /etc/shadow<br />
+p289 /etc/group<br />
+p291 /etc/gshadow</p>
+<p>p293 /etc/login.defs<br />
+p293 /etc/skel/*<br />
+p292 /etc/default/useradd</p>
+<p>p291 useradd -ugGcdsMmr<br />
+p295 usermod -lugGcdsmLUe<br />
+p295 userdel -r<br />
+p294 passwd -ludS (p300)<br />
+p296 chsh -ls<br />
+/etc/shells<br />
+p296 chfn<br />
+p297 finger -s<br />
+p298 id</p>
+<p>p298 groupadd -gr<br />
+p298 groupmod -gn<br />
+p299 groupdel<br />
+p299 gpasswd -adAMRr<br />
+p290 groups<br />
+p290 newgrp</p>
+<p>cmd:<span style="color: #0000ff;"><strong>su</strong></span> [-] [USER] (p302)<br />
+mean: Change the effective user id and group id to that of USER<br />
+-c COMMAND: execute COMMAND and exit user&#8217;s context<br />
+-, -l, &#8211;login: make the shell a login shell (load USER&#8217;s .bash_profile)<br />
+If USER not given, assume root.</p>
+<p>cmd:<span style="color: #0000ff;"><strong>sudo</strong></span> (p303)<br />
+mean: in behavior of root doing sth<br />
+-u USER: in behavior of USER doing sth<br />
+sudo su -: going into root&#8217;s shell</p>
+<p>cmd:<span style="color: #0000ff;"><strong>visudo</strong></span> (p304)<br />
+mean: edit /etc/sudoers</p>
+<p>p306 shell = /sbin/nologin<br />
+/etc/nologin.txt</p>
+<p>p307 /etc/pam.d/(cmd)<br />
+/lib/security/pam_*.so</p>
+<p>p308 /lib/security/pam_securetty (only affect root)<br />
+/etc/securetty</p>
+<p>p309 /lib/security/pam_nologin.so (only affect non-root user)<br />
+/etc/nologin</p>
+<p>p309 w<br />
+p309 who<br />
+p309 finger<br />
+p309 users</p>
+<p>p309 last<br />
+p309 lastlog</p>
+<p>p309 talk<br />
+p310 ntalk<br />
+p310 write<br />
+p310 wall<br />
+p310 mesg yn</p>
+<p>p311 mail<br />
+/var/spool/mail/(user)</p>
+<p>cmd:<span style="color: #0000ff;"><strong>sendmail </strong></span>email &amp;lt; file<br />
+or:<br />
+sendmail email</p>
+<p>From: fromEmail<br />
+Subject: subject</p>
+<p>email body<br />
+ctrl+d</p>
+<p>p312 pwck grpck<br />
+p312 pwconv pwunconv<br />
+p312 grpconv grpunconv<br />
+p313 chpasswd</p>
+<p>== Shutdown ==<br />
+p090 shutdown -h now<br />
+p090 powseroff<br />
+p090 halt<br />
+p090 reboot</p>
+<p>== Swap ==<br />
+p179 dd<br />
+p171 mkswap<br />
+p171 free<br />
+p171 swapon<br />
+p171 swapoff</p>
+<p>== ZIP ==<br />
+p175 compress -dcr uncompress<br />
+p176 gzip -dc# v  gunzip  gcat<br />
+p177 bzip2 -dc# v bunzip2 bzcat</p>
+<p>cmd:<span style="color: #0000ff;"><strong>tar </strong><span style="color: #333333;">-cjf file.bz2 folder</span></span>(p177)</p>
+<p>tar -xjf file.bz2<br />
+-c: create<br />
+-x: extract<br />
+-t: test</p>
+<p>-z: gz<br />
+-j: bz2</p>
+<p>-v: verbose<br />
+-p: &#8211;preserve-permissions, &#8211;same-permissions<br />
+-P: &#8211;absolute-names, don&#8217;t strip leading &#8216;/&#8217;s from file names</p>
+<p>-f file: &#8211;file=file</p>
+<p>== File permission ==<br />
+cmd:<span style="color: #0000ff;"><strong>chown </strong></span>[option] owner[:group] files (p101)<br />
+-R: &#8211;recursive</p>
+<p>cmd:<span style="color: #0000ff;"><strong>chgrp </strong></span>[option] group files (p100)<br />
+-R: &#8211;recursive</p>
+<p>cmd:<span style="color: #0000ff;"><strong>chmod </strong></span>[option] mod[,mod] files (p102, p134)<br />
+-R: &#8211;recursive</p>
+<p>r(4) w(2) x(1)<br />
+ugoa +-= rwx</p>
+<p>Set UID (4): only effect on executable file(wont&#8217; propagate), run with the file owner&#8217;s permission(the owner and executor must have the x permission)<br />
+Set GID (2):<br />
+a) to file &#8211; run with the file own group&#8217;s permission(the file own group must has the x permission)<br />
+b) to directory &#8211; the default group of new files/directories will the parent&#8217;s folder group<br />
+Sticky Bit (1): only effect on directory, under this directory, only the the file owner/parent directory owner/root can delete the file, even if group/other has w permission</p>
+<p>the mean of i-node:<br />
+file: the count of hard link<br />
+directory: the count of sub-directories which is under it directly</p>
+<p>cmd:<span style="color: #0000ff;"><strong>chattr </strong></span>+-= attr file/directory (132)<br />
+a: lock the file and can only append content to it (need root to set it)<br />
+i: lock the file and can&#8217;t change/delete the file (need root to set it)</p>
+<p>cmd:<span style="color: #0000ff;"><strong>lsattr </strong></span>(p133)</p>
+<p>cmd:<span style="color: #0000ff;"><strong>getfattr</strong></span><br />
+get extended attributes (available in &#8220;attr&#8221; package)</p>
+<p>cmd:<span style="color: #0000ff;"><strong>umask </strong></span>[subtractingMode] (p131)<br />
+file default permission:      -rw-r&#8211;r&#8211;<br />
+directory default permission: drwxr-xr-x</p>
+<p>== File and Directory ==<br />
+p115 cd<br />
+p116 pwd -P<br />
+p117 mkdir -mp<br />
+p117 rmdir -p</p>
+<p>cmd:<span style="color: #0000ff;"><strong>ls </strong></span>[option] [dir] (p119)<br />
+-a: &#8211;all, do not ignore entries starting with .<br />
+-l: list view<br />
+-h: &#8211;human-readable, print size in human readable format (e.g., 1K 232M 2G)<br />
+-d: &#8211;directory, list directory entries or symbolic links itself, instead of listing contents<br />
+-i: &#8211;inode, including inode at the result<br />
+-n: &#8211;numeric-uid-gid, showing uid/gid instead of username/groupname<br />
+-F: format, * executable, / directory, @ symbolic link, = socket, | FIFO</p>
+<p>p121 cp -dpr a ls if u<br />
+p122 rm -r if<br />
+p123 mv -v if u</p>
+<p>cmd:<span style="color: #0000ff;"><strong>ln </strong></span>[option] sourcefile newfile (p153)<br />
+make hard links by default<br />
+-s: &#8211;symbolic, make symbolic links instead of hard links<br />
+-f: &#8211;force, remove existing destination files</p>
+<p>p128 touch</p>
+<p>cmd:<span style="color: #0000ff;"><strong>file </strong></span>file (p135)</p>
+<p>p123 basename<br />
+p124 dirname</p>
+<p>== show file content==<br />
+cmd:<span style="color: #0000ff;"><strong>cat </strong></span>[option] file (P124)<br />
+-n: show line number<br />
+-A: show all invisible characters e.g., ^M(CR) $(LF) ^I(TAB)</p>
+<p>cmd:<span style="color: #0000ff;"><strong>tac </strong></span>file (p125)<br />
+show file content inverted, that is last line shows first</p>
+<p>cmd:<span style="color: #0000ff;"><strong>nl </strong></span>file (p125)<br />
+show file content, with line number</p>
+<p>cmd:<span style="color: #0000ff;"><strong>more </strong></span>file (p126)<br />
+space: next page<br />
+enter: next line<br />
+q: quit</p>
+<p>cmd:<span style="color: #0000ff;"><strong>less </strong></span>file (p127)<br />
+space: next page<br />
+enter: next line<br />
+/key: search forward<br />
+?key: search backward<br />
+n: next search result<br />
+N: previous search result<br />
+q: quit</p>
+<p>cmd:<span style="color: #0000ff;"><strong>head </strong></span>[option] file (p127)<br />
+-n: show first n lines</p>
+<p>cmd:<span style="color: #0000ff;"><strong>tail </strong></span>[option] file (p127)<br />
+-n: show last n lines<br />
+-f/&#8211;follow file: follow file and output appended data as the file grows to console</p>
+<p>cmd:<span style="color: #0000ff;"><strong>od </strong></span>[option] file (p128)<br />
+-t: specify showing type<br />
+c: set type to ASCII<br />
+d: set type to decimal<br />
+o: set type to octal<br />
+x: set type to hexadecimal</p>
+<p>== search ==<br />
+cmd:<span style="color: #0000ff;"><strong>type </strong></span>cmd (p202)<br />
+check if a command is a builtin command or not</p>
+<p>cmd:<span style="color: #0000ff;"><strong>which </strong></span>[option] cmd (p135)<br />
+search executable files in $PATH<br />
+-a: list all qualified files</p>
+<p>cmd:<span style="color: #0000ff;"><strong>whereis </strong></span>fullname (p136)<br />
+search exactly, base on database, which is updated by command &#8220;updatedb&#8221;</p>
+<p>cmd:<span style="color: #0000ff;"><strong>locate </strong></span>partname(p136)<br />
+fuzzy search, base on database, which is updated by command &#8220;updatedb&#8221;</p>
+<p>cmd:<span style="color: #0000ff;"><strong>find </strong></span>[path] [option] (p137)</p>
+<p>-mtime #: modified time is between # and #+1 days ago<br />
+-newer file: newer than the file</p>
+<p>-uid n: search by uid<br />
+-gid n: search by gid<br />
+-user name: search by user name<br />
+-group name: search by group name<br />
+-nouser: search files with file&#8217;s owner not in /etc/passwd<br />
+-nogroup: search files with file&#8217;s group not in /etc/group</p>
+<p>-name filename: the name can include wildcard (?*), but must place them in quote (&#8220;?*&#8221; or &#8216;?*&#8217;)<br />
+-size [+-]size: larger(+) or smaller(-) than the size, c-byte, k-1024bytes<br />
+-type type: f-file, d-directory, b-block, c-character, l-symbolic link, s-socket, p-FIFO</p>
+<p>-perm mode: the exact mode of files<br />
+-perm -mode: shoud(at least) include this mode<br />
+-perm +mode: include one of this mode</p>
+<p>== file system ==<br />
+p149 df -hT .<br />
+p151 du -hs</p>
+<p>cmd:<span style="color: #0000ff;"><strong>dd </strong></span>[options] (p179)<br />
+if=input file (/dev/zero)<br />
+of=output file<br />
+bs=block size (in byte)<br />
+count=block count<br />
+skip=skip block count</p>
+<p>p155 fdisk -l<br />
+p159 mke2fs -ibLj<br />
+p146 dumpe2fs -h<br />
+p161 fsck -y<br />
+p162 sync</p>
+<p>cmd:<span style="color: #0000ff;"><strong>mount </strong></span>[option] device mountpoint (p162)<br />
+/etc/fstab: system mount table<br />
+/etc/mtab: current mounted table<br />
+/proc/mounts: current mounted table<br />
+-a: mount all in /etc/fstab<br />
+-n: don&#8217;t update /etc/mtab<br />
+-t: type, ext2, ext3, vfat, iso9660<br />
+-o: option, ro, rw, loop(to iso/CD), remount</p>
+<p>cmd:<span style="color: #0000ff;"><strong>umount </strong></span>[option] device/mountpoint (p164)<br />
+-f: force</p>
+<p>p164 mknod bcp<br />
+p165 mke2label<br />
+p165 tune2fs -jlL<br />
+p165 hdparm<br />
+p180 cpio</p>
+<p>== RAID ==<br />
+p527 Linear mode<br />
+Stripe mode (RAID-0)<br />
+Mirror mode (RAID-1)<br />
+RAID-0+1 (4 disks)<br />
+RAID-5 (n-1)*s (3 or more disks)</p>
+<p>p528 NAS (Network Attached Storage)<br />
+p529 SAN (Storage Area Network)<br />
+p529 iSCSI</p>
+<p>== Network debug ==<br />
+cmd:<span style="color: #0000ff;"><strong>nc</strong></span><br />
+netcat. Reads and writes data across network connections using TCP or UDP.<br />
+-k, Keep inbound sockets open for multiple connects<br />
+-l port, Listen mode, for inbound connects<br />
+-u, UDP mode (default TCP mode)</p>
+<p>cmd:<span style="color: #0000ff;"><strong>curl</strong></span> url<br />
+-T file, upload(PUT) file to targer url<br />
+-X method, use method(GET, POST, DELETE, PUT etc.) to call target url, default value is GET</p>
+<p>cmd:<span style="color: #0000ff;"><strong>telnet</strong></span> host port</p>
+</body>
+</html>

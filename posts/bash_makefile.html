@@ -1,0 +1,36 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Makefile</h3>
+File name in searching sequence: <strong>GNUmakefile</strong> <strong>makefile</strong> <strong>Makefile</strong>(prefer)<br/>
+<br/>
+<strong>targets: prerequisites</strong><br/>
+&lt;Tab&gt;<strong>command</strong><br/>
+<br/>
+or<br/>
+<br/>
+<strong>targets: prerequisites; command</strong><br/>
+<strong>command</strong><br/>
+<br/>
+(targets and prerequisites delimited by &lt;space&gt;, and support wildcards)<br/>
+<br/>
+wildcards: <strong>* ?</strong><br/>
+<br/>
+<strong>VAR=value</strong> (declare variable)<br/>
+<strong>$(VAR)</strong> (use variable)<br/>
+<br/>
+<strong>include</strong> filename1 filename2 (could use wildcards in filenames)<br/>
+<br/>
+<strong>-</strong> (place this before a cmd, means continue if exception)<br/>
+<strong>@</strong> (place this before a cmd, means don't output the cmd to the console)<br/>
+<br/>
+<strong>#</strong> comment<br/>
+<br/>
+<strong>$@</strong> (current target name)<br/>
+<strong>$^</strong> (dependencies)<br/>
+<br/>
+<strong>.PHONY</strong>: target1 target2 (declare fake targets)<br/>
+</body>
+</html>

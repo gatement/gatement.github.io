@@ -1,0 +1,191 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>RegExp</h3>
+<a href="http://deerchao.net/tutorials/regex/regex.htm" target="_blank">Tutorial</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FRegExp#Special_characters_in_regular_expressions" target="_blank">FullDesciption</a> <a href="http://regexpal.com/" target="_blank">Tester</a>
+<table>
+<tr>
+<td colspan="2"><strong>Character Classes</strong></td>
+</tr>
+<tr>
+<td>.</td>
+<td>Matches any single character except the newline characters: \n \r \u2028 or \u2029.</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>Matches a digit character in the basic Latin alphabet. Equivalent to [0-9].</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>Matches any character that is not a digit in the basic Latin alphabet. Equivalent to [^0-9]. </td>
+</tr>
+<tr>
+<td>\w</td>
+<td>Matches any alphanumeric character from the basic Latin alphabet, including the underscore. Equivalent to [A-Za-z0-9_].</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>Matches any character that is not a word character from the basic Latin alphabet. Equivalent to [^A-Za-z0-9_].</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>Matches a single white space character, including space, tab, form feed, line feed and other unicode spaces. Equivalent to [ \t\r\n].</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>Matches a single character other than white space (Not whitespace). Equivalent to [^ \t\r\n].</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>Matches a tab.</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>Matches a carriage return.</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>Matches a linefeed.</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>Matches a vertical tab.</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>Matches a form-feed.</td>
+</tr>
+<tr>
+<td>[\b]</td>
+<td>Matches a backspace. (Not to be confused with \b)</td>
+</tr>
+<tr>
+<td>\0</td>
+<td>Matches a NUL character. Do not follow this with another digit.</td>
+</tr>
+<tr>
+<td>\cX</td>
+<td>Where X is a letter from A - Z. Matches a control character in a string. For example, /\cM/ matches control-M in a string.</td>
+</tr>
+<tr>
+<td>\xhh</td>
+<td>Matches the character with the code hh (two hexadecimal digits).</td>
+</tr>
+<tr>
+<td>\uhhhh</td>
+<td>Matches the character with the Unicode value hhhh (four hexadecimal digits).</td>
+</tr>
+<tr>
+<td>\</td>
+<td>For characters that are usually treated literally, indicates that the next character is special and not to be interpreted literally. 
+For characters that are usually treated specially, indicates that the next character is not special and should be interpreted literally.</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Character Sets</strong></td>
+</tr>
+<tr>
+<td>[xyz]</td>
+<td>A character set. Matches any one of the enclosed characters. You can specify a range of characters by using a hyphen. For example, [abcd] is the same as [a-d].</td>
+</tr>
+<tr>
+<td>[^xyz]</td>
+<td>A negated or complemented character set. That is, it matches anything that is not enclosed in the brackets. You can specify a range of characters by using a hyphen. For example, [^abc] is the same as [^a-c].</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Quantifiers</strong></td>
+</tr>
+<tr>
+<td>*</td>
+<td>Matches the preceding item 0 or more times. Default is greedy, non-greedy is *?</td>
+</tr>
+<tr>
+<td>+</td>
+<td>Matches the preceding item 1 or more times. Default is greedy, non-greedy is +?</td>
+</tr>
+<tr>
+<td>?</td>
+<td>Matches the preceding item 0 or 1 time. Default is greedy, non-greedy is ??</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>Where n is a positive integer. Matches exactly n occurrences of the preceding item.</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>Where n is a positive integer. Matches at least n occurrences of the preceding item. Default is greedy, non-greedy is {n,}?</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>Where n and m are positive integers. Matches at least n and at most m occurrences of the preceding item. Default is greedy, non-greedy is {n,m}?</td>
+</tr>
+<tr>
+<td>x|y</td>
+<td>Matches either x or y.</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Grouping and back references</strong></td>
+</tr>
+<tr>
+<td>(exp)</td>
+<td>Matches x and remembers the match. These are called capturing parentheses.</td>
+</tr>
+<tr>
+<td>(?&lt;name&gt;exp) | (?'name'exp)</td>
+<td>named substring</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>Where n is a positive integer. A back reference to the last substring matching the n parenthetical in the regular expression (counting left parentheses).</td>
+</tr>
+<tr>
+<td>\k&lt;name&gt;</td>
+<td>A back reference to the named substring matching.</td>
+</tr>
+<tr>
+<td>(?:exp)</td>
+<td>Matches x but does not remember the match. These are called non-capturing parentheses.</td>
+</tr>
+<tr>
+<td>(?=exp)</td>
+<td>After text will match exp but not include this exp in the results (零宽断言)</td>
+</tr>
+<tr>
+<td>(?&lt;=exp)</td>
+<td>Before text will match exp but not include this exp in the results (零宽断言)</td>
+</tr>
+<tr>
+<td>(?!exp)</td>
+<td>After text will NOT match exp and will not include this exp in the results (负向零宽断言)</td>
+</tr>
+<tr>
+<td>?(&lt;!exp)</td>
+<td>Before text will NOT match exp will not include this exp in the results (负向零宽断言)</td>
+</tr>
+<tr>
+<td>(?#comment)</td>
+<td>comment.</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Boundaries</strong></td>
+</tr>
+<tr>
+<td>^</td>
+<td>Matches beginning of input. If the multiline flag is set to true, also matches immediately after a line break character.</td>
+</tr>
+<tr>
+<td>$</td>
+<td>Matches end of input. If the multiline flag is set to true, also matches immediately before a line break character.</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>Matches a zero-width word boundary.</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>Matches a zero-width non-word boundary.</td>
+</tr>
+</table>
+</body>
+</html>
