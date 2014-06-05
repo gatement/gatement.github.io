@@ -1,0 +1,44 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Windows Service</h3>
+1. Demo code (myservice.erl):
+<pre>
+-module(myservice).
+-compile(export_all).
+
+start() ->
+    BasicSocketOpts = [binary, {active, true}],
+    {ok, LSocket} = gen_tcp:listen(10000, BasicSocketOpts), 
+    start_accept(LSocket).
+
+start_accept(LSocket) ->  
+    {ok, Socket} = gen_tcp:accept(LSocket),
+    erlang:spawn(fun() -> ?MODULE:start_accept(LSocket) end),
+    loop(Socket).
+
+loop(Socket) ->
+	receive 
+		Msg ->
+			error_logger:info_msg("Receive: ~p~n", [Msg]),
+			gen_tcp:send(Socket, <<"noted.">>),
+			loop(Socket)
+	end.
+</pre>
+
+2. Install it as a service (as an Adminstrator and with C:\dev\erl5.10.1\erts-5.10.1\bin\erlsrv.exe):
+<pre>
+erlsrv add myservicename -w "C:\Users\johnson\Desktop" -c "test erlang erlsrv" -ar "-pa C:\Users\johnson\Desktop\erlsrv -eval \"myservice:start()\""
+</pre>
+
+3. Service management:
+<pre>
+erlsrv add|set|start|stop|enable|disable|remove|list myservicename
+</pre>
+
+4. Doc: <a href="http://www.erlang.org/doc/man/erlsrv.html" target="_blank">http://www.erlang.org/doc/man/erlsrv.html</a>
+
+</body>
+</html>

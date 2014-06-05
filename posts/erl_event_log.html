@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Event & Log</h3>
+<strong>Event Manager</strong><br/>
+<hr/>
+Event Manager can be created by calling "gen_event:start_link/0(1)". Event Manager has its own Process. Send events to the created Event Manager by "gen_event:notify/2".<br/>
+Application "Kernel" has a default Event Manager, named "<strong>error_logger</strong>". It is recommended to use this Event Manager to report errors, warnnings, information and custom events.<br/>
+Application "SASL" has a Event Manager, named "<strong>alarm_handler</strong>". It also contain a simple alarm handler in it with the same name.<br/>
+<br/>
+<br/>
+
+<strong>Event Handler</strong><br/>
+<hr/>
+One Event Manager can have/add/install one or more Event Handlers, which is an implementation of OTP behaviour "<strong>gen_event</strong>". Event Handler run in the Event Manager Process.<br/>
+Application "Kernel" has a default Event Handler added/installed to Event Manager "error_logger", which can be configurable by "Kernel" Application Configuration parameter "error_handler".<br/>
+Application "SASL" has an Event Handler added/installed to Event Manager "error_logger" as well, which will output OTP behaviours logs to tty by default. It can be configurable by "SASL" Application Configuration parameter "sasl_error_logger".<br/>
+<br/>
+<br/>
+
+<strong>custom Event Handler</strong><br/>
+<hr/>
+Implement OTP behaviour "gen_event" and add/install it to an Event Manager ("error_logger" or a self created Event Manager).<br/>
+<br/>
+<br/>
+
+<strong>custom Event type for Event Manager "error_logger"</strong><br/>
+<hr/>
+Use <br/>
+error_logger:info_report/2, <br/>
+error_logger:warning_report/2 <br/>
+error_logger:error_report/2 <br/>
+to report custom Events.<br/>
+Implement a custom Event Handler(gen_event) and add it to "error_logger" to handle the custom Event type. <br/>
+<br/>
+<br/>
+
+</body>
+</html>

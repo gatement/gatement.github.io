@@ -1,0 +1,25 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Configuration</h3>
+<pre>
+erl -mnesia dir '"mnesia/data/files/dir"'
+    -mnesia dc_dump_limit 4
+    -mnesia dump_log_write_threshold 100 
+    -mnesia dump_log_time_threshold 180000
+</pre>
+
+mnesia settings, please refer to the mnesia application docs.<br/>
+[transaction log -> table log -> table file]<br/>
+- make "<strong>dc_dump_limit</strong>" larger (practical), means make <strong>disc_copies table log</strong> dump more often<br/>
+- make "<strong>dump_log_write_threshold</strong>" larger (practical), means make <strong>transaction log</strong> dump less often<br/>
+- "<strong>dump_log_time_threshold</strong>" can be set less if the "<strong>dump_log_write_threshold</strong>" is too large and you are worrying transaction log will rarely get dumped when there’s very few writes occuring.<br/>
+
+<pre>
+erl -env ERL_MAX_ETS_TABLES 1400
+</pre>
+The number of tables stored at one Erlang node is limited. The current default limit is approximately 1400 tables. The upper limit can be increased by setting the environment variable ERL_MAX_ETS_TABLES before starting the Erlang runtime system (i.e. with the -env option to erl/werl). The actual limit may be slightly higher than the one specified, but never lower.<br/>
+</body>
+</html>
