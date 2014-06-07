@@ -1,0 +1,21 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Cookie</h3>
+<p>1. set erlang cookie in </p>
+<pre>
+$HOME/.erlang.cookie
+</pre>
+<p>2. set erlang cookie when starting erl</p>
+<pre>
+erl -setcookie cookievalue
+</pre>
+<p>3. set erlang cookie in runtime</p>
+<pre>
+erlang:set_cookie(erlang:node(), cookievalue).
+erlang:get_cookie().
+</pre>
+</body>
+</html>

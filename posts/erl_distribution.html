@@ -1,0 +1,27 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Distribution</h3>
+<pre>erl -name server@johnsonlau.net -setcookie cookievalue</pre>
+
+<p>1. <strong>functions</strong></p>
+<p>rpc:call(RemoteNode, Module, Method, [Params]).</p>
+<p>nl(Mod). % loads the module Mod on all connected nodes.</p>
+<p>net_adm:ping(Node).</p>
+<p>disconnect_node(Node).</p>
+<p>nodes(). % returns a list of all other nodes on the network to which I'm connecting.<br />
+nodes(Arg).</p>
+
+<p>2. <strong>epmd</strong>: Erlang Port Mapper Daemon<br />
+-names: List names registered with the currently running epmd<br />
+-port 4369: epmd runs on port 4369(TCP and UDP) by default</p>
+
+<p>3. <strong>Register distributed Erlang to run on specified rang of ports</strong></p>
+<pre>
+erl -name client@johnsonlau.net -setcookie my_cookie_value -kernel inet_dist_listen_min 30001 inet_dist_listen_max 30001
+</pre>
+
+</body>
+</html>

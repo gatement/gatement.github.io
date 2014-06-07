@@ -1,0 +1,124 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Foundation</h3>
+<p><a href="http://www.erlang.org" target="_blank">www.erlang.org</a></p>
+<hr />
+<p><strong><span style="color: #0000ff;">Cmd</span></strong></p>
+<hr />
+<p><strong>erl</strong>: command line<br />
+<strong>-boot</strong> [boot(config) file name without extension] (.rel -&gt; .script -&gt; .boot by <strong>systools</strong>[sasl] module functions)<br />
+<strong>-mode</strong> interactive[default]/embedded<br />
+<strong>-pa</strong> directories: add directories to the head of the code search path.<br />
+<strong>-pz</strong> directories: add directories to the end of the code search path. (refer to <strong>code</strong>[kernel] module functions)<br />
+<strong>-sname</strong> subDomainName: give a node name to this Erlang system instance<br />
+<strong>-name</strong> FullQualifiedDomainName: give a node name to this Erlang system instance<br />
+<strong>-s</strong> Module Method Param: execute apply(Module, Method, [Param]), can be add serveral times and will execute in order<br />
+<strong>-noshell</strong>: execute and exit, don&#8217;t enter in interactive mode</p>
+<p><strong>werl</strong>: window command line</p>
+<p><strong>erlc</strong> erlFileWithExtension: compile .erl file to .beam file<br />
+<strong>c</strong>(erlFileWithoutExtension, [options]): compile .erl file to .beam file and load the code<br />
+c(m1, {d, &#8216;macro&#8217;}).: define a macro and compile the code (the macro is used for conditional compilation)<br />
+<strong>compile:file</strong>(erlFileWithoutExtension, [options]): compile .erl file to .beam file<br />
+compile:file(erlFileWithoutExtension, ['P']): just preprocess the code and output it to erlFileName.P</p>
+<p><strong>code:get_path().</strong> % get search paths</p>
+<p>.: period a sentence<br />
+;: separate clause (or)<br />
+,: and expressions</p>
+<p><strong>Home folder</strong>:<br />
+init:get_argument(home).</p>
+<p><strong>Config</strong>:<br />
+.erlang at $HOME folder: global start script, could place any erlang function in it<br />
+.erlang at any folder: specified start script, will override the global start script if curren folder has one</p>
+<p><strong>Exit</strong>:<br />
+q().: shorthand for init:stop()<br />
+erlang::halt().<br />
+init:stop().<br />
+init:restart().<br />
+Ctrl+g, q [Enter]</p>
+<p><strong>v(N)</strong>: view line Nth history result</p>
+<p><strong>cd(&#8220;path&#8221;)</strong>:<br />
+<strong>c:cd(&#8220;path&#8221;)</strong>:  change directory</p>
+<p><strong>pwd()</strong>:<br />
+<strong>c:pwd()</strong>: print working directory<br />
+<strong>file:get_cwd()</strong>: get currend working directory</p>
+<p><strong>Manual</strong>:<br />
+erl -man [module] % unix/linux only</p>
+<p><strong>Comment%</strong>:<br />
+A comment starts with a <strong>%</strong> character and goes on to the end of the line</p>
+<p><strong>-compile(export_all)</strong>. % exports all the functions in the module</p>
+<p><strong>erl -man Module</strong>: show Module man page, only supports Linux/Unix. The man can be download from <a href="http://www.erlang.org/download.html" target="_blank">here</a> and must place in the root of the Erlang installation directory (usually /usr/local/lib/erlang).</p>
+<p><strong>webtool:start().</strong>: Web tools, includes an erl_crash.dump analyzer.</p>
+<p><strong>nl(ModuleName)</strong>: c:nl(Module), Loads Module on all connected nodes.</p>
+<p><strong>net_adm:ping(Node)</strong>: ping another Node</p>
+<hr />
+<p><strong><span style="color: #0000ff;">Variable</span></strong>:</p>
+<hr />
+<p>Variables must start with a capital letter: N, Age, ShoeSize<br />
+A variable can only be given a value once in its context (scope)<br />
+unbound variable &amp; bound variable</p>
+<p><strong>anonymous variable &#8220;_&#8221;</strong>.<br />
+&#8220;_VarName&#8221;, is normal variable, but no alter if it only occur onece.</p>
+<p><strong> f()</strong>: BIF, forget any variable binding (unset/unbind variables)</p>
+<p><strong>-Number</strong>: integer or floating-point number</p>
+<p><strong> dollar syntax($)</strong><br />
+I = $a % I = 97<br />
+[I-32,$u,$r,$p,$r,$i,$s,$e]. % &#8220;Aurprise&#8221;</p>
+<p><strong>N#[number]</strong>: N could be 2~36</p>
+<p>/: always returns a floating-point number<br />
+div: integer division and always returns a integer<br />
+rem: integer remainder and always returns a integer</p>
+<p><strong>-Atom(&#8221;)</strong>: represent different non-numerical constant values. Start with lower letter and consist of alphanumeric or underscore (_) or at(@) sign, or quoted with single quotation mark(&#8216;)<br />
+johnson, joe@gmail.com, _abc, &#8216;It is Good&#8217;, &#8216;+&#8217;</p>
+<p><strong>-Tuple({})</strong>:<br />
+P = {joe, 1.82}. % contains a atom and a floating-point number<br />
+Person={person,{name,{first,johnson},{last,lau}},{footsize,42}}.</p>
+<p>{person,{name,{first,Who1},{last,lau}},{footsize,42}}={person,{name,{first,johnson},{last,lau}},{footsize,42}}.<br />
+% Who1=johnson</p>
+<p>{_,{_,{_,Who2},_},_} = Person.<br />
+%Who2=johnson, <span style="color: #0000ff;"><strong>_</strong></span> is anonymous variable</p>
+<p><strong>element</strong>(N, Tuple): BIF, get the Nth(1 base) Tuple element</p>
+<p><strong>-List([])</strong>:<br />
+ThingsToBuy = [{apples, 10}, {pears, 6}, {milk, 3}].<br />
+% the {apples, 10} is called the <strong>head </strong>of the list, the other parts is called the <strong>tail </strong>of the list</p>
+<p>ThingsToBuy2 = [{oranges, 4}, {newspaper, 1} <strong><span style="color: #0000ff;">| </span></strong>ThingsToBuy].<br />
+%define another list, the &#8220;ThingsToBuy&#8221; must be a list (proper formed)</p>
+<p>[Buy1|ThingsToBuy3] = ThingsToBuy2.<br />
+% Buy1={oranges, 4} and ThingsToBuy3= [{newspaper, 1}, {apples, 10}, {pears, 6}, {milk, 3}]</p>
+<p>[Buy2, Buy3|ThingsToBuy4] = ThingsToBuy3<br />
+% Buy2={newspaper, 1}, Buy3={apples, 10}, ThingsToBuy4= [{pears, 6}, {milk, 3}]</p>
+<p><strong>List comprehensions</strong>:</p>
+<p>List = [{a, 1, 2}, {b, 5, 6}, {a, 3, 4}, {a, 7, 8}].<br />
+[X*Y || {a,X,Y} &lt;- List, X &gt;= 2, Y&gt;=2]. % [12, 56]</p>
+<p><strong>++</strong>： [1,2] ++ [3,4] %[1,2,3,4], inefficient and not recommended unless it is small list<br />
+<strong>&#8211;</strong>: [1,2,4,1,4] &#8212; [3,4] %[1,2,1,4], inefficient and not recommended unless it is small list</p>
+<p><strong> String(&#8220;&#8221;)</strong>:<br />
+Strings are really just lists of integers. it is just a shorthand for the list of integers<br />
+Name = &#8220;abc&#8221;. % [97, 98, 99]</p>
+<p>For erlang, string is a just a list of integers(any bytes, not just 1 byte. e.g. Chinese GB2312, will use 2 bytes for one character) in some encoding.</p>
+<hr />
+<p><strong><span style="color: #0000ff;">Processes</span></strong>:</p>
+<hr />
+<p>Threads of execution in Erlang share no data, that&#8217;s why we call them<br />
+processes.</p>
+<p>- Pid <strong>!</strong> Message:<br />
+- {Register_name, Node_name} <strong>!</strong> Message:<br />
+Send Message to process. It won&#8217;t cause error even Node_name nor Register_name doesn&#8217;t exist. It returns the sent Message. Erlang Pids contain information about where the process executes so if you know the Pid of a process, the &#8220;!&#8221; operator can be used to send it a message if the process is on the same node or on a different node.</p>
+<p>- <strong>self()</strong>: get current process Pid</p>
+<hr />
+<p><strong><span style="color: #0000ff;">Record</span></strong>:</p>
+<hr />
+<p>-record(todo, {status=reminder,who=joe,text}). % records should be defined in .hrl file</p>
+<p>rr(&#8220;records.hrl&#8221;). % record read into shell from .hrl file<br />
+rf(record_name). % record forget in shell env</p>
+<p>X1 = #todo{status=urgent, text=&#8221;Fix errata in book&#8221;}.<br />
+X2 = X1#todo{status=done}. % copy record X1 and override some value</p>
+<p>X2#todo.text. %extract a value in a record</p>
+<hr />
+<p><strong><span style="color: #0000ff;">References</span></strong>:</p>
+<hr />
+<p><strong>erlang:make_ref()</strong>: can generate a unique identity.</p>
+</body>
+</html>

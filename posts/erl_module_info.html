@@ -1,0 +1,21 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Mofule Info</h3>
+<p>-module_name:<strong>module_info</strong>()<br />
+-module_name:<strong>module_info(attribute_name)</strong><br />
+functions module_info/0 and module_info/1 are automatically created every time a module is compiled.<br />
+It has to load the beam code for the module.</p>
+<p>-<strong>beam_lib:chunks(&#8220;file.beam&#8221;, [attributes])</strong>.<br />
+It functions without loading the beam code.</p>
+<p>Predefined Module Attributes:<br />
+-<strong>module</strong>(modname).<br />
+-<strong>import</strong>(Mod, [Name1/Arity1, Name2/Arity2,...]).<br />
+-<strong>export</strong>([Name1/Arity1, Name2/Arity2, ...]).<br />
+-<strong>compile</strong>(Options).<br />
+-<strong>vsn</strong>(Version).<br />
+Note that, -record(&#8230;), -include(&#8230;) and -include_lib(&#8230;) have a similar syntax but are not considered module attributes.</p>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Mnesia Adding/Deleting DB Nodes</h3>
+<p>目标: 新增或减少Mnesia节点,并确保数据在这些节点上保持同步. </p>
+<p>创建：<br />
+mnesia:create_schema([Nodes]).</p>
+<p>新增：<br />
+1. 新增加一个节点的时候, 首先要确保新节点上没有disc_copies schema并已经调用过: mnesia:start();<br />
+2. 在其中一已知存活的节点上调用mnesia:change_config(extra_db_nodes, [NewNode]), 这样可以通知每个节点, 有一个新的节点要加入进来了;<br />
+3. 改变NewNode上的schema表的存储方式: mnesia:change_table_copy_type(schema, NewNode, disc_copies);<br />
+4. 向NewNode追加TableList: mensia:add_table_copy(Table, NewNode, disc_copies), 这里可能会调用多次,有多少用户表,就调用多少次.</p>
+<p>减少：<br />
+1. 在想删除节点上调用mnesia:stop();<br />
+2. 在想删除节点上调用mnesia:delete_schema([OldNode]);<br />
+3. 在其中一已知存活的节点上调用mnesia:del_table_copy(schema, OldNode)通知删除了数据库节点.</p>
+</body>
+</html>

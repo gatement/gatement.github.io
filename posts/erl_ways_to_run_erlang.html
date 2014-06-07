@@ -1,0 +1,28 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Ways to run erlang</h3>
+<p><strong>erl interactive</strong>:<br />
+erl<br />
+&gt;&#8230;</p>
+<p><strong>Command</strong>:<br />
+erl -noshell -s test start -s init stop<br />
+%params are passed in as atom list: ['param1', 'param2', 'param3']</p>
+<p><strong><br />
+Bash script</strong>:<br />
+#! /bin/sh<br />
+erl -noshell -pa /path/to/my/beam -s hello start -s init stop</p>
+<p>(run at Linux OS start up)<br />
+HOME=/root # start the &#8220;erl&#8221; program needs the &#8220;HOME&#8221; env variable<br />
+export HOME<br />
+erl <strong>-noshell</strong> -pa /app/iptracker/ebin -s iptracker_supervisor start -extra /etc/iptracker.conf <strong>&amp;</strong></p>
+<p>(save as .bat file in Windows)<br />
+erl -noshell -pa /path/to/my/beam -s hello start -s init stop</p>
+<p><strong>escript</strong>:<br />
+#! /usr/bin/env escript<br />
+main(Params) -&gt; io:format(&#8220;Hello world\n&#8221;).<br />
+% main() is the execution entrance. Params is passed in as list of list ["Param1","Param2","Param3"]</p>
+</body>
+</html>

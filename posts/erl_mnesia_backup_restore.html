@@ -1,0 +1,18 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Mnesia backup & restore</h3>
+<strong>Backup</strong>:<br/>
+mnesia:backup("BackupFileName").<br/>
+<br/>
+<strong>Change db nodes</strong>:<br/>
+mnesia:traverse_backup(Source,[SourceMod,]Target,[TargetMod,]Fun,Ac).<br/>
+<br/>
+<strong>Restore</strong>:<br/>
+mnesia:install_fallback("BackupFileName").<br/>
+mnesia:stop().<br/>
+mnesia:start().<br/>
+</body>
+</html>

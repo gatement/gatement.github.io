@@ -1,0 +1,24 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Error Handling</h3>
+<p>Three BIFs (in erlang module):<br />
+- <strong>error(Reason)</strong>: runtime error, e.g. divide by zero, bad match, trying to call a function which doesn&#8217;t exist etc<br />
+- <strong>throw(Exception)</strong>: throw exception that let caller catch it<br />
+- <strong>exit(Reason)</strong>: implicitly(no code to run) or explicitly exit<br />
+- <strong>exit(Pid, Reason)</strong>: send exit signal Reason to Pid</p>
+<p>- exit(normal): when process run out of code or exit explicitly with a &#8216;normal&#8217; reason. normal signal will propagate to its linked processes, but won&#8217;t kill/exit them<br />
+- exit(kill): will kill current process, signal <em>kill</em> will propagate to linked processes, link set processes can trap_exit it. If linked processes don&#8217;t trap_exit, them will be killed and propagate killed signal to their linked processes<br />
+- exit(Pid, kill): exit explicitly with a &#8216;kill&#8217; reason, will always kill the Pid (even Pid has <em>trap_exit</em>), a killed signal will propagate to Pid&#8217;s linked processes<br />
+- exit(Reason): exit explicitly with a not &#8216;normal&#8217; reason</p>
+<p>- Process who executes one of the above functions will exit (or let Pid exit).<br />
+- Exit signals will be propagated to all linked processes(by <strong>link </strong>or<strong> spawn_link </strong>BIF). If it is abnormal exit signal (not exit(normal) signal), linked processes will be killed as well.<br />
+- Each linked process, if it is killed, not exit(normal), will send the exit signal on it&#8217;s own Pid, with the same Reason or with &#8216;normal&#8217; Reason(if it is exit normally), to it&#8217;s linked processes instead.</p>
+<p>- <strong>process_flag(trap_exit, true)</strong>:<br />
+When trap_exit is set to true, exit signals(include <em>normal </em>signal but not include <strong>kill </strong>signal) arriving to the current process are converted to <strong>{&#8216;EXIT&#8217;, FromPid, Reason}</strong> messages, which can be received as ordinary messages. That means even if it receives an abnormal exit signal, it won&#8217;t be killed. Default trap_exit is false.</p>
+<p>- if calling <strong>link</strong> (LinkedPid) fails, the process will receive &#8216;noproc&#8217; exit signal from LinkedPid.</p>
+<p>While link processes is symmetric (two directions), there is another option to use as asymmetric way (one directions): <strong>erlang:monitor(process, Item) -> MonitorRef</strong></p>
+</body>
+</html>
