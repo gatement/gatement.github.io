@@ -1,0 +1,20 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>.Net - ASP.NET page event sequence</h3>
+<p><strong>In Sequence</strong>:</p>
+<p>Child OnInit<br />
+Parent OnInit</p>
+<p>Parent LoadViewState (Only PostBack)<br />
+Child LoadViewState (Only PostBack)</p>
+<p>Parent OnLoad<br />
+Child OnLoad<br />
+Grandson Events(OnClick etc.)</p>
+<p>Parent OnPreRender<br />
+Child OnPreRender</p>
+<p>Parent SaveViewState<br />
+Child SaveViewState</p>
+</body>
+</html>

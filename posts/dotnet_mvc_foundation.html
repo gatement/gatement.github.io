@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>.Net - MVC Foundation</h3>
+<p><strong>- Route</strong>:<br />
+Route = URLPattern + IRouteHandler</p>
+<p>UrlRoutingModule -&gt; MvcRouteHandler(IRouteHanlder) -&gt; MvcHandler(IHttpHandler) -&gt; Controller -&gt; Action</p>
+<p>RouteCollection.<strong>GetVirtualPath</strong>(routeValueDictionary).VirtualPath</p>
+<p><strong>Model</strong> (available in View): represent the current model instance.</p>
+<p><strong>ViewData </strong>(available in Controller and View): Represents a container that is used to pass data between a controller and a view.</p>
+<p><strong>ViewBag</strong><strong> </strong>(available in Controller and View): dynamic edition of ViewData</p>
+<p><strong>TempData </strong><strong> </strong>(available in Controller and View):  ASP.NET Session data, represents a set of data that persists only from one request to the next.</p>
+<p><strong>RouteData </strong><strong> </strong><strong> </strong>(available in Controller): Encapsulates route variables of the route.</p>
+<p><strong>$RouteUrl</strong> (available in ASP.NET View): Generate Url,<br />
+&lt;%$RouteUrl:year=2007, locale=CA, PathName=%&gt;</p>
+<p><strong>- Error handling</strong>:<br />
+Add [<span style="color: #0000ff;">HandleError</span>] attribute to controller or action, it will use [/Views/Shared/Error.cshtml] as default View to show the error.</p>
+<p><strong>- Validate input</strong>:<br />
+Add [<span style="color: #0000ff;">ValidateInput(false)</span>] to the methods that don&#8217;t want to do the validation (HTML input checking).</p>
+<p><strong>- HTTP method</strong><br />
+Add attributes [<span style="color: #0000ff;">HttpPost</span>][<span style="color: #0000ff;">HttpGet</span>][<span style="color: #0000ff;">HttpPut</span>][<span style="color: #0000ff;">HttpDelete</span>] to the method.</p>
+<p><strong>-HTTPS required</strong><br />
+Add [<span style="color: #0000ff;">RequireHttps</span>] to the method.<strong> </strong></p>
+<p><strong>-Authentication required</strong><br />
+Add [<span style="color: #0000ff;">Authorize</span>] to the method.</p>
+<p>&nbsp;</p>
+<p><a href="http://www.asp.net/mvc" target="_blank">ASP.NET/MVC</a></p>
+<p><a href="http://msdn.microsoft.com/zh-cn/library/dd394709.aspx" target="_blank">ASP.NET 模型视图控制器 (MVC)</a></p>
+<p><a href="http://msdn.microsoft.com/library/cc668201.aspx#routes" target="_blank">ASP.NET Routing</a></p>
+</body>
+</html>

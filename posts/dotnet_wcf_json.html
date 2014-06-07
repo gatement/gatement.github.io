@@ -1,0 +1,130 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>.Net - Self Host WCF In JSON Format</h3>
+<p>1. Data Contract</p>
+<pre>
+using System.Runtime.Serialization;
+namespace JohnsonLau.RemoteControl.DataContracts
+{
+    [DataContract]
+    public class Command
+    {
+        [DataMember(IsRequired = true, Name = "name")]
+        public string Name
+        {
+            get;
+            set;
+        }
+        [DataMember(IsRequired = false, Name = "value")]
+        public string Value
+        {
+            get;
+            set;
+        }
+        [DataMember(IsRequired = true, Name = "user")]
+        public string User
+        {
+            get;
+            set;
+        }
+        [DataMember(IsRequired = true, Name = "password")]
+        public string Password
+        {
+            get;
+            set;
+        }
+    }
+}
+</pre>
+<pre>
+using System.Runtime.Serialization;
+namespace JohnsonLau.RemoteControl.DataContracts
+{
+    [DataContract]
+    public class Response
+    {
+        [DataMember(Name = "success")]
+        public bool Success
+        {
+            get;
+            set;
+        }
+        [DataMember(Name = "message")]
+        public string Message
+        {
+            get;
+            set;
+        }
+    }
+}
+</pre>
+<p><strong>2. Service Contract</strong></p>
+<pre>using JohnsonLau.RemoteControl.DataContracts;
+namespace JohnsonLau.RemoteControl.Services
+{
+    [ServiceContract(Namespace = "http://RemoteControl.JohnsonLau.Net")]
+    public interface IControlService
+    {
+        [OperationContract]
+        [WebInvoke(
+            Method = "POST",
+            UriTemplate = "SendCmd",
+            BodyStyle = WebMessageBodyStyle.WrappedRequest,
+            ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json)]
+        Response SendCmd(Command cmd);
+    }
+}</pre>
+<p><strong>3. Service</strong></p>
+<pre>using JohnsonLau.RemoteControl.DataContracts;
+namespace JohnsonLau.RemoteControl.Services
+{
+    public class ControlService : IControlService
+    {
+        public Response SendCmd(Command cmd)
+        {
+            string msg = "success";
+            return new Response()
+            {
+                Success = true,
+                Message = msg
+            };
+        }
+    }
+}</pre>
+<p><strong>4. app.config</strong></p>
+<pre>
+&lt;?xml version="1.0"?&gt;
+&lt;configuration&gt;
+    &lt;system.serviceModel&gt; 
+        &lt;services&gt; 
+            &lt;service name="JohnsonLau.RemoteControl.Services.ControlService"&gt; 
+                &lt;host&gt; 
+                    &lt;baseAddresses&gt; &lt;add baseAddress="http://localhost:8001/RemoteControlService"/&gt; &lt;/baseAddresses&gt; 
+                &lt;/host&gt; 
+                &lt;endpoint address="" behaviorConfiguration="httpBehavior" binding="webHttpBinding" contract="JohnsonLau.RemoteControl.Services.IControlService" /&gt; 
+            &lt;/service&gt; 
+        &lt;/services&gt; 
+        &lt;behaviors&gt; 
+            &lt;endpointBehaviors&gt; 
+                &lt;behavior name="httpBehavior"&gt; &lt;webHttp /&gt; &lt;/behavior&gt; 
+            &lt;/endpointBehaviors&gt; 
+            &lt;serviceBehaviors&gt; 
+                &lt;behavior name=""&gt; &lt;serviceMetadata httpGetEnabled="true" /&gt; &lt;serviceDebug includeExceptionDetailInFaults="false" /&gt; &lt;/behavior&gt; 
+            &lt;/serviceBehaviors&gt; 
+        &lt;/behaviors&gt; 
+    &lt;/system.serviceModel&gt; 
+    &lt;startup&gt; &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/&gt; &lt;/startup&gt; 
+&lt;/configuration&gt;
+</pre>
+<p><strong>5. Start host</strong></p>
+<pre>
+ServiceHost mServiceHost= new ServiceHost(typeof(ControlService));
+mServiceHost.Open();
+mServiceHost.Close();
+</pre>
+</body>
+</html>
