@@ -1,0 +1,24 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>MySQL - Setup on Windows</h3>
+<p>1. download the zip format from <a href="http://mysql.com/" target="_blank">http://mysql.com</a></p>
+<p>2. unzip Mysql to a folder</p>
+<p>3. open the folder and copy a &#8220;<span style="color: #0000ff;">my-*.ini</span>&#8221; file as &#8220;<span style="color: #0000ff;">my.ini</span>&#8221;</p>
+<p>4. open cmd and <span style="color: #0000ff;">cd</span> to the &#8220;<span style="color: #0000ff;">bin</span>&#8221; under the folder</p>
+<p>5. run &#8220;<span style="color: #0000ff;">mysqld &#8211;install</span>&#8221; as administrator (must go into the bin before install it as a service even if bin folder is in the Path)</p>
+<p>6.start the service &#8220;<span style="color: #0000ff;">net start mysql</span>&#8221;</p>
+<p>7. add the mysql &#8220;<span style="color: #0000ff;">bin</span>&#8221; in the system&#8217;s Path</p>
+<p>8. run &#8220;<span style="color: #0000ff;">mysqladmin -u root -p password</span>&#8221; to change the root&#8217;s password (the default one is empty)</p>
+<p>9. restart the service &#8220;<span style="color: #0000ff;">net stop mysql</span>&#8221; &#8220;<span style="color: #0000ff;">net start mysql</span>&#8221;</p>
+<p>10. login the mysql by &#8220;<span style="color: #0000ff;">mysql -uroot -p</span>&#8221;</p>
+<p>11. create a new user:</p>
+<pre>
+CREATE USER 'new-username'@'localhost' IDENTIFIED BY 'new-password';
+GRANT ALL ON *.* TO 'new-username'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+</pre>
+</body>
+</html>

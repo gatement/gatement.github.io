@@ -1,0 +1,69 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>PostgrepSQL - Foundation</h3>
+<p><a href="http://postgresql.org" target="_blank">http://postgresql.org</a></p>
+<hr />
+<p><strong><span style="color: #0000ff;">Install</span></strong></p>
+<hr />
+<p><strong>Dependence</strong>:<br />
+libreadline<br />
+zlib</p>
+<p><strong>Ubuntu</strong>:<br />
+apt-get install libreadline6 libreadline6-dev<br />
+apt-get install zlib1g zlib1g-dev</p>
+<p><strong>Fedora</strong>:<br />
+yum install readline readline-devel<br />
+yum install zlib zlib-devel</p>
+<pre>./configure
+make
+sudo make install</pre>
+<p>(installed to /usr/local/pgsql)</p>
+<hr />
+<p><strong><span style="color: #0000ff;">Config</span></strong></p>
+<hr />
+<p><strong>Create PostgreSQL daemon running OS user</strong>:</p>
+<pre>useradd postgres</pre>
+<p>set environment variables in .bash_profile for convenience when execute commands:</p>
+<pre>export PATH=$PATH:/usr/local/pgsql/bin
+export PGDATA=/usr/local/pgsql/data</pre>
+<pre>mkdir /usr/local/pgsql/data
+chown postgres:postgres /usr/local/pgsql/data
+su - postgres
+initdb -D /usr/local/pgsql/data -W -A password</pre>
+<p><strong>Change authentication method</strong> (optional):<br />
+update <span style="text-decoration: underline;"><em>/usr/local/pgsql/data/pg_hba.config</em></span> and change the method to <em><strong>password</strong></em> or <em><strong>md5</strong></em></p>
+<hr />
+<p><strong><span style="color: #0000ff;">Start</span></strong></p>
+<hr />
+<p><strong>View PostgreSQL daemon status</strong>:</p>
+<pre>pg_ctl status</pre>
+<pre>postgres -D /usr/local/pgsql/data &gt;logfile 2&gt;&amp;1 &amp;</pre>
+<p>or</p>
+<pre>pg_ctl start -l logfile</pre>
+<p><strong>auto start</strong>:<br />
+1. copy start-up script from <span style="text-decoration: underline;"><em>source/contrib/start-scripts/linux</em></span> to <span style="text-decoration: underline;"><em>/etc/init.d/postgresql</em></span> (try the &#8220;sudo /etc/init.d/postgresql start&#8221; firstly to make sure it works)<br />
+2. make it auto-start when OS boot up</p>
+<hr />
+<p><strong><span style="color: #0000ff;">Operations</span></strong></p>
+<hr />
+<p><strong>Create database</strong>:</p>
+<pre>sudo -u postgres createdb mydb</pre>
+<p><strong>psql [database name]</strong><br />
+If you do not supply the database name then it will default to your PostgreSQL user account name<br />
+-U PostgreSQL account: If don&#8217;t specify -U, it will default to the same name<br />
+as your current OS account<br />
+mydb=<strong>&gt;</strong>: means you are a database normal user<br />
+mydb=<strong>#</strong>: means you are a database superuser</p>
+<p><strong>Change default PostgreSQL user “postgres” password</strong>:</p>
+<pre>sudo -u postgres psql template1
+ALTER USER postgres with encrypted password 'your_password';</pre>
+<hr />
+<p><strong><span style="color: #0000ff;">Clients</span></strong></p>
+<hr />
+<p><a href="http://www.pgadmin.org" target="_blank">pgAdmin</a>: GUI based administration and management tool<br />
+<a href="http://phppgadmin.sourceforge.net" target="_blank">phpPgAdmin</a> Web based administration and management tool</p>
+</body>
+</html>

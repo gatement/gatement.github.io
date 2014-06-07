@@ -1,0 +1,47 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>MySQL - Encoding</h3>
+<p>Tags: charset</p>
+<p><a href="http://dev.mysql.com/doc/refman/5.0/en/server-system-variables.html" target="_blank">MySQL server-system-variables.html</a></p>
+<p>Usually, set the #4 as below is enough.</p>
+<p><strong><span style="color: #0000ff;">1.SET NAMES</span></strong></p>
+<p><strong>SET NAMES utf8</strong><br />
+or<br />
+<strong>charset utf8</strong><br />
+is equivalent to<br />
+<strong>SET character_set_client = utf8</strong> (client input charset)<br />
+<strong>SET character_set_results = utf8</strong> (return charset)<br />
+<strong>SET character_set_connection = utf8</strong> (MySQL internal stored charset)</p>
+<p><strong>SET character set &#8216;utf8&#8242;</strong> is equivalent to<br />
+<strong>SET character_set_client = utf8</strong> (client input charset)<br />
+<strong>SET character_set_results = utf8</strong> (return charset)<br />
+<strong>SET collation_connection = @@collation_database;</strong></p>
+<p>To view current charset:</p>
+<pre>SHOW VARIABLES LIKE ‘character_set_%’;
+SHOW VARIABLES LIKE ‘collation_%’;</pre>
+<p><strong><span style="color: #0000ff;">2. Config (my.ini)</span></strong><br />
+a. [mysqld]<br />
+only affect none-admin user (not root)</p>
+<pre>init_connect='SET NAMES utf8'</pre>
+<p>b.[client]<br />
+default value, can be override by &#8220;init_connect&#8221; in [mysqld]</p>
+<pre>default-character-set = utf8</pre>
+<p><strong><span style="color: #0000ff;">3. When create schema</span></strong></p>
+<pre>
+DROP DATABASE IF EXISTS `mydb1`;
+CREATE DATABASE `mydb1` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `mydb1`;
+CREATE TABLE IF NOT EXISTS `mytable1` (
+`id` SERIAL,
+`name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+</pre>
+<p><strong><span style="color: #0000ff;">4. When execute query</span></strong></p>
+<p>Query this after select database (&#8220;mysql_select_db&#8221; in php)</p>
+<pre>mysql_query("SET NAMES 'utf8'");</pre>
+</body>
+</html>

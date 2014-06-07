@@ -1,0 +1,43 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Oracle - Python Access Oracle</h3>
+<p>1. Install Oracle &#8220;<strong>instant client</strong>&#8221; and add it to the OS PATH<br />
+note: the &#8220;Python&#8221;, &#8220;Oracle instant client&#8221; and &#8220;cx_Oracle&#8221; x32/x64 version must be the same; </p>
+<p>2. Install &#8220;<strong>cx_Oracle</strong>&#8221; (<a href="http://sourceforge.net/projects/cx-oracle/" target="_blank">http://sourceforge.net/projects/cx-oracle/</a>)</p>
+<p>3. demo</p>
+<pre>
+import cx_Oracle
+conn = cx_Oracle.connect('userId', 'pwd', 'ip:port/service_name')
+print 'connected to '
+print conn.dsn
+
+cursor = conn.cursor()  
+cursor.execute("select * from test")  
+  
+rows = cursor.fetchall()
+for row in rows:  
+  print row
+</pre>
+<p>Django:<br />
+If you have DBA access, you can get the SID (used in settings.py/DATABASES/NAME) with:</p>
+<pre>
+select instance from V$THREAD;
+</pre>
+<p>If not DBA, login SQLPLUS and get SID with:</p>
+<pre>
+select sys_context('userenv','instance_name') from dual;
+</pre>
+<pre>
+python manage.py shell
+>>> from django.db import connection
+>>> cursor = connection.cursor()
+</pre>
+<p>没有任何报错就说明成功了.</p>
+<p>4. more resource<br />
+<a href="http://www.cnblogs.com/ddr888/archive/2010/05/16/1736990.html" target="_blank">http://www.cnblogs.com/ddr888/archive/2010/05/16/1736990.html</a><br />
+<a href="http://migle.iteye.com/blog/683279" target="_blank">http://migle.iteye.com/blog/683279</a></p>
+</body>
+</html>

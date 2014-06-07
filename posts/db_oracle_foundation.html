@@ -1,0 +1,113 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Oracle - Foundation</h3>
+<p><strong>Oracle Net</strong> is in charge of client and server connections.</p>
+<p>user app / SQLPLUS &#8211;> local Oracle Net &#8211;> TCP/IP(Internet) &#8211;> Listerner(IP/Port/service_name)[server Oracle Net] &#8211;> service &#8211;> DB</p>
+<p><strong>1. config TNS names &#8211; service_alias(optional)</strong><br />
+- edit file &#8220;installed_dir/network/admin/tnsnames.ora&#8221;<br />
+- or use GUI Oracle &#8220;Net Manager/Service Naming&#8221;</p>
+<p><strong>2. open SQLPLUS</strong></p>
+<pre>
+sqlplus /nolog
+</pre>
+<p>connect</p>
+<pre>
+CONN user/pwd@service_alias
+</pre>
+<p>or </p>
+<pre>
+CONN user/pwd@//server_ip:port/service_name
+</pre>
+<p><strong>3. list all tables in the databse</strong></p>
+<pre>
+select object_name from user_objects where object_type='TABLE';
+</pre>
+<p><strong>4.以下是oracle数据库提供的系统表</strong><br />
+dba_开头：<br />
+dba_users 数据库用户信息<br />
+dba_segments 表段信息<br />
+dba_extents 数据区信息<br />
+dba_objects 数据库对象信息<br />
+dba_tablespaces 数据库表空间信息<br />
+dba_data_files 数据文件设置信息<br />
+dba_temp_files 临时数据文件信息<br />
+dba_rollback_segs 回滚段信息<br />
+dba_ts_quotas 用户表空间配额信息<br />
+dba_free_space数据库空闲空间信息<br />
+dba_profiles 数据库用户资源限制信息<br />
+dba_sys_privs 用户的系统权限信息<br />
+dba_tab_privs用户具有的对象权限信息<br />
+dba_col_privs用户具有的列对象权限信息<br />
+dba_role_privs用户具有的角色信息<br />
+dba_audit_trail审计跟踪记录信息<br />
+dba_stmt_audit_opts审计设置信息<br />
+dba_audit_object 对象审计结果信息<br />
+dba_audit_session会话审计结果信息<br />
+dba_indexes用户模式的索引信息</p>
+<p>user_开头：<br />
+user_objects 用户对象信息<br />
+user_source 数据库用户的所有资源对象信息<br />
+user_segments 用户的表段信息<br />
+user_tables 用户的表对象信息<br />
+user_tab_columns 用户的表列信息<br />
+user_constraints 用户的对象约束信息<br />
+user_sys_privs 当前用户的系统权限信息<br />
+user_tab_privs 当前用户的对象权限信息<br />
+user_col_privs 当前用户的表列权限信息<br />
+user_role_privs 当前用户的角色权限信息<br />
+user_indexes 用户的索引信息<br />
+user_ind_columns用户的索引对应的表列信息<br />
+user_cons_columns 用户的约束对应的表列信息<br />
+user_clusters 用户的所有簇信息<br />
+user_clu_columns 用户的簇所包含的内容信息<br />
+user_cluster_hash_expressions 散列簇的信息</p>
+<p>v$开头：<br />
+v$database 数据库信息<br />
+v$datafile 数据文件信息<br />
+v$controlfile控制文件信息<br />
+v$logfile 重做日志信息<br />
+v$instance 数据库实例信息<br />
+v$log 日志组信息<br />
+v$loghist 日志历史信息<br />
+v$sga 数据库SGA信息<br />
+v$parameter 初始化参数信息<br />
+v$process 数据库服务器进程信息<br />
+v$bgprocess 数据库后台进程信息<br />
+v$controlfile_record_section 控制文件记载的各部分信息<br />
+v$thread 线程信息<br />
+v$datafile_header 数据文件头所记载的信息<br />
+v$archived_log 归档日志信息<br />
+v$archive_dest 归档日志的设置信息<br />
+v$logmnr_contents 归档日志分析的DML DDL结果信息<br />
+v$logmnr_dictionary 日志分析的字典文件信息<br />
+v$logmnr_logs 日志分析的日志列表信息<br />
+v$tablespace 表空间信息<br />
+v$tempfile 临时文件信息<br />
+v$filestat 数据文件的I/O统计信息<br />
+v$undostat Undo数据信息<br />
+v$rollname 在线回滚段信息<br />
+v$session 会话信息<br />
+v$transaction 事务信息<br />
+v$rollstat 回滚段统计信息<br />
+v$pwfile_users 特权用户信息<br />
+v$sqlarea 当前查询过的sql语句访问过的资源及相关的信息<br />
+v$sql 与v$sqlarea基本相同的相关信息<br />
+v$sysstat 数据库系统状态信息</p>
+<p>all_开头：<br />
+all_users 数据库所有用户的信息<br />
+all_objects 数据库所有的对象的信息<br />
+all_def_audit_opts 所有默认的审计设置信息<br />
+all_tables 所有的表对象信息<br />
+all_indexes所有的数据库对象索引的信息</p>
+<p>session_开头：<br />
+session_roles 会话的角色信息<br />
+session_privs 会话的权限信息</p>
+<p>index_开头：<br />
+index_stats 索引的设置和存储信息</p>
+<p>伪表：<br />
+dual 系统伪列表信息</p>
+</body>
+</html>
