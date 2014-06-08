@@ -1,0 +1,49 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Subversion - Setup Subversion Server on Linux</h3>
+<p>1. yum install <strong>httpd </strong>(apt-get install <strong>apache2</strong>)<strong><br />
+</strong></p>
+<p><em>make the <span style="text-decoration: underline;">httpd</span> autostart</em></p>
+<p>2. yum install <strong>subversion</strong></p>
+<p>do not need to start the <span style="text-decoration: underline;">svnserve</span> deamon, we use <span style="text-decoration: underline;">httpd </span>to supply the service through DAV.</p>
+<p>3. yum install <strong>mod_dav_svn </strong>(apt-get install <strong>libapache2-svn</strong>)<strong><br />
+</strong></p>
+<p>this will install the <span style="text-decoration: underline;">mod_dav_svn.so</span>, <span style="text-decoration: underline;">mod_authz_svn.so</span> and <span style="text-decoration: underline;">subversion.conf</span></p>
+<p>4. create repository by <span style="text-decoration: underline;">svnadmin create</span></p>
+<pre>mkdir /var/www/subversion
+cd /var/www/subversion
+svnadmin create repos</pre>
+<p>5. create the password file by <span style="text-decoration: underline;">htpasswd</span></p>
+<pre>cd /var/www/subversion
+htpasswd -c passwd admin</pre>
+<p>6. configure svn authorization file in /var/www/subversion/authz</p>
+<p>refer to the file in repository/conf/authz.</p>
+<pre>[/]
+admin = rw</pre>
+<p>7. configure apache site configuration file: subversion.conf</p>
+<pre>#LoadModule dav_svn_module modules/mod_dav_svn.so
+#LoadModule authz_svn_module modules/mod_authz_svn.so
+
+&lt;VirtualHost *:80&gt;
+    ServerName svn.johnsonlau.net
+
+    ServerAdmin gatement@gmail.com
+
+    &lt;Location "/repos"&gt;
+        DAV svn
+        #SVNParentPath /var/www/subversion/
+        SVNPath /var/www/subversion/repos
+        AuthType Basic
+        AuthName "Authorization Realm"
+        AuthUserFile /var/www/subversion/passwd
+        AuthzSVNAccessFile /var/www/subversion/authz
+        Require valid-user
+    &lt;/Location&gt;
+&lt;/VirtualHost&gt;</pre>
+<p>8. backup repository by <span style="text-decoration: underline;">svnadmin hotcopy</span>.</p>
+<pre>svnadmin hotcopy --clean-logs /var/www/subversion/repos targetfolder</pre>
+</body>
+</html>

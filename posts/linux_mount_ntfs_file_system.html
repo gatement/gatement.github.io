@@ -1,0 +1,14 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Linux - Mount NTFS File System in CentOS</h3>
+<p>1. yum install fuse-ntfs-3g (need to add the yum repo &#8220;rpmforge&#8221;)<br />
+2. mount -t ntfs /dev/sdb1 /data<br />
+3. update /etc/fstab (optional):</p>
+<pre>
+/dev/sdb1       /data  ntfs    rw      1 2
+</pre>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>C - GCC编译动态库和静态库</h3>
+<p>原文： <a href="http://blog.csdn.net/gogor/article/details/4650795" target="_blank">http://blog.csdn.net/gogor/article/details/4650795</a></p>
+<p>我们通常把一些公用函数制作成函数库，供其它程序使用。函数库分为静态库和动态库两<br />
+种。静态库在程序编译时会被连接到目标代码中，程序运行时将不再需要该静态库。动态<br />
+库在程序编译时并不会被连接到目标代码中，而是在程序运行是才被载入，因此在程序运<br />
+行时还需要动态库存在。本文主要通过举例来说明在Linux中如何创建静态库和动态库，以<br />
+及使用它们。</p>
+<p>在创建函数库前，我们先来准备举例用的源程序，并将函数库的源程序编译成.o文件。</p>
+<p><strong>第1步：编辑得到举例的程序&#8211;c_test.h、c_test.c和main.cpp；</strong></p>
+<p>c_test.h</p>
+<pre>
+#ifndef _C_TEST_H_  
+#define _C_TEST_H_  
+ 
+#ifdef __cplusplus  
+extern "C" {  
+#endif  
+  
+void fun_c();  
+ 
+#ifdef __cplusplus  
+};  
+#endif  
+ 
+#endif  
+
+</pre>
+<p>c_test.c</p>
+<pre>
+#include &lt;stdio.h&gt;  
+#include "c_test.h"  
+  
+void fun_c()  
+{  
+    printf("this is a C function/n");  
+}  
+</pre>
+<p> main.cpp</p>
+<pre>
+#include "c_test.h"  
+  
+int main(void)  
+{  
+    fun_c();  
+    return 0;  
+}  
+</pre>
+<p><strong>第2步：将c_test.c编译成.o文件</strong></p>
+<p>    无论静态库，还是动态库，都是由.o文件创建的。因此，我们必须将源程序c_test.c通过g<br />
+cc先编译成.o文件。</p>
+<p>在系统提示符下键入以下命令得到c_test.o文件。</p>
+<p># gcc -c c_test.c</p>
+<p>这样就得到了c_test.o文件。</p>
+<p><strong>第3步：由.o文件创建静态库</strong></p>
+<p>    静态库文件名的命名规范是以lib为前缀，紧接着跟静态库名，扩展名为.a。例如：我们将<br />
+创建的静态库名为ctest，则静态库文件名就是libctest.a。在创建和使用静态库时，需要注意这点。创建静态库用ar命令。</p>
+<p># ar crv libctest.a c_test.o</p>
+<p>这样就得到了静态库libctest.a。</p>
+<p><strong>第4步：在程序中使用静态库</strong></p>
+<p>     静态库制作完了，如何使用它内部的函数呢？只需要在使用到这些公用函数的源程序中包<br />
+含这些公用函数的原型声明，然后在用gcc命令生成目标文件时指明静态库名，gcc将会从<br />
+静态库中将公用函数连接到目标文件中。注意，gcc会在静态库名前加上前缀lib，然后追<br />
+加扩展名.a得到的静态库文件名来查找静态库文件。</p>
+<p>在程序main.cpp中，我们包含了静态库的头文件c_test.h，然后在主程序main中直接调用公<br />
+用函数fun_c。下面先生成目标程序main，然后运行main程序看看结果如何。</p>
+<p>编译main.cpp并链接静态库的makefile文件：</p>
+<pre>
+#makefile
+
+LIB_SRC = src/c_test.c
+EXE_SRC = src/main.cpp
+BIN_PATH = bin
+
+GCC = gcc
+GCCPP = g++
+AR = ar crv
+
+
+a: $(SRC) libctest.a
+    $(GCCPP) $(EXE_SRC) -o $(BIN_PATH)/$@ -L$(BIN_PATH) -lctest
+
+so: $(SRC) libctest.so
+    $(GCCPP) $(EXE_SRC) -o $(BIN_PATH)/$@ -L$(BIN_PATH) -lctest
+
+libctest.a: c_test.o 
+    $(AR) $(BIN_PATH)/$@ $(BIN_PATH)/$^ 
+
+libctest.so: c_test.o 
+    $(GCC) -shared -fPIC -o $(BIN_PATH)/$@ $(BIN_PATH)/$^ 
+
+c_test.o: $(LIB_SRC)
+    $(GCC) -c $^ -o $(BIN_PATH)/$@
+  
+clean: 
+    rm -rf bin/*
+</pre>
+<p>#make</p>
+<p>这样就得到了目标程序main，然后运行</p>
+<p>#./main</p>
+<p>this is a C program</p>
+<p>我们删除静态库文件试试公用函数fun_c是否真的连接到目标文件 main中了。</p>
+<p># rm libctest.a</p>
+<p># ./hello</p>
+<p>this is a C program</p>
+<p>程序照常运行，这说明静态库中的公用函数已经连接到目标文件中了。</p>
+<p>我们继续看看如何在Linux中创建动态库。我们还是从.o文件开始。</p>
+<p><strong>第5步：由.o文件创建动态库文件；</strong></p>
+<p>    动态库文件名命名规范和静态库文件名命名规范类似，也是在动态库名增加前缀lib，但其<br />
+文件扩展名为.so。例如：我们将创建的动态库名为ctest，则动态库文件名就是libctest.so。用gcc来创建动态库。</p>
+<p># gcc -shared -fPIC -o libctest.so c_test.o</p>
+<p>这样就生成了动态链接库libctest.so。</p>
+<p><strong>第6步：在程序中使用动态库；</strong></p>
+<p>    在程序中使用动态库和使用静态库完全一样，也是在使用到这些公用函数的源程序中包含<br />
+这些公用函数的原型声明，然后在用gcc命令生成目标文件时指明动态库名进行编译。我们<br />
+先运行gcc命令生成目标文件，再运行它看看结果。</p>
+<p>编译main.cpp的makefile文件：</p>
+<pre>
+#makefile
+
+LIB_SRC = src/c_test.c
+EXE_SRC = src/main.cpp
+BIN_PATH = bin
+
+GCC = gcc
+GCCPP = g++
+AR = ar crv
+
+
+a: $(SRC) libctest.a
+    $(GCCPP) $(EXE_SRC) -o $(BIN_PATH)/$@ -L$(BIN_PATH) -lctest
+
+so: $(SRC) libctest.so
+    $(GCCPP) $(EXE_SRC) -o $(BIN_PATH)/$@ -L$(BIN_PATH) -lctest
+
+libctest.a: c_test.o 
+    $(AR) $(BIN_PATH)/$@ $(BIN_PATH)/$^ 
+
+libctest.so: c_test.o 
+    $(GCC) -shared -fPIC -o $(BIN_PATH)/$@ $(BIN_PATH)/$^ 
+
+c_test.o: $(LIB_SRC)
+    $(GCC) -c $^ -o $(BIN_PATH)/$@
+  
+clean: 
+    rm -rf bin/*
+</pre>
+<p>这样就得到了目标程序main，运行它</p>
+<p>#./main</p>
+<p>./main: error while loading shared libraries: libctest.so: cannot open shar<br />
+ed object file: No such file or directory</p>
+<p>哦！出错了。快看看错误提示，原来是找不到动态库文件libctest.so。程序在运行时，<br />
+会在/usr/lib和/lib等目录中查找需要的动态库文件。若找到，则载入动态库，否则将提<br />
+示类似上述错误而终止程序运行。我们将文件libctest.so复制到目录/usr/lib中，再试<br />
+试。</p>
+<p># mv libctest.so /usr/lib</p>
+<p># ./main</p>
+<p>this is a C program</p>
+<p>成功了。这也进一步说明了动态库在程序运行时是需要的。</p>
+<p><strong>注意：</strong></p>
+<p><strong><em>1. 当静态库和动态库同名时， gcc命令将优先使用动态库。</em></strong></p>
+<p>2. 编译参数解析<br />
+最主要的是GCC命令行的一个选项:<br />
+-shared 该选项指定生成动态连接库（让连接器生成T类型的导出符号表，有时候也生成弱连接W类型的导出符号），不用该标志外部程序无法连接。相当于一个可执行文件<br />
+-fPIC：表示编译为位置独立的代码，不用此选项的话编译后的代码是位置相关的所以动态载入时是通过代码拷贝的方式来满足不同进程的需要，而不能达到真正代码段共享的目的。<br />
+-L.：表示要连接的库在当前目录中<br />
+-ltest：编译器查找动态连接库时有隐含的命名规则，即在给出的名字前面加上lib，后面加上.so来确定库的名称<br />
+<strong>LD_LIBRARY_PATH</strong>：这个环境变量指示动态连接器可以装载动态库的路径。<br />
+l 当然如果有root权限的话，可以修改<strong>/etc/ld.so.conf</strong>文件，然后调用 <strong>/sbin/ldconfig</strong>来达到同样的目的，不过如果没有root权限，那么只能采用输出LD_LIBRARY_PATH的方法了。调用动态库的时候有几个问题会经常碰到，有时，明明已经将库的头文件所在目录 通过 “-I” include进来了，库所在文件通过 “-L”参数引导，并指定了“-l”的库名，但通过ldd命令察看时，就是死活找不到你指定链接的so文件，这时你要作的就是通过修改 LD_LIBRARY_PATH或者/etc/ld.so.conf文件来指定动态库的目录。通常这样做就可以解决库无法链接的问题了。</p>
+<p>more GCC help please check &#8220;gcc &#8211;help -v&#8221;</p>
+</body>
+</html>

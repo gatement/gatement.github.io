@@ -1,0 +1,78 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Linux - Bash Script Foundation</h3>
+<p>type command # command type<br />
+help built-in-command</p>
+<p>bash path-to-bash-file<br />
+bash -n path-to-bash-file # don&#8217;t execute, just check syntax<br />
+bash -x path-to-bash-file # print each command before execution<br />
+sh path-to-bash-file<br />
+. path-to-bash-file<br />
+path-to-executable-bash-file</p>
+<p># comment</p>
+<p>\[Enter] # extend to next line</p>
+<p>var=value # set var value (no space)<br />
+$var # get var value<br />
+${var} # get var value</p>
+<p>$(command) # execute command<br />
+$((express)) # e.g. math express<br />
+declare -i total=$first*$second</p>
+<p>&#8220;&#8230;$var&#8230;&#8221; # the $var works<br />
+&#8216;&#8230;$var&#8230;&#8217; # the $var doesn&#8217;t work<br />
+&#8220;val1&#8243;&#8221;val2&#8243; # string add<br />
+&#8216;val1&#8221;val2&#8242; # string add</p>
+<p>$0 # command name<br />
+$1 # param 1<br />
+$2 # param 2<br />
+$? # list command exit code</p>
+<p>exit # exit with last $?<br />
+exit exit-code </p>
+<p>function functionname()<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo $0 # function name<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo $1 # param 1<br />
+&nbsp;&nbsp;&nbsp;&nbsp;echo $2 # param 2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#8230;<br />
+}</p>
+<p>functionname param1 param2 # call function</p>
+<p>test # please see `help test`<br />
+[ condition ] # 1. double quote (&#8220;&#8221;) each params; 2. add spaces between params and operator</p>
+<p>if [ condition ]; then<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#8230;<br />
+elif [ condition ]; then<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#8230;<br />
+else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#8230;<br />
+fi</p>
+<p>case $var in<br />
+&nbsp;&nbsp;&#8220;value1&#8243;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#8230;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;;;<br />
+&nbsp;&nbsp;&#8220;value2&#8243;)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#8230;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;;;<br />
+&nbsp;&nbsp;*)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#8230;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;;;<br />
+esac</p>
+<p>while [ condition ]<br />
+do<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#8230;<br />
+done</p>
+<p>until [ condition ]<br />
+do<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#8230;<br />
+done</p>
+<p>for ((i=1; i<=100; i=i+1))<br />
+do<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#8230;<br />
+done</p>
+<p>for var in item1 item2 item3<br />
+do<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&#8230;<br />
+done</p>
+</body>
+</html>

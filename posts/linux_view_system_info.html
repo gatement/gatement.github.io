@@ -1,0 +1,25 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Linux - View system info</h3>
+<p>cat /proc/<strong>cpuinfo</strong>: CPU info<br />
+cat /proc/<strong>meminfo</strong>: Current memory info<br />
+cat /proc/<strong>version</strong>: Kernel info, cmd &#8220;uname&#8221;<br />
+cat /proc/<strong>cmdline</strong>: Kernel start up parameters<br />
+cat /proc/<strong>uptime</strong>: System start up time (in seconds)<br />
+cat /proc/<strong>mounts</strong>: System current mount info<br />
+ll /proc/<strong>sys</strong>: System current setting info</p>
+<p>cat /etc/issue: Linux version</p>
+<p>echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all: disable ping response</p>
+<p>/proc/<strong>self</strong>: current process (link to current PID)</p>
+<p>cat /proc/[PID]/<strong>cmdline</strong>: PID start up parameters<br />
+cat /proc/[PID]/<strong>cwd</strong>: PID current working directory (link to it)<br />
+cat /proc/[PID]/<strong>environ</strong>: PID current env variables. If go to the &#8220;self&#8221; folder, the SSH client IP:Port will be show as env variable.<br />
+cat /proc/[PID]/<strong>status</strong>: PID status info. Here can check the PID, PPID.<br />
+cat /proc/[PID]/<strong>limits</strong>: PID limitation info<br />
+ll /proc/[PID]/<strong>fd</strong>: List all PID current opening files (link to files)</p>
+<p>Refer to <strong>sysctl </strong>and <strong>/etc/sysctl.conf</strong> for system info setting.</p>
+</body>
+</html>

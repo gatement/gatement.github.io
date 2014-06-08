@@ -1,0 +1,21 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Linux - Boot Procedure</h3>
+<p>1. Load <strong>GRUB </strong>from the boot disc boot section (OS selection menu)</p>
+<p>2. GRUB loads Linux core <strong>vmlinuz</strong> (so the OS is alive)</p>
+<p>3. execute command <strong>init</strong><br />
+3.1 <span style="text-decoration: underline;"><em>/etc/rc.d/rc.sysinit</em></span> (share with all run level, e.g. ip address, mount fs)<br />
+3.2 <span style="text-decoration: underline;"><em>/etc/rc.d/rc</em></span> $runlevel<br />
+execute files <span style="text-decoration: underline;"><em>/etc/rc.d/rc$runlevel.d/K*</em></span> with parameter &#8220;stop&#8221;, order by sequence asc<br />
+execute files <span style="text-decoration: underline;"><em>/etc/rc.d/rc$runlevel.d/S*</em></span> with parameter &#8220;start&#8221;, order by sequence asc<br />
+(files in<span style="text-decoration: underline;"> <em>/etc/rc.d/rc$runlevel.d</em></span> are symbolic link to <span style="text-decoration: underline;"><em>/etc/rc.d/init.d</em></span>)<br />
+(<span style="text-decoration: underline;"><em>/etc/rc.d/rc.local</em></span> is linked by &#8220;S99local -> ../rc.local&#8221; in rc2.d, rc3.d, rc4.d, rc5.d, )</p>
+<p>4. execute command <strong>mingetty</strong></p>
+<p>&nbsp;</p>
+<p><strong>runlevel</strong>: <span style="text-decoration: underline;"><em>/etc/inittab</em></span><br />
+<strong>init</strong>: user level process(command) which is started by OS core (vmlinuz)</p>
+</body>
+</html>

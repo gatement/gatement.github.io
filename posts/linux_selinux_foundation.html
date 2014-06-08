@@ -1,0 +1,32 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Linux - SELinux Foundation</h3>
+<p><span style="color: #000000;"><strong>1. Concepts</strong></span></p>
+<p>*. <strong>identity</strong></p>
+<p>*. <strong>role </strong>(_r): to identity</p>
+<p>*. <strong>domain</strong> (_t): to process. All processes run under a specified domain.</p>
+<p>*. <strong>type</strong> (_t): to objects, like file, folder or socket</p>
+<p>identity -&gt; role -&gt; process -&gt; object</p>
+<p>*. <strong>security context</strong>:<span style="text-decoration: underline;"> user:role:domain/type</span></p>
+<p>every user/process/object can have its security context.</p>
+<p>user1:sysadmin_r:sysadmin_t &#8211; user1 is in the role sysadmin_r and running processes under domain sysadmin_t.</p>
+<p><span style="text-decoration: underline;">First do UNIX security checking, then do SELinux security checking.</span></p>
+<p><strong>2. Run modes</strong></p>
+<p>*. Permissive: off, but has warning.</p>
+<p>*. Enforcing: on<span style="text-decoration: underline;"><br />
+</span></p>
+<p><strong>3. Commands</strong></p>
+<p>*. <span style="color: #0000ff;"><strong>getfattr</strong></span>: get extended attribute</p>
+<p><strong> </strong></p>
+<p>*. <span style="color: #0000ff;"><strong>ls</strong> </span>&#8211;context/-Z/&#8211;lcontext/&#8211;scontext: show object&#8217;s security context</p>
+<p><strong> </strong></p>
+<p>*. <span style="color: #0000ff;"><strong>ps ax</strong></span> &#8211;context: show process&#8217;s security context</p>
+<p>*. <strong><span style="color: #0000ff;">id</span></strong>: shows current user&#8217;s uid, gid and security context</p>
+<p>*. <strong><span style="color: #0000ff;">chcon</span></strong>: change security context</p>
+<p>*. <strong><span style="color: #0000ff;">chsid</span></strong>: change security id</p>
+<p>*. <strong><span style="color: #0000ff;">newrole </span></strong>-r rolename: change role context</p>
+</body>
+</html>

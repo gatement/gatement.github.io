@@ -1,0 +1,24 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Linux - Set IP/DNS</h3>
+<p>1. Set static ip<br />
+Edit <span style="text-decoration: underline;"><em>/etc/sysconfg/network-scripts/ifcfg-eth0</em></span></p>
+<pre>DEVICE="eth0"
+BOOTPROTO="static"
+HWADDR="xx:xx:xx:xx:xx:xx"
+ONBOOT="yes"
+UUID="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx"
+IPADDR=192.168.1.102
+NETMASK=255.255.255.0
+GATEWAY=192.168.1.1</pre>
+<p>2. Set DNS<br />
+Edit <span style="text-decoration: underline;"><em>/etc/resolv.conf</em></span></p>
+<pre>nameserver 8.8.8.8 
+nameserver 8.8.4.4</pre>
+<p>3. Set gateway for the machine (optional)<br />
+Edit <span style="text-decoration: underline;"><em>/etc/sysconfig/network</em></span></p>
+</body>
+</html>
