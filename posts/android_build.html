@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Android - Build</h3>
+<p><strong><span style="color: #0000ff;">Install ant</span></strong> (<a href="http://ant.apache.org" target="_blank">http://ant.apache.org</a>) and setup environment variable JAVA_HOME:<br />
+Need JAVA_HOME var, if it contains spaces, so it like this in windows:</p>
+<pre>JAVA_HOME=c:\Progra~1\Java\&lt;jdkdir&gt;</pre>
+<p>Navigate to the root of your project directory (where the build.xml locates), and,</p>
+<p>-<strong>ant debug</strong>:<br />
+Builds a debug package and signed by debug certficate and zipaligned</p>
+<p>-<strong>ant release</strong>:<br />
+Build unsigned apk.<br />
+If it has the following settings in <strong>ant.properties</strong> file</p>
+<pre>key.store=path/to/my.keystore
+key.alias=mykeystore
+key.store.password=[password] (optional, if not, prompt for password)
+key.alias.password=[password] (optional, if not, prompt for password)</pre>
+<p>It will output signed and zipaligned apk as well</p>
+<p>-<strong>ant debug/release install</strong>:<br />
+This will build your application, sign it, and install it on the connecting emulator/device.</p>
+<p>-<strong>ant installd</strong>:<br />
+Installs an already compiled debug package. This fails if the *-debug.apk is not already built.</p>
+<p>-<strong>ant installr</strong>:<br />
+Installs an already compiled release package. This fails if the *-release.apk is not already built.</p>
+<p>-<strong>ant clean</strong>:<br />
+Cleans the project</p>
+<hr/>
+<strong><span style="color: #0000ff;">Install to devices/emulators</span></strong>:</p>
+<pre>adb (-s emulator-5554/-d) install (-r) path/to/your/app.apk</pre>
+</body>
+</html>

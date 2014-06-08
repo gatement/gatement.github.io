@@ -1,0 +1,56 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Android - HTTP Post JSON</h3>
+<pre>
+public void sendCommand(String cmd, String val) {
+		String result = "";
+
+		try {
+			HttpPost request = new HttpPost(mAppSettings.getServiceUrl());
+			request.setHeader("Accept", "application/json");
+			request.setHeader("Content-type", "application/json");
+
+			JSONStringer vehicle = new JSONStringer().object().key("cmd")
+					.object().key("name").value(cmd).key("value").value(val)
+					.key("user").value(mAppSettings.getUser()).key("password")
+					.value(mAppSettings.getPassword()).endObject().endObject();
+			StringEntity entity = new StringEntity(vehicle.toString(),
+					HTTP.UTF_8);
+			entity.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+			entity.setContentEncoding("UTF-8");
+			request.setEntity(entity);
+
+			DefaultHttpClient httpClient = new DefaultHttpClient();
+			HttpResponse response = httpClient.execute(request);
+
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				InputStream inputStream = response.getEntity().getContent();
+				InputStreamReader inputStreamReader = new InputStreamReader(
+						inputStream, Charset.forName("UTF-8"));
+				BufferedReader buffer = new BufferedReader(inputStreamReader);
+
+				String inputLine = null;
+				while ((inputLine = buffer.readLine()) != null) {
+					result += inputLine + "\n";
+				}
+
+				if (result == "") {
+					result = "Sending command error.";
+				} else {
+					JSONObject sendCmdResponse = new JSONObject(result);
+					result = sendCmdResponse.getString("message");
+				}
+			} else {
+				result = "Sending command error.";
+			}
+
+		} catch (Exception e) {
+			result = "Sending command error.";
+		}
+	}
+</pre>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Android - Modify Virtual Device Hosts File</h3>
+<p>1. <em><strong>emulator -avd &#8220;avd_name&#8221; -partition-size 128</strong></em> -> let system partition have enough space to write</p>
+<p>2. <em><strong>adb root</strong></em> ->  restarts the adbd daemon with root permissions</p>
+<p>3. <em><strong>adb remount</strong></em> -> remounts the /system partition on the device read-write</p>
+<p>4. <em><strong>adb pull /system/etc/hosts &#8220;local location&#8221;</strong></em></p>
+<p>5. modify the hosts file on the &#8220;local location&#8221;. <strong>10.0.2.2</strong> is your development machine</p>
+<p>6. <em><strong>adb push &#8220;local location&#8221; /system/etc/hosts</strong></em></p>
+</body>
+</html>

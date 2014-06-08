@@ -1,0 +1,23 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Android - Create Library(JAR)</h3>
+<p>1. android create lib-project<br />
+2. place source in src/<br />
+3. add the build target to build.xml</p>
+<pre>&lt;target name="jar"&gt;
+&lt;jar destfile="MyAndroidLib.jar" basedir="bin/classes/"&gt;
+&lt;!-- replace 'com' by what ever you are using --&gt;
+&lt;!-- as first part of the package name --&gt;
+&lt;!-- e.g. de, org, ... --&gt;
+&lt;!-- the ** is important to include the directory recursively --&gt;
+&lt;include name="com/**" /&gt;
+&lt;/jar&gt;
+&lt;/target&gt;</pre>
+<p>4. ant debug/release<br />
+5. ant jar<br />
+6. you will find target jar in bin/</p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Javascript - jQuery Core</h3>
+<p>(function (window, undefined)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;var jQuery = (function ()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var jQuery = function (selector, context)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new jQuery.fn.init(selector, context);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jQuery.fn = jQuery.prototype =<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init: function (selector, context) { }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//jQuery.fn.init.prototype = jQuery.fn = jQuery.prototype<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jQuery.fn.init.prototype = jQuery.fn;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jQuery.extend = jQuery.fn.extend = function ()<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// the &#8220;this&#8221; will vary<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (window.jQuery = window.$ = jQuery);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;})();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;jQuery.extend({});<br />
+&nbsp;&nbsp;&nbsp;&nbsp;jQuery.fn.extend({});<br />
+})(window);</p>
+<p>// They are same<br />
+$.fn.lgh = function () { return &#8220;$.fn.lgh&#8221;; };<br />
+$.fn.extend({ lgh: function () { return &#8220;$.fn.lgh&#8221;; } });</p>
+</body>
+</html>

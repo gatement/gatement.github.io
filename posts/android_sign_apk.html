@@ -1,0 +1,42 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Android - Sign .apk</h3>
+<p>Both the debug and release apk need to be signed before it is installed to device/emulator</p>
+<p>The self-signed certificate (named debug.keystore) used to sign your application in debug mode will have an expiration date of 30 years from its creation date. The default storage location is in <strong>$HOME/.android/debug.keystore</strong>.</p>
+<p><strong>1. keytool</strong> &#8211; to generate keys (contain in JDK)<br />
+keytool<br />
+-genkey<br />
+-v<br />
+-keystore &lt;my-release-key.keystore&gt;<br />
+-alias &lt;alias_name&gt;<br />
+-keyalg RSA<br />
+-keysize 2048<br />
+-validity 10000(valid_days)</p>
+<p><strong>2. Jarsigner</strong> &#8211; to sign your application .apk files (contain in JDK)<br />
+sign:<br />
+jarsigner<br />
+-verbose<br />
+-sigalg SHA1withRSA<br />
+-digestalg SHA1<br />
+-keystore my-release-key.keystore<br />
+&lt;unsigned.apk&gt; &lt;key_alias&gt;</p>
+<p>verify:<br />
+jarsigner<br />
+-verify<br />
+-verbose<br />
+-certs &lt;application.apk&gt;</p>
+<p><strong>3. zipalign</strong> &#8211; Ensuring alignment at 4-byte boundaries provides a performance optimization when installed on a device<br />
+zipalign 4 &lt;signed-unaligned.apk(input)&gt; &lt;signed-aligned.apk(output)&gt;<br />
+-f: overwriting an existing APK<br />
+-v: verbose output</p>
+<p><strong>Ecliplse(ADT)</strong>:</p>
+<ul>
+<li>Projdct context menu &gt; Android Tools &gt; Export&#8230;</li>
+<li>Open AndroidManifest.xml &gt; Manifest tab &gt; Exporting</li>
+<li>Select project in the Package Explorer &gt; File(Menu) &gt; Export &gt; Android &gt; Export Android Application</li>
+</ul>
+</body>
+</html>

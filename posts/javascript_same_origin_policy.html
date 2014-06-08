@@ -1,0 +1,32 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Javascript - Same Origin Policy</h3>
+<p><strong>Same Origin</strong>:<br />
+1) Application layer protocol (http, https)<br />
+2) Domain name (www.abc.com)<br />
+3) TCP port (80, 8080)<br />
+of the HTML document running the script, all of them must be the same!</p>
+<p><strong>- Exception</strong>:<br />
+1) include scripts across domains<br />
+2) submit POST forms to another domain</p>
+<p><strong>- Check</strong>:<br />
+1) XMLHttpRequest<br />
+2) Script Get</p>
+<p><strong>- Solutions</strong>:<br />
+<span style="color: #0000ff;">1) Proxy</span>: do the cross domain calling on the server-side and return the result back to front-end.<br />
+<span style="color: #0000ff;">2) document.domain + IFrame</span>: set document.domain to the same domain (must be under the same parent domain), then through IFrame to communicate.<br />
+<span style="color: #0000ff;">3) cookie</span>: set cookie to the same domain and fetch them (must be under the same parent domain).<br />
+<span style="color: #0000ff;">4) IFrame + hash</span>: set Iframe&#8217;s src and attach parameters to the Url, usually can do it by the location.hash (no need to refresh page).<br />
+<span style="color: #0000ff;">5) JSONP</span>: use &lt;script/&gt; tag to pull cross domain script string back and execute it<br />
+&lt;script id=&#8221;crossdomainscript&#8221; type=&#8221;text/javascript&#8221;&gt; &lt;/script&gt;<br />
+document.getElementById(&#8220;crossdomainscript&#8221;).setAttribute(&#8220;src&#8221;, url)<br />
+<span style="color: #0000ff;">6) window.name</span>: its value will maintain even the page is refreshed to another domain&#8217;s url. So we can:<br />
+a. open domain A page.<br />
+b. set iframe src to domain B and set window.name a value<br />
+c. set iframe src back to domain A (any page is OK, we do this because we can only access the iframe in the same domain)<br />
+d. fetch the value through window.name: document.getElementById(&#8216;iframe1&#8242;).contentWindow.name</p>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Javascript - jQuery JSONP</h3>
+<p>1. Url:</p>
+<p>http://service.example.com/word/list.php<strong>?callback=?</strong></p>
+
+<p>2. Call(Javascript):</p>
+<pre>$.getJSON(url, data, function(response){});</pre>
+
+<p>3. Server side(PHP):<br />
+<pre>
+$response = json_encode(array("data"=&gt; $words));
+if(array_key_exists('callback', $_REQUEST))
+{
+    $callback = $_REQUEST['callback'];
+    $response = $callback . "(" . $response . ");";
+}
+</pre>
+</body>
+</html>
