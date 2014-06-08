@@ -1,0 +1,61 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Javascript - Object</h3>
+<p><strong>Objects</strong></p>
+<p>All objects in Javascript is class-free objects.</p>
+<p>Javascript include two main types, One is simple types, e.g. <strong>number</strong>(<span style="color: #0000ff;"><em><span style="color: #0000ff;">NaN</span></em></span>, <em><span style="color: #0000ff;">Infinity</span></em>), <strong>string</strong>, <strong>boolean</strong>(<em><span style="color: #0000ff;">true</span></em>, <em><span style="color: #0000ff;">false</span></em>), <strong>null</strong> and <strong>undefined</strong>, number, string and boolean can own their methods. The other one is objects, e.g. <strong>array</strong>, <strong>function</strong>, <strong>regular expresion </strong>and<strong> </strong> <strong>object</strong>, they are all keyed collections.</p>
+<p>The following values will be treated as <em><span style="color: #0000ff;">false</span></em>:</p>
+<p><span style="color: #0000ff;">false</span><em>, </em><span style="color: #0000ff;">null</span><em>, </em><span style="color: #0000ff;">undefined</span><em>, empty string (&#8220;&#8221;), 0, </em><span style="color: #0000ff;">NaN</span></p>
+<p>All other values will be treated as <span style="color: #0000ff;"><em><span style="color: #0000ff;">true</span></em></span>.</p>
+<p><strong>- Object Literals</strong></p>
+<p>Object is the container of properties. The property key could include empty string (&#8220;&#8221;) and the property value could include everything except the <em>undefined</em>.</p>
+<p><em>var obj = { &#8220;Name&#8221;: &#8220;Johnson&#8221;, City: { }, &#8220;&#8221;: 23 };</em></p>
+<p>If the property key name is a qualified identifier, the quotation surrounding it can be ignored.</p>
+<p>There is another way to create an object:</p>
+<p><em>var obj = new Object();</em></p>
+<p><em>The statement above is equal to:</em></p>
+<p><em>var obj = {};</em></p>
+<p><em>Object.call(obj, args&#8230;); // obj will be addressable by the key word </em><span style="color: #0000ff;">this</span><em> in the Object function</em></p>
+<p><strong>- Retrieval</strong></p>
+<p>There are two way to fetch the property value.</p>
+<p><em>obj[""]; </em></p>
+<p><em>obj.City;</em></p>
+<p>If the property key is a qualified identifier, we prefer to use the dot (.) way. If you try to query a non-existent property, it will return <em><span style="color: #0000ff;">undefined</span></em><em>.</em></p>
+<p><em>obj.nonexistent == underfined;</em></p>
+<p>The <em><span style="color: #0000ff;">||</span></em> operator could be used for assigning default value:</p>
+<p><em>var name = obj.nonexistent || &#8220;(none)&#8221;;</em></p>
+<p>The <em><span style="color: #0000ff;">&amp;&amp;</span></em> operator could be used for avoiding exception occurring:</p>
+<p><em>var name = obj.Name &amp;&amp; obj.Name.length;</em></p>
+<p><strong>- Reference</strong></p>
+<p>Objects are reference assignment. So</p>
+<p><em>var a = b = c = {};</em></p>
+<p>is different from</p>
+<p><em>var a = {}, b = {}, c = {}; </em></p>
+<p>The first one above are all referring to the same object.</p>
+<p><strong>- Reflection</strong></p>
+<p>Use <em><span style="color: #0000ff;">typeof</span> </em>to get the type:</p>
+<p><em>typeof  &#8220;&#8221; // &#8216;string&#8217;</em></p>
+<p><em>typeof (123) // &#8216;number&#8217;</em></p>
+<p><em>typeof null // &#8216;object&#8217;</em></p>
+<p><em>typeof true // &#8216;boolean&#8217;</em></p>
+<p><em>// other possible result: &#8216;underfined&#8217;, &#8216;function&#8217;</em></p>
+<p>Use <em><span style="color: #0000ff;">hasOwnProperty</span></em> to determine if  the current object own the property:</p>
+<p><em>obj.hasOwnProperty(&#8216;constructor&#8217;) // false</em></p>
+<p><strong>- Prototype</strong></p>
+<p>Every object is linked to a <em><span style="color: #0000ff;">prototype</span></em> and can inherit properties for its prototypes. All objects created by literal ({}) will be linked to <em><span style="color: #0000ff;">Object.prototype</span></em>.</p>
+<p>When a property is queried, its prototype or prototype&#8217;s prototype may be search until to Object.prototype. Not found will answer <em>undefined</em>.</p>
+<p>We can add properties to object&#8217;s prototype:</p>
+<p><em>obj.prototype.add = function(a, b) { return a + b; }</em></p>
+<p>All objects link to this prototype will support this property immediately, both created objects and will be created objects.</p>
+<p><strong>- Enumeration</strong></p>
+<p><span style="color: #0000ff;"><em><span style="color: #0000ff;">for in</span></em></span> expression enumerate all object&#8217;s properties and its prototype&#8217;s properties, in a random sequence.</p>
+<p><em>var name;</em></p>
+<p><em>for (name in obj) { alert ( obj[name] ); };</em></p>
+<p><strong>- Delete</strong></p>
+<p>Object&#8217;s properties could be deleted.</p>
+<p><em>delete obj.name; // typeof (obj.name) == undefined</em></p>
+</body>
+</html>

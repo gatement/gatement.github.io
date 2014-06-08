@@ -1,0 +1,16 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Javascript - JSON</h3>
+<p><strong>JSON</strong></p>
+<p><a href="http://www.json.org" target="_blank">http://www.json.org</a></p>
+<p>JSON (<span style="color: #000000;"><strong>J</strong></span>ava<span style="color: #000000;"><strong>S</strong></span>cript <span style="color: #0000ff;"><strong><span style="color: #000000;">O</span></strong></span>bject <span style="color: #000000;"><strong>N</strong></span>otation) is a light-weight data exchange format.</p>
+<p><strong>- From JSON to Javascript Object</strong></p>
+<p><em>var myData = <span style="color: #0000ff;">eval</span>( &#8216;(&#8216; + myJSONText + &#8216;)&#8217; );</em></p>
+<p>This is not a secure way. Prefer the following method:</p>
+<p><a href="http://www.json.org/json2.js" target="_blank">http://www.json.org/json2.js</a></p>
+<p><em>var myData = <span style="color: #0000ff;">JSON.parse</span>(myJSONText);</em></p>
+</body>
+</html>

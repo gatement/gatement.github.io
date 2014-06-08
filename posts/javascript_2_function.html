@@ -1,0 +1,81 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Javascript - Function</h3>
+<p><strong>Functions</strong></p>
+<p>There are three ways to create a function:</p>
+<p><em>function Add(a, b) { return a + b; }</em></p>
+<p><em><em>var Add = function (a, b) { return a + b; } // anonymous function</em></em></p>
+<p><em>var Add = new Function(&#8220;a&#8221;, &#8220;b&#8221;, &#8220;return a + b;&#8221;);</em></p>
+<p>Every function object links to <em><span style="color: #0000ff;">Function.prototype</span></em>. Every function has a <em><span style="color: #0000ff;">prototype</span></em> property and this property own a <em><span style="color: #0000ff;">consructor</span></em> property. Like when they are created, it do <em>this.prototype = { constructor: this }.</em></p>
+<p><em>Add.prototype.hasOwnProperty(&#8216;constructor&#8217;); // true</em></p>
+<p><em>Add.constructor == Function; // true</em></p>
+<p><em>Add.prototype.constructor == Add; // true</em></p>
+<p><em>var add = new Add();</em></p>
+<p><em>add.constructor == Add // true</em></p>
+<p><strong>Invocation</strong></p>
+<p><span style="color: #000000;">When function is been invoking, it will initiate two additional arguments: <em><span style="color: #0000ff;">this</span></em> and <em><span style="color: #0000ff;">arguments</span><span style="color: #0000ff;"><span style="color: #000000;"><span style="font-style: normal;">.</span></span></span></em></span></p>
+<p><span style="color: #000000;"><em><span style="color: #0000ff;"><span style="color: #000000;"><span style="font-style: normal;"><em>function Add(a, b) { return arguments[0] + arguments[1]; }</em></span></span></span></em></span></p>
+<p><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;"><strong>- The Method Invocation Pattern</strong></span></span></span></p>
+<p><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;"><em>var myObject = {</em></span></span></span></p>
+<p><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;"><em> value: 0;</em></span></span></span></p>
+<p><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;"><em> increment: function (inc) {</em></span></span></span><span style="color: #000000;"><em> this.value += typeof inc === &#8216;number&#8217; ? inc : 1; }</em></span></p>
+<p><span style="color: #000000;"><em>};</em></span></p>
+<p><span style="color: #000000;"><em>myObject.increment(); // myObject.value = 1</em></span></p>
+<p><span style="color: #000000;"><em>myObject.increment(2); // myObject.value = 3</em></span></p>
+<p><span style="color: #000000;">When functions are invoked by property accessor (by . or [key], we said they are invoked as method), the key work <em>this</em> in the method is bound to the function that own the method.</span></p>
+<p><span style="color: #000000;"><strong>- The Function Invocation Pattern</strong></span></p>
+<p><span style="color: #000000;"><em>var sum = add (3, 4);</em></span></p>
+<p><span style="color: #000000;">When functions are invoked as function pattern, the key work <em>this</em> is bound to the global object <em><span style="color: #0000ff;">window</span></em>. If we like to have a function act as a helper, we could:</span></p>
+<p><span style="color: #000000;"><em><em>myObject.value = 3;</em></em></span></p>
+<p><span style="color: #000000;"><em><em></em>myObject.double = function() {</em></span></p>
+<p><span style="color: #000000;"><em><span style="color: #0000ff;"> var that = this;</span><br />
+</em></span></p>
+<p><span style="color: #000000;"><em> var helper = function() { add(that.value, that.value); }</em></span></p>
+<p><span style="color: #000000;"><em> helper(); // invoked as function</em></span></p>
+<p><span style="color: #000000;"><em>}</em></span></p>
+<p><span style="color: #000000;"><em>myObject.double(); // myObject.value == 6</em></span></p>
+<p><span style="color: #000000;"><strong>- The Apply Invocation Pattern</strong></span></p>
+<p><span style="color: #000000;"><em>function Add (a, b) { return a + b; };</em></span></p>
+<p><span style="color: #000000;"><em>var array = [3, 4];</em></span></p>
+<p><span style="color: #000000;"><em><span style="color: #0000ff;"><span style="color: #333300;">Add.</span>apply</span> (null, array); // 7, the first parameter will be bound to the <span style="color: #0000ff;">key</span> work this in the function </em></span></p>
+<p><span style="color: #000000;"><em>Add.<span style="color: #0000ff;">call</span> (null, 3, 4); // 7, the first parameter will be bound to the <span style="color: #0000ff;">key</span> word this in the function</em></span></p>
+<p><em><strong>- The Constructor Invocation Pattern</strong></em></p>
+<p><span style="color: #000000;">Add a key word <em><span style="color: #0000ff;">new</span></em> before the function invocation will return a new object that link to the function&#8217;s prototype and the key word <em>this</em> will be bound to this new object.</span></p>
+<p><span style="color: #000000;"><em>var Quo = function (string) { this.status = string; };</em></span></p>
+<p><span style="color: #000000;"><em>Quo.prototype.get_status = function () { return this.status };</em></span></p>
+<p><span style="color: #000000;"><em>var myQuo = <span style="color: #0000ff;">new</span> Quo (&#8220;cool&#8221;);</em></span></p>
+<p><em>myQuo.get_status() // &#8220;<em>cool</em>&#8220;</em></p>
+<p>Actually, the<em> <em>new </em><span style="font-style: normal;">statement is equal to:</span></em></p>
+<p><em>var myQuo = {};</em></p>
+<p><em>Quo.call (myQuo, &#8220;<em>cool</em>&#8220;);</em></p>
+<p><strong>Exceptions</strong></p>
+<p><span style="color: #000000;"><em><span style="color: #0000ff;">try</span>{</em></span><em> <span style="color: #0000ff;">throw</span> { name: &#8220;TypeError&#8221;, message: &#8220;Error message&#8221; }; }</em></p>
+<p><em> </em><em><span style="color: #0000ff;">catch</span> (e)  { window.alert (e.message); }</em></p>
+<p><em><span style="color: #0000ff;">finally</span> { }</em></p>
+<p>The <em>throw</em> statement just need to throw a normal object.</p>
+<p><span style="color: #000000;"><strong>Recursion</strong></span></p>
+<p><em><span style="color: #0000ff;">arguments.callee</span> is used to refer to itself in a anonymous function in a recursion.</em></p>
+<p><em>function Func (){</em></p>
+<p><em> return function (x){</em></p>
+<p><em> if(x &lt;= 1) return 1;</em></p>
+<p><em> return x * <span style="color: #0000ff;">arguments.callee</span> (x &#8211; 1);</em></p>
+<p><em> }</em></p>
+<p><em>}</em></p>
+<p><strong>Closure</strong></p>
+<p>We rewrite the example in 2.5.</p>
+<p><span style="color: #000000;"><em>var quo = function(string) {</em></span></p>
+<p><span style="color: #000000;"><em> var status = string;</em></span></p>
+<p><span style="color: #000000;"><em> return {</em></span><em> get_status: function () { return status;  }</em><em> }; // the &#8216;status&#8217; is a closure</em></p>
+<p><span style="color: #000000;"><em>}</em></span></p>
+<p><span style="color: #000000;"><em>var myQuo = quo(&#8220;cool&#8221;);</em></span></p>
+<p><span style="color: #000000;"><em>myQuo.get_status(); // &#8220;cool&#8221;</em></span></p>
+<p><span style="color: #000000;">This updated example does not use key word <span style="color: #0000ff;"><em>new</em></span> but use closure.</span></p>
+<p><span style="color: #000000;"><br />
+</span></p>
+<p><span style="color: #000000;"><br />
+</span></p>
+</body>
+</html>

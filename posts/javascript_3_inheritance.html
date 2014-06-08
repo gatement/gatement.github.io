@@ -1,0 +1,32 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Javascript - Inheritance</h3>
+<p><strong>Inheritance</strong></p>
+<p><strong>- An inheritance example</strong></p>
+<p><em>var Animal = function (name) { this.name = name; } // <em>this.prototype = { constructor: this }</em></em></p>
+<p><em>Animal.prototype.get_name = function () { return this.name; }</em></p>
+<p><em>var myAnimal = new Animal (&#8216;pretty&#8217;);</em></p>
+<p><em>myAnimal.get_name (); // &#8216;pretty&#8217;</em></p>
+<p><em>var Cat = function (name) { this.name = name; }</em></p>
+<p><em><span style="color: #0000ff;">Cat.prototype = new Animal ();</span></em></p>
+<p><em>var myCat = new Cat (&#8216;pretty&#8217;);</em></p>
+<p><em>myCat.get_name(); // &#8216;pretty&#8217;</em></p>
+<p><em>Animal.prototype.get_type = function() { return &#8216;Animal&#8217;; }</em></p>
+<p><em>myCat.get_type() // &#8216;Animal&#8217;</em></p>
+<p><em><span style="font-style: normal;"><strong>- A better way</strong></span></em></p>
+<p><em>Object.beget = function (o) {</em></p>
+<p><em>var F = function() {};</em></p>
+<p><em><span style="color: #0000ff;">F.prototype = o</span></em><em>;</em></p>
+<p><em>return <span style="color: #0000ff;">new F()</span></em><em>;</em></p>
+<p><em>}</em></p>
+<p><em>var animal =  {</em></p>
+<p><em>name: &#8216;animal&#8217;,</em></p>
+<p><em>get_name: function() { return this.name; }</em></p>
+<p><em>}</em></p>
+<p><em>var cat = Object.beget (animal);</em></p>
+<p><em>cat.get_name() // &#8216;animal&#8217;</em></p>
+</body>
+</html>

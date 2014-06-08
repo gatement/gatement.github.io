@@ -1,0 +1,31 @@
+
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Javascript - Array</h3>
+<p><strong>4. Array</strong></p>
+<p>All array objects are linked to <em><span style="color: #0000ff;">Array.prototype</span></em>. You can contain any mix types in a single array.</p>
+<p><em>var arr = ['string', 98.4, true, null, undefined, NaN, ['a', 5], {obj: true}];</em></p>
+<p><em>arr.construtor == Array // true</em></p>
+<p><strong>4.1 Length</strong></p>
+<p>The length of an array is equal to the max index +1.</p>
+<p><em>var myArray = []; // length == 0</em></p>
+<p><em>myArray[100] = true; // length == 101</em></p>
+<p>The length of an array could be set.</p>
+<p><em>var arr = [1, 2, 3, 4];</em></p>
+<p><em>arr.length = 3; // arr == [1, 2, 3]</em></p>
+<p>Two way to append new element to an array.</p>
+<p><em>arr[arr.length] = 5;</em></p>
+<p><em>arr.push(5);</em></p>
+<p>Add a number key to an array will plus its length.</p>
+<p><em>var arr = [1, 2, 3];</em></p>
+<p><em>arr["a"] = 4; // arr.length == 3;</em></p>
+<p><em>arr["3"] = 4; // arr.length  == 4</em></p>
+<p><strong>4.2 Delete</strong></p>
+<p>var arr = [1, 2, 3, 4];</p>
+<p><em>delete arr[2]; // arr == [1, 2, undefined, 4,]</em></p>
+<p><em>arr.splice(1, 1); // arr == [1, undefined, 4]</em></p>
+</body>
+</html>
