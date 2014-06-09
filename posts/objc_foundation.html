@@ -1,0 +1,421 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Objective-C - Foundation</h3>
+<pre>
+--------------------------------------------
+Objective-C:
+--------------------------------------------
+类对象, 类方法(+), 实列方法(-), 工厂方法, 类簇 (NSString)
+装箱(boxing), 取消装箱(unboxing)
+对象所有权
+便利初始化函数(init...), 指定初始化函数 (designated initializer)
+
+man ascii
+
+.m: Objective-C
+.mm (.M): Objective-C++
+
+#import <> / "": include once
+
+Function <-> Method (belongs to Class)
+
+%@ = [obj description]
+
+@interface
+@implementation
+@class
+@encode(Type) -> (const char *)
+@selector(methodName:) -> (SEL)
+
+- (BOOL) responsesToSelector: (SEL)aSelector
+
+self / super ->
+setProperty, property
+
+All Objective-C objects are allocated in heap!!!
+
+Cocoa = Foundation + App Kit
+Cocoa Touch = Foundation + UI Kit
+
+--------------------------------------------
+NSPredicate (Cocoa):
+--------------------------------------------
+NSPredicate: NSObject
+- (NSPredicate *) predicateWithFormat
+- (NSPredicate *) predicateWithSubstitutionVariables: (NSDictionary *)
+- (NSPredicate *) predicateWithValue: (BOOL)value
+- (BOOL) evaluateWithObject
+
+NSPredicate *p = [NSPredicate predicateWithFormat: @"name == 'Herbie'"]; 
+// or @"name == \"Herbie\""
+// @"car.horsepower > 50"
+
+1. By formatter:
+%@: 引用字符串, 相当于 'Herbie'
+%K: 键路径
+// e.g. [NSPredicate predicateWithFormat @"%K == %@", @"name", @"Herbie"]; 
+%d: 数字
+
+2. By variables (变量不能应用于键路径):
+$variableName // e.g. @"name == $NAME"
+不区分大小写,支持:　
+AND, OR, NOT, (), &#038;&#038;, ||, !, <>, !=, 
+BETWEEN {1,10}, IN {'a','b'}, 
+BEGINSWITH[cd], ENDSWITH, CONTAINS, LIKE[cd], MATCHES
+ANY, ALL
+// BETWEEN / IN  %@ / $ARRAYNAME: replace by an array
+// BEGINSWITH / ENDSWITH / CONTAINS / LIKE [cd]: c 不区分大小写,d不区分发发音符号
+// LIKE: 支持 ?, *
+SELF: 可用作键,代表自身
+
+NSArray
+-(NSArray *) filteredArrayUsingPredicate
+
+NSMutableArray
+-(void) filteredUsingPredicate
+
+--------------------------------------------
+KVC(Cocoa):
+--------------------------------------------
+// Key/Value Coding
+
+@interface NSObject(NSKeyValueCoding)
+-(void) setValue: (id)value forKey: (NSString *) key;
+-(id) valueForKey: (NSString *)key;
+-(void) setValue: (id)value forKeyPath: (NSString *) keyPath; 
+-(id) valueForKeyPath: (NSString *)keyPath; 
+// e.g. [car valueForKeyPath: @"tires.pressure"], but @"tires[0].pressure" is wrong
+-(void) setValuesForKeysWithDictionary: (NSDictionary *)keyedValues;
+-(NSDictionary *) dictionaryWithValuesForKeys: (NSArray *)keys;
+// override method
+-(void) setValue: (id)value forUndefinedKey: (NSString *)key;
+-(id) valueForUndefinedKey: (NSString *)key;
+//override method
+-(void) setNilValueForKey: (NSString *)key;
+@end // NSObject
+
+当没有相应的getter or setter时也能工作 (会直接读取实例变量, "name" or "_name")
+读取时(getter), KVC 具有自动包装功能, 能自动把标量值 (int, float, structure等)放入NSNumber或NSValue中返回.
+//NSLog(@"%@", [car valueForKey: @"year"]);
+设置时(setter), 需要先把标量值包装
+// [car setValue: [NSNumber numberWithFloat: 3.14] forKey: @"mileage"]
+
+NSNumber *count = [garage valueForKeyPath @"cars.@count"];
+NSNumber *sum = [garage valueForKeyPath @"cars.@sum.mileage"];
+NSNumber *avg = [garage valueForKeyPath @"cars.@avg.mileage"];
+NSNumber *min = [garage valueForKeyPath @"cars.@min.mileage"];
+NSNumber *max = [garage valueForKeyPath @"cars.@max.mileage"];
+NSArray *makers = [garage valueForKeyPath @"cars.@distinctUnionOfObjects.make"];
+
+--------------------------------------------
+NSCoding:
+--------------------------------------------
+plist: binary / xml / text
+plutil -convert xml1/ binary1 -o fileName
+
+@protocol NSCoding
+// 编码与解码 (序列化与反序列化)
+-encodeWithCoder: (NSCoder *) aCoder
+-initWithCoder: (NSCoder *) aDecoder
+[super initWithCoder: decoder]
+
+NSCoder
+-encodeObject
+-encodeInt
+-encodeFloat
+-decodeObjectForKey
+-decodeIntForKey
+-decodeFloatForKey
+
+NSKeyedArchiver: NSCoder
++archivedDataWithRootObject: (id)
+
+NSKeyedUnarchiver: NSCoder
++unarchivedObjectWithData: (NSData *) data
++unarchivedObjectWithFile: (NSString *) path
+
+NSArchiver: NSCoder
+NSUnarchiver: NSCoder
+-writeToFile
+
+NSArray
+NSDictionary
+NSData
+NSString
+
+NSArray: NSObject <NSCoding>
+-writeToFile
+-arrayWithContentsOfFile
+
+NSDictionary: NSObject <NSCoding>
+-writeToFile
+-dictionaryWithContentsOfFile
+
+NSData: NSObject <NSCoding>
+-writeToFile
+-dataWithContentsOfFile
+
+NSString: NSObject <NSCoding>
+-writeToFile
+-stringWithContentsOfFile
+
+--------------------------------------------
+Attributes:
+--------------------------------------------
+From Objective-C 2.0:
+@property (readwrite, readonly, copy, retain, assign, nonatomic) (declaration)
+@synthesize (implementation)
+@property float newName;
+@synthesize newName = name;
+
+obj.pro = val
+[obj setPro: val]
+var = obj.pro;
+var = [obj pro];
+self.pro
+
+--------------------------------------------
+Category:
+--------------------------------------------
+Informal Protocol
+// 1. no instance variable
+// 2. category methods will take priority
+
+@interface NSString (MyNewCategory)
+- (void) print;
+@end
+
+@implementation NSString (MyNewCategory)
+- (void) print { ... }
+@end
+
+--------------------------------------------
+Protocol:
+--------------------------------------------
+@protocol NSProtocolName
+  - (void) requiredMethod1;
+  @optional (from Objective-C 2.0)
+  - (void) optionalMethod;
+  @required (from Objective-C 2.0)
+  - (void) requiredMethod2;
+@end // @protocol
+
+@interface MyClass : NSObject <NSCoding, NSCopying>
+@end
+
+- (void) setObjectValue: (id <NSCopying>) obj;
+
+copy -> copyWithZone (defined in <NSCopying>)
+
+[[[self class] allocWithZone: zone] init] -> so all derived class will work correctly
+
+--------------------------------------------
+Memory &#038; Init:
+--------------------------------------------
+alloc / new / copy <-> release / autorelease
+
+[Class new] == [[Class alloc] init] (recommended)
+
+- (id) init
+{
+   if (self = [super init]) 
+      { ... } 
+   return (self);
+}
+
+NSAutoreleasePool
+[[NSAutoreleasePool alloc] init]
+-release
+-drain (>=10.4)
+// could new more than one NSAutoreleasePool, they store as Stack, autorelease will put the object into the top NSAutoreleasePool in the Stack.
+// after a loop it will release
+
+Garbage Collection
+// Info | Build | GCC 4.2 - Code Generation | Objective-C Garbage Collection
+// set obj = nil asap
+// after a loop, it will trigger
+// for iPhone, GC is disabled, and avoid using autorelease or some return autorelease object helper methods/functions
+
+self.name = nil (use setter to release "name")
+
+--------------------------------------------
+Xcode:
+--------------------------------------------
+esc or ctl+,
+ctl+.
+ctl+/ or tab
+double click ( ) { } [ ]
+^FBNP
+^AE
+^T
+^DK
+^L
+
+Context | Edit in All Scope
+Context | Refactor...
+File | Open Quickly
+View | Zoom Editor In/Out (Cmd+Shift+E)
+View | Switch to Header|Source File(^Cmd+Up)
+View | Code Folding
+Edit | Add to Bookmarks (Cmd+D)
+
+//???: name
+//!!!: name
+//TODO: name
+//FIXME: name
+//MARK: name
+
+#pragma mark name
+#pragma mark -
+
+--------------------------------------------
+Application Kit:
+--------------------------------------------
+#import <Cocoa/Cocoa.h>
+@interface AppController: NSObject{
+	IBOutlet NSTextField *name;
+}
+
+- (IBAction) lowercase: (id) sender;
+@end
+
+// 1. nib will create all objects by [[ClassName alloc] init]
+// 2. link
+// 3. send message "awakeFromNil" to all objects
+
+NSTextField
+-stringValue
+-setStringValue
+
+--------------------------------------------
+Foundation:
+--------------------------------------------
+NSObject
++alloc (retainCount = 1) // zero initialization
+-init
++new(retainCount = 1)
+-copy (retainCount = 1)
++allocWithZone
+-(id)retain (retainCount ++)
+-retainCount,
+-release (retainCount--)
+-(id)autorelease (put into NSAutoreleasePool)
+-dealloc (if retainCount == 0)
+-finalize (>=10.4) // called before object is destructed
++class
++superclass
+-(id)mutableCopy
+
+// some other factory methods will automatically "autorelease" object
+
+NSString *str = @"string"
++stringWithFormat
+-initWithFormat
+-initWithContentsOfFile
+-length
+-isEqualTo
+-isEqualToString
+-compare
+-hasPrefix
+-hasSuffix
+-rangeOfString
+-componentsSeparatedByString
+-stringByExpandingTildeInPath
+-fileExtension
+-uppercaseString
+-lowercaseString
+
+NSMutableString
++stringWithCapacity
+-appendString
+-appendFormat
+-deleteCharactersInRange
+
+NSArray (no nil element, but [NSNull null], Objective-C object element only)
++array
++arrayWithObjects (ends with nil)
++arrayWithContentsOfFile
+-count
+-objectAtIndex
+-componentsJoinedByString
+-objectEnumerator
+-reverseObjectEnumerator
+
+// when copy is shallow copy
+// when array release, it also release its elements
+
+NSMutableArray
++arrayWithCapacity
+-addObject
+-removeObjectAtIndex
+-replaceObjectAtIndex //will release old object and retain new object
+
+NSEnumerator
+-nextObject
+
+for(... in array) { }
+for(... in enumerator) { }
+
+NSDictionary  (no nil element, but [NSNull null], Objective-C object element only)
++dictionaryWithObjectsAndKeys (ends with nil)
++dictionary
+-objectForKey
+
+NSMutableDictionary
++dictionaryWithCapacity
+-setObject
+-removeObjectForKey
+
+NSNumber : NSValue
++numberWithChar
++numberWithInt
++numberWithFloat
++numberWithBool
+-charValue
+-intValue
+-floatValue
+-stringValue
+
+NSValue
++valueWithBytes
++valueWithRect
++valueWithPoint
++valueWithSize
++valueWithRange
+-getValue
+-rectValue
+-pointValue
+-sizeValue
+-rangeValue
+
+NSNull
++null
+
+NSFileManager
++defaultManager
+-enumeratorAtPath
+
+NSDate
++date
+-dateWithTimeIntervalSinceNow
+
+NSData
+-length
+-bytes
+
+NSMutableData
+
+NSNotFound
+
+NSRange r = NSMakeRange();
+NSPoint p = NSMakePoint();
+NSSize s = NSMakeSize();
+NSRect r = NSMakeRect();
+
+--------------------------------------------
+</pre>
+</body>
+</html>

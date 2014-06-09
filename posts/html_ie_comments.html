@@ -1,0 +1,160 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>HTML - Internet Explorer Conditional Comments</h3>
+<div>
+<p><a href="http://msdn2.microsoft.com/en-us/library/ms537512.aspx">Conditional comments</a> comprise a proprietary     Microsoft extension to Internet Explorer that provides a mechanism to     target each of the versions of IE either specifically, or as a group. This     extension was introduced in IE5, so it can only be used in documents     rendered in browsers from IE5 up on the Windows platform.</p>
+<p>Conditional comments use a special syntax—HTML markup wrapped in a     conditional statement—and are placed within an HTML comment. If the     statement evaluates to <code>true</code>, the enclosed HTML is     revealed within the HTML document. If the statement evaluates to     <code>false</code>, the enclosed HTML remains hidden. Because     conditional comments are placed with HTML comments, the enclosed HTML also     remains hidden from all browsers that don’t support conditional     comments.</p>
+<p>Conditional comments can be placed at any point in the document at     which normal comments can be located. As such, you can’t place them in     external CSS files, or in between <code>&lt;style&gt;</code> tags.     However, they can be used to link to specific files, or to provide     specific HTML (or CSS) content for the IE versions specified within the     conditional statement. It may seem odd to discuss HTML markup in a CSS     reference, but conditional comments are <a href="http://blogs.msdn.com/ie/archive/2005/10/12/480242.aspx">Microsoft’s recommended mechanism</a> for delivering     targeted CSS to its browser.</p>
+<div>
+<h2>Conditional Comment Basics</h2>
+<p>The basic form of     conditional comments is as follows:</p>
+<pre>&lt;!--[if IE ]&gt;
+  &lt;link href="iecss.css" rel="stylesheet" type="text/css"&gt;
+&lt;![endif]--&gt;</pre>
+<p>The conditional statement is contained within     square brackets, and begins with if followed by     an expression. The enclosed HTML content is delimited by the opening     &lt;!&#8211;[if …]&gt;     and a closing     &lt;![endif]&#8211;&gt;     statement.</p>
+<p>In the example above, the enclosed HTML content—a     <code>&lt;link&gt;</code> tag—will be revealed to all IE browsers that     support conditional comments. It links to a style sheet that only IE will     see. All browsers other than IE versions 5 and later will see the code     above as one simple HTML comment. If we remove the brackets and text for     the sake of clarity, we’re basically left with a normal comment structure     as follows:</p>
+<pre>&lt;!--
+  &lt;link href="iecss.css" rel="stylesheet" type="text/css" &gt;
+--&gt;</pre>
+</div>
+<div>
+<h2>Conditional Comment Operators</h2>
+<p>As we mentioned     already, we can use conditional comments to apply CSS rules to specific IE     browser versions with the help of comparison operators that allow each     version of IE to be targeted precisely. We can write complex expressions     using one or more of the operators listed in <a href="http://reference.sitepoint.com/css/conditionalcomments#conditionalcomments__tbl_conditional-comments_operators">Table 1</a>.</p>
+<div>
+<table id="conditionalcomments__tbl_conditional-comments_operators" border="1" cellspacing="0" cellpadding="0">
+<caption>Table 1. Conditional Comment Operators</caption>
+<thead>
+<tr>
+<th id="d1794e125">Operator</th>
+<th id="d1794e128">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th id="d1794e137"><code>IE</code></th>
+<td>represents Internet Explorer; if a number value is also               specified, it represents a version vector</td>
+</tr>
+<tr>
+<th id="d1794e147"><code>lt</code></th>
+<td>less than operator</td>
+</tr>
+<tr>
+<th id="d1794e157"><code>lte</code></th>
+<td>less than or equal to</td>
+</tr>
+<tr>
+<th id="d1794e167"><code>gt</code></th>
+<td>greater than</td>
+</tr>
+<tr>
+<th id="d1794e177"><code>gte</code></th>
+<td>greater than or equal to</td>
+</tr>
+<tr>
+<th id="d1794e187"><code>!</code></th>
+<td>the NOT operator</td>
+</tr>
+<tr>
+<th id="d1794e197"><code>()</code></th>
+<td>subexpression operator</td>
+</tr>
+<tr>
+<th id="d1794e207"><code>&amp;</code></th>
+<td>the AND operator</td>
+</tr>
+<tr>
+<th id="d1794e217"><code>|</code></th>
+<td>the OR operator</td>
+</tr>
+<tr>
+<th id="d1794e227"><code>true</code></th>
+<td>evaluates to true</td>
+</tr>
+<tr>
+<th id="d1794e237"><code>false</code></th>
+<td>evaluates to false</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>So, for example, you’d use the following markup to target IE     version 7:</p>
+<pre>&lt;!--[if IE 7 ]&gt;
+  &lt;p&gt;Only IE 7 will see this&lt;/p&gt;
+&lt;![endif]--&gt;</pre>
+<p>Alternatively, if you wanted to target all IE     browsers <em>except</em> IE7 and above (that is, versions prior to IE7),     you could use this method:</p>
+<pre>&lt;!--[if lt IE 7 ]&gt;
+  &lt;p&gt;Only less than IE 7 will see this&lt;/p&gt;
+&lt;![endif]--&gt;</pre>
+<p>If you wanted to include IE7 in that list,     you’d use lte operator, which selects all     version numbers that are less than or equal to 7.</p>
+<p>The     gt (greater than) and     gte (greater than or equal to) operators work     similarly. Have a look at this example:</p>
+<pre>&lt;!--[if gte IE 6 ]&gt;
+ &lt;p&gt;Only  IE 6 and greater will see this&lt;/p&gt;
+&lt;![endif]--&gt;</pre>
+<p>This conditional comment will select all IE     browsers with version numbers greater than or equal to 6, which will     obviously include IE7 and even IE8—if it ever makes an     appearance!</p>
+<p>It should be noted that when you use a single digit to     represent the version of IE you want to target (for example, <code>[if     IE 7]</code>) that directive will be applied to all versions of that     browser including those with version vectors. For example, if you used the     conditional comment below, you’d be including all versions of IE5     including IE5.5:</p>
+<pre>&lt;!--[if IE 5]&gt;
+ &lt;p&gt;This covers all versions of IE5 including IE5.5&lt;/p&gt;
+&lt;![endif]--&gt;</pre>
+<div>
+<div><strong>Tip: </strong>Targeting Point Releases</div>
+<p>If you want to target a specific point release, you’ll need to         specify the correct <a href="http://msdn2.microsoft.com/en-us/library/ms537512.aspx#Version_Vectors">version vector.</a> You can specify a point         release using a number followed by up to four decimal places. Even         though this appears as a decimal number, IE doesn’t see it that way:         each individual digit is compared separately. For example, the         expression <code>[if IE 5]</code> will have a broader match than         <code>[if IE 5.0]</code>, even though they appear to be equal         decimal number values. The expression <code>[if IE 5.0]</code> will not match IE5.5.</p>
+<p>What this means is that you may need to check the version vector if         you’re aiming to target specific browser versions. For example,         Microsoft points out that IE5 on the Windows 2000 platform has a         version vector equal to 5.0002. This means that the expression         <code>[if IE lte 5.0000]</code> would fail to target the release         build of IE5.</p>
+</div>
+<p>You can also use the “not” operator,     !, to exclude one of the IE browser versions.     To exclude IE6, but not IE7 or IE5 (if ever you wanted to do such a     thing), you’d use this expression:</p>
+<pre>&lt;!--[if !IE 6]&gt;
+  &lt;p&gt;IE7 or IE5 only&lt;/p&gt;
+&lt;![endif]--&gt;</pre>
+</div>
+<div>
+<h2>Downlevel-hidden Conditional Comments</h2>
+<p>More     complicated expressions can be created using one or more of the available     operators. For example, the following conditional comment targets IE6 and     IE7 using subexpressions and the OR operator:</p>
+<pre>&lt;!--[if (IE 6)|(IE 7)]&gt;
+  &lt;p&gt;IE6 or IE7 only &lt;/p&gt;
+&lt;![endif]--&gt;</pre>
+<p>Microsoft refers to the this style of     conditional comments as <dfn>downlevel-hidden</dfn>, since     browsers that don’t support conditional comments (including IE4 and     earlier) will interpret the conditional comment code as a standard HTML     comment, and ignore it completely. And yes—Microsoft describes all     browsers except IE5 and later as “downlevel” browsers!</p>
+<p>There is,     however, another version of conditional comments that will allow these     downlevel browsers to be targeted; they’re called     <dfn>downlevel-revealed</dfn> conditional     comments.</p>
+</div>
+<div>
+<h2>Downlevel-revealed Conditional Comments</h2>
+<p>In     downlevel-revealed conditional comments, the HTML content inside the     conditional statements is revealed to browsers that don’t support     conditional comments, because the conditional statements—and only the     conditional statements—are ignored. If the statement evaluates to     <code>true</code> (in a supporting browser), the content inside the     conditional statements is also revealed.</p>
+<p>Unfortunately, the syntax     of these downlevel-revealed conditional comments will often cause HTML     validation errors. Here’s Microsoft’s suggested syntax:</p>
+<pre>&lt;![if !IE]&gt;
+ &lt;p&gt;This is shown in downlevel browsers, but is invalid HTML!&lt;/p&gt;
+&lt;![endif]&gt;</pre>
+<p>However, a better, <a href="http://www.456bereastreet.com/archive/200511/valid_downlevelrevealed_conditional_comments/">valid version of the syntax is available.</a> It’s     been discovered that if you change the syntax slightly, the downlevel     effect can be maintained <em>and</em> the HTML code will     validate:</p>
+<pre>&lt;!--[if !IE]&gt;--&gt;
+  &lt;p&gt;This is shown in downlevel browsers.&lt;/p&gt;
+&lt;!--&lt;![endif]--&gt;</pre>
+<p>Here, we simply wrap the conditional     statements in HTML comments. It should be noted that this usage doesn’t     conform to Microsoft’s specifications for these comments, but it presently     works in all versions of IE5 and later (including IE7) and, more to the     point, will also validate—unlike Microsoft’s version.</p>
+<p>That said, a     problem exists with that approach should you wish to target downlevel     browsers as well as a supporting Microsoft browser version. Take a look at     this example, which attempts to target downlevel browsers and IE7 or     later:</p>
+<pre>&lt;!--[if gte IE 7]&gt;--&gt;
+  &lt;p&gt;This is shown in downlevel browsers and IE7 or later.&lt;/p&gt;
+&lt;!--&lt;![endif]--&gt;</pre>
+<p>This example uses valid HTML, but IE7     and later browsers will also reveal the <code>--&gt;</code> after the     opening conditional statement. The fix suggested by Microsoft is to add an     extra &lt;! just after the opening     conditional comment:</p>
+<pre>&lt;!--[if gte IE 7]&gt;<em>&lt;!</em>--&gt;
+  &lt;p&gt;This is shown in downlevel browsers and IE7 or later.&lt;/p&gt;
+&lt;!--&lt;![endif]--&gt;</pre>
+</div>
+<div>
+<h2>Conditional Comments in Practice</h2>
+<p>If you want     to use conditional comments in your approach to delivering targeted CSS,     here’s what you can do. First, link to your standard style sheet in the     normal way (via a <code>&lt;link&gt;</code> tag, for example). Then, use     conditional comments to link to one or more other style sheets that     contain the CSS targeted towards IE. The IE-only style sheets should     contain only the required CSS fixes. They shouldn’t be a duplication of     your standard style sheet—that would be a waste of bandwidth and     completely redundant anyway. Here’s an example of this     approach:</p>
+<pre>&lt;link href="main.css" rel="stylesheet" type="text/css"&gt;
+&lt;!--[if IE 7]&gt;
+&lt;link href="ie7.css" rel="stylesheet" type="text/css"&gt;
+&lt;![endif]--&gt;
+&lt;!--[if IE 6]&gt;
+&lt;link href="ie6.css" rel="stylesheet" type="text/css"&gt;
+&lt;![endif]--&gt;
+&lt;!--[if IE 5]&gt;
+&lt;link href="ie5.css" rel="stylesheet" type="text/css"&gt;
+&lt;![endif]--&gt;</pre>
+<p>main.css is the standard     style sheet, while ie7.css,     ie6.css, and ie5.css contain the     CSS for specific IE versions. You may not need to be as version-specific     as we’ve been in this example. Remember that the cascade will be in     effect, and that the rules in the CSS files that are referenced lower down     the page source will overrule any previously defined CSS     rules.</p>
+<p>Whether you like conditional comments or not, they do make it     easy and safe to target versions of IE, and they’re as future-proof as any     of these tricks can be. The comments also provide a logical structure to     your CSS management approach, and separate the targeted CSS from the     standard CSS. At some time in the future when the targeted CSS is no     longer required, the code, which is already separated, can easily be     removed.</p>
+<p>(content from http://reference.sitepoint.com/css/conditionalcomments)</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>PHP - Encoding</h3>
+<p>Tags: charset</p>
+<p>A PHP <strong>string </strong>is series of characters, where a character is the same as a byte. This means that PHP only supports a 256-character set, and hence does not offer native Unicode support.</p>
+<p><strong><span style="color: #0000ff;">1.  Encoding</span></strong>: string will be encoded in whatever fashion it is encoded in the script file</p>
+<p>Given that PHP does not dictate a specific encoding for strings, one might wonder how string literals are encoded. For instance, is the string <em>&#8220;á&#8221;</em> equivalent to <em>&#8220;\xE1&#8243;</em> (ISO-8859-1), <em>&#8220;\xC3\xA1&#8243;</em> (UTF-8, C form), <em>&#8220;\x61\xCC\x81&#8243;</em> (UTF-8, D form) or any other possible representation? The answer is that string will be encoded in whatever fashion it is encoded in the script file. Thus, if the script is written in ISO-8859-1, the string will be encoded in ISO-8859-1 and so on. However, this does not apply if Zend Multibyte is enabled;</p>
+<p><strong><span style="color: #0000ff;">2. BOM issue</span></strong></p>
+<p>BOM(Byte-Order-Marker) is at the beginning of some encoding file/stream. e.g., UTF-8&#8242;s BOM is &#8220;EFBBBF&#8221;.</p>
+<p>PHP doesn&#8217;t like the BOM( e.g. session_start function). You can use tools like UltraEdit save-as to remove BOM.</p>
+<p><strong><span style="color: #0000ff;">3. string functions</span></strong></p>
+<p>$chars = <strong>htmlentities</strong>($chars, ENT_QUOTES, &#8216;<strong>utf</strong>-8&#8242;);<br />
+$chars = <strong>htmlspecialchars</strong>($chars, ENT_QUOTES, &#8216;<strong>utf</strong>-8&#8242;);<br />
+$chars = <strong>html_entity_decode</strong>($chars, ENT_QUOTES, &#8216;<strong>utf</strong>-8&#8242;);</p>
+<p>$chars = <strong>iconv</strong>(‘Big5′,&#8217;utf-8&#8242;,$chars); //convert string from Big5 to UTF-8<br />
+<a href="http://cn.php.net/manual/en/function.iconv-strlen.php" target="_blank">iconv_strlen</a> — Returns the character count of string<br />
+<a href="http://cn.php.net/manual/en/function.iconv-strpos.php" target="_blank">iconv_strpos</a> — Finds position of first occurrence of a needle within a haystack<br />
+<a href="http://cn.php.net/manual/en/function.iconv-strrpos.php" target="_blank">iconv_strrpos</a> — Finds the last occurrence of a needle within a haystack<br />
+<a href="http://cn.php.net/manual/en/function.iconv-substr.php" target="_blank">iconv_substr</a> — Cut out part of a string</p>
+<p><strong><span style="color: #0000ff;">4. UTF-8 get_utf8_sub_string()</span></strong> if it contains Chinese characters</p>
+<p>The length of a Chinese character is 3 in UTF-8</p>
+<pre>echo get_utf8_sub_string("a我是标题", 8);
+
+function get_utf8_sub_string($str, $max_length)
+{
+  if(strlen($str) &gt; $max_length)
+  {
+    $check_num = 0;
+    for($i=0; $i &lt; $max_length; $i++)
+    {
+      if (ord($str[$i]) &gt; 128)
+        $check_num++;
+    }
+
+    if($check_num % 3 == 0)
+      $str = substr($str, 0, $max_length)."...";
+    else if($check_num % 3 == 1)
+      $str = substr($str, 0, $max_length + 2)."...";
+    else if($check_num % 3 == 2)
+      $str = substr($str, 0, $max_length + 1)."...";
+  }
+  return $str;
+}</pre>
+</body>
+</html>

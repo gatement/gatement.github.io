@@ -1,0 +1,32 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>BitTorrent - Deluge Setup</h3>
+<p><a href="http://deluge-torrent.org/" target="_blank">http://deluge-torrent.org/</a></p>
+<p>## install<br />
+yum install deluge-daemon<br />
+yum install deluge-console<br />
+yum install deluge-web</p>
+<p>## create auth file<br />
+echo &#8220;username:password:level&#8221; &gt;&gt; /root/deluge/auth</p>
+<p>## start deluge daemon<br />
+deluged -c /root/deluge -p 58846</p>
+<p>## config allowing remote client connect<br />
+deluge-console -c /root/deluge<br />
+config -s allow_remote True<br />
+config allow_remote<br />
+exit</p>
+<p>## restart deluge daemon<br />
+pkill deluged<br />
+deluged -c /root/deluge -p 58846</p>
+<p>## start deluge web daemon<br />
+deluge-web &#8211;fork &#8211;ssl -c /root/deluge</p>
+<p>## open deluge web client in browser (can be remotely)</p>
+<p>http://[server]:8112</p>
+<p>Default password is &#8220;deluge&#8221;</p>
+<p>Details:<br />
+<a href="http://dev.deluge-torrent.org/wiki/UserGuide/ThinClient" target="_blank">http://dev.deluge-torrent.org/wiki/UserGuide/ThinClient</a></p>
+</body>
+</html>

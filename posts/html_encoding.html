@@ -1,0 +1,30 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>HTML - Encoding</h3>
+<p>Tags: charset</p>
+<p>Options list below is in the<strong> top priority list first</strong> sequence when the content is interpreted by browser. Means the first option will take priority over the second one.</p>
+<p><strong><span style="color: #0000ff;">1. In HTTP header</span></strong></p>
+<pre>Content-Type: text/html; charset=UTF-8</pre>
+<p>e.g., in PHP page:</p>
+<pre> &lt;?php header('Content-Type:text/html;charset=UTF-8'); ?&gt;</pre>
+<p>e.g., in php.ini (this one takes priority over httpd.conf):</p>
+<pre>default_charset = "utf-8"</pre>
+<p>e.g., in Apache(httpd.conf):</p>
+<p>Default charset parameter to be added when a response content-type is <code>text/plain</code> or <code>text/html</code></p>
+<pre>AddDefaultCharset UTF-8</pre>
+<p><strong><span style="color: #0000ff;">2. File/IO stream header</span></strong></p>
+<p>It is also called BOM(Byte-Order-Marker) at the beginning of some encoding file/stream. e.g., UTF-8&#8242;s BOM is &#8220;EFBBBF&#8221;.</p>
+<p>The BOM can indicate which character encoding it is using.</p>
+<p>PHP doesn&#8217;t like the BOM( e.g. session_start function). You can use tools like UltraEdit save-as to remove BOM.</p>
+<p><strong><span style="color: #0000ff;">3. In HTML header</span></strong></p>
+<pre>&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;</pre>
+<p>HTML5 also allows the following syntax:</p>
+<pre>&lt;meta charset="utf-8"&gt;</pre>
+<p>XHTML documents have a third option: to express the character encoding via XML declaration</p>
+<pre>&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;</pre>
+<p>&lt;meta http-equiv=&#8221;Content-Type&#8221;&gt; may be interpreted directly by a browser, like an ordinary HTML tag, or it may be used by the HTTP server to generate corresponding headers when it serves the document.</p>
+</body>
+</html>

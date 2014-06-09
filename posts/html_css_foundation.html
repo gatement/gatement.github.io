@@ -1,0 +1,187 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>HTML - CSS Foundation</h3>
+<p><strong>1. 基本概念</strong></p>
+<p>#id: id</p>
+<p>.class: 类<br />
+:hover: 伪类<br />
+li[id=red]: 属性CSS选择器</p>
+<p>a, p, li: 元素<br />
+::first-line: 伪元素</p>
+<p>*: 通用CSS选择器</p>
+<p><strong>2. CSS的优先级</strong></p>
+<p>当我们写CSS的时候我们必须注意有些CSS选择器在级联(cascade)上会高于其它CSS选择器，我们写在最后面的CSS选择器将不一定会覆盖前面我们写在同一个元素的样式。</p>
+<p>那么你如何计算指定CSS选择器的优先级？如果你考虑到将优先级表示为用逗号隔开的四个数字就会相当简单，比如：1, 1, 1, 1 或0, 2, 0, 1</p>
+<p>第一个数字(a)通常就是0，除非在标签上使用style属性；<br />
+第二个数字(b)是该CSS选择器上的id的数量的总和；<br />
+第三个数字(c)是用在该CSS选择器上的其它属性CSS选择器，类，伪类的总和。这里包括class (.example) 和属性CSS选择器(比如 li[id=red])；<br />
+第四个数字(d)计算元素(就像table、p、div等等)和伪元素(就像::first-line等)；<br />
+通用CSS选择器(*)是0优先级；<br />
+如果两个CSS选择器有同样的优先级，在样式表中后面的那个起作用。</p>
+<p>让我们看几个例子，这样或许比较容易理解些：<br />
+#sidebar h2 — 0, 1, 0, 1<br />
+h2.title — 0, 0, 1, 1<br />
+h2 + p — 0, 0, 0, 2<br />
+#sidebar p:first-line — 0, 1, 0, 2</p>
+<p>在下面的例子中，第一个将会起作用，因为它比第二个优先级高：<br />
+#sidebar p#first { color: red; } — 0, 2, 0, 1<br />
+#sidebar p:first-line { color: blue; } — 0, 1, 0, 2</p>
+<p><strong>3. 属性CSS选择器</strong><br />
+（非IE6）</p>
+<p>属性CSS选择器(Attribute selector)让你可以基于属性来定位一个元素。你可以只指定该元素的某个属性，这样所有使用该属性——而不管它的值——的这个元素都将被定位，也可以更加明确并定位在这些属性上使用特定值的元素 —— 这就是属性CSS选择器展示它们的威力的地方。</p>
+<p>有6个不同类型的属性CSS选择器：</p>
+<p>[att=value]<br />
+该属性有指定的确切的值。</p>
+<p>[att~=value]<br />
+该属性的值必须是一系列用空格隔开的多个值，(比如，class=”title featured home”)，而且这些值中的一个必须是指定的值”value”。<br />
+[att*=value]<br />
+该属性的值包含指定的值(而无论其位置)。</p>
+<p>[att|=value]<br />
+属性的值就是“value”或者以“value”开始并立即跟上一个“-”字符，也就是“value-”。(比如lang=”zh-cn”)<br />
+[att^=value]<br />
+该属性的值以指定值开始。<br />
+[att$=value]<br />
+该属性的值以指定的值结束</p>
+<p>例子：<br />
+div[class|="post"] { background-color: #333; }</p>
+<p><strong>4. 关系CSS选择器</strong><br />
+（非IE6）</p>
+<p>后代CSS选择器：用符号“ ”(space)表示。它允许你定位某个元素的子孙元素。<br />
+子CSS选择器：用符号“>”表示。它允许你定位某个元素的第一级子元素。</p>
+<p>临近兄弟CSS选择器：用符号“＋”表示。CSS选择器中的元素有同一个父亲，而且第二个必须紧紧的跟着第一个。目标元素是+后的元素。<br />
+普通兄弟CSS选择器：用符号“~”表示。CSS选择器中的元素有同一个父亲，而且第二个无需紧紧跟随第一个。目标元素是~后的元素。</p>
+<p><strong>5. 伪类</strong></p>
+<p><strong>动态伪类</strong>：<br />
+:link伪类用于链接尚未被用户访问的时候<br />
+:hover伪类用于用户移动他们的鼠标在元素上，而尚未触发或点击它的时候<br />
+:active伪类应用于用户点击元素的情况<br />
+:visited 伪类用于用户访问过的链接，也就是说它们是相反的。<br />
+:focus伪类用于元素成为焦点的时候——最常用于表单元素。</p>
+<p><strong>语言伪类</strong>: lang()，允许你匹配一个基于它的语言的元素。（非IE6）<br />
+你如，你想让你的网站的某个特定的链接根据页面的语言有不同的背景颜色：<br />
+:lang(en) &gt; a#flag { background-image: url(english.gif); }<br />
+:lang(fr) &gt; a#flag { background-image: url(french.gif); }<br />
+这个CSS选择器将会匹配相关的链接——如果页面的语言等于“en”或“fr”，或者以“en”或“fr”开头并在后面带个连字符“-”的话。</p>
+<p>:target（非IE）<br />
+当你使用锚点(片段标识符 fragment identifier)的时候，比如，http://www.smashingmagazine.com/2009/08/02/bauhaus- ninety-years-of-inspiration/#comments，这“#comments”就是一个片段标识符，你就可以使 用:target伪类来控制目标的样式。<br />
+举个例子，比如你有一个很长的使用了很多文字和h2标题的页面，然后在页面的头部有一个对这些标题的索引。如果在点击索引内的某个链接时，相应的标题以某种方式高亮，然后滚动到相应的位置，对读者就会很有用。很简单。<br />
+h2:target {	background: #F2EBD6;	}</p>
+<p><strong>UI元素状态伪类</strong>：<br />
+（非IE）<br />
+:enabled<br />
+:disabled<br />
+:checked<br />
+有些HTML元素有enable 或disabled 状态(比如，文本输入框)和 checked 或unchecked 状态(单选按钮和复选框)。这些状态就可以使用:enabled、:disabled 或:checked 伪类来分别定位。<br />
+那么你就会想，如果任意一个禁用的(disabled)文本框应该使用浅灰色的背景和虚线边框：<br />
+input:disabled {	border:1px dotted #999; background:#F2F2F2; }<br />
+你也可能会想让所有选中的复选框有个左边距(这样就可以在众多的复选框中很容易认出来)：<br />
+input[type=”checkbox”]:checked {	margin-left: 15px; }</p>
+<p><strong>结构伪类：</strong><br />
+（非IE）</p>
+<p>:nth-child<br />
+:nth-child()伪类允许你定位某个父级元素的一个或多个特定的子元素.<br />
+你可以通过定义它的值为一个整数来定位某个单个子元素：<br />
+ul li:nth-child(3) {color: red;	}<br />
+这将会让ul元素的第三个li元素的文字变成红色。注意如果在ul里面有个其它类型的元素(不是li)，它也会算作其子元素。<br />
+你可以使用表达式来定位子元素。比如，下面的表达式将从第四个开始匹配每第三个元素。<br />
+ul li:nth-child(3n+4) {	color: yellow;}<br />
+在上面的这个例子中，第一个黄色的li元素将会是第四个。如果也想从第一个开始匹配，你可以使用一个简单的表达式：<br />
+ul li:nth-child(3n) {color: yellow;}<br />
+这样的话，第一个黄色的li元素将会是第三个子元素，然后是它后面的每隔第三个。现在想象一下如果你只想匹配列表中的前四个子元素：<br />
+ul li:nth-child(-n+4) {	color: green;}<br />
+:nth-child的值同样也可以被定义为“even” 或“odd”，和“2n” (第偶数个) 或“2n+1” (第奇数个)的效果是一样的。</p>
+<p>:nth-last-child<br />
+:nth-last-child伪类基本上和:nth-child伪类的作用相同，但是它从最后一个元素开始算。<br />
+使用上面的一个例子来看看：<br />
+ul li:nth-child(-n+4) {	color: green;}<br />
+不是匹配最前面的四个li元素，该CSS选择器匹配最后面的四个元素。<br />
+你同样可以使用“even” 或“odd”只，同样与nth-child不同的是，这是从最后面的元素开始算的：<br />
+ul li:nth-last-child(odd) {color: grey;}</p>
+<p>:nth-of-type<br />
+:nth-of-type伪类和:nth-child也很像，不同的是它只计算CSS选择器中指定的那个元素。<br />
+这对定位元素中包含大量不同的元素的情况会很有用。比如，我们想控制一个文本块中的每隔一个段落，但是我们又想要无视其它元素比如图片和引用块：<br />
+p:nth-of-type(even) {	color: blue;	}<br />
+你也可以使用一些值，就像在:nth-child中使用的一样。</p>
+<p>:nth-last-of-type<br />
+你能猜到它吧？！:nth-last-of-type 伪类可以像前面提到的:nth-last-child一样使用，但是这次，它将之匹配你在CSS选择器中指定的元素类型：<br />
+ul li:nth-last-of-type(-n+4) {	color: green;}<br />
+我们可以更加的聪明一些，在一个大的块级CSS选择器中结合多种这样的伪类。比如我们想让文章中的所有的图片左浮动，除了第一个和最后一个(我们可以假设他们是满宽的，无须浮动)：<br />
+.post img:nth-of-type(n+2):nth-last-of-type(n+2) {	float: left;	}<br />
+所以在这个CSS选择器的第一部分，我们从第二个图片开始定位每一个图片。在第二部分中，我们定位所有的图片，除了最后一个。因为这两个CSS选择器并非互斥的，我们可以同时使用它们，这样就可以一下子排除第一个和最后一个元素！</p>
+<p>:first-child伪类允许你定位某个元素第一个子元素<br />
+如：ul &gt; li:first-child { margin-top: 10px; } 指定ul下的第一个li</p>
+<p>:last-child<br />
+:last-child伪类的作用类似于:first-child 伪类，但是会定位父级元素的最后一个子元素。<br />
+让我们假设你不想让你的日志的div的最后一个段落也有一个底部边距：<br />
+.post &gt; p:last-child {margin-bottom: 0;}<br />
+该CSS选择器将定位class为”post”的元素的最后一个直接子级段落。</p>
+<p>:first-of-type 和:last-of-type<br />
+:first-of-type 伪类用于定位一个父级元素下的第一个同类子元素。<br />
+比如，你可以定位某个特定的div的第一个子级段落(p)，并让其第一行字母大写:<br />
+.post &gt; p:first-of-type:first-line {font-variant: small-caps;}<br />
+在这个CSS选择器中，你可以确定你是在只定位class为”post”的元素的直接子级p元素，而且还是匹配第一个子级p元素。</p>
+<p>:last-of-type伪类与此类似，只是匹配最后一个子元素。</p>
+<p>:only-child<br />
+:only-child伪类表示一个元素是它的父级元素的唯一一个子元素。<br />
+比如说，你有一些盒子(“news”)，里面有一些文字段落，当你有多于一个段落的时候，你想让文字比只有一个段落的时候小一些：<br />
+div.news &gt; p {font-size: 1.2em;}<br />
+div.news &gt; p  nly-child {	font-size: 1.5em;}<br />
+第一个CSS选择器中，我们定义”news”div的所有子级p元素的字体大小。在第二个中，我们覆盖之前的字体大小，如果该p元素是“news” div的唯一子元素的时候，它的字体大小会比较大一些。</p>
+<p>:only-of-type<br />
+:only-of-type伪类表示一个元素是它的父级元素的唯一一个相同类型的子元素。<br />
+这有用什么用？假设你有一些日志，每一篇都有个class为”post”的div，他们中的一些有多于一张图片，但是有些可能就只有一张图片。你想让后者中的图片水平居中，而在其它的有多于一张图片的日志中，就将它左浮动。这个需求用这个CSS选择器就很容易实现：<br />
+.post &gt; img {	float: left;	}<br />
+.post &gt; img  nly-of-type {	float: none;margin: auto;}</p>
+<p>:empty<br />
+:empty伪类表示一个元素里面没有任何内容。<br />
+这个CSS选择器可以用很多种用途。比如，你在你的“sidebar”中有若干个盒子，但是不想让空盒子显示出来：<br />
+#sidebar .box:empty {	display: none;	}<br />
+注意，就算”box”div里面只有一个空格，它也不会被css当作空标签的，这样就不能匹配该CSS选择器了。</p>
+<p><strong>6. 否定CSS选择器</strong><br />
+(非IE)<br />
+否定CSS选择器:not()，可以让你定位不匹配该CSS选择器的元素<br />
+比如，如果你需要定义表单元素中的input元素，但是又不想包括submit类型的input的时候会灰常有用——你想它们有不同的样式，以看起来像按钮：<br />
+input:not([type="submit"]) {	width: 200px;padding: 3px;	border: 1px solid #000000;}<br />
+另一个例子，你想你的日志的div中的所有段落(p)有比较大的字体，除了表示时间和日期的段落：<br />
+.post p:not(.date) {font-size: 13px;}</p>
+<p><strong>7. 伪元素</strong><br />
+伪元素允许你操作HTML中不是真实存在的元素，比如一个文本块的第一行或者第一个字母。<br />
+伪元素在CSS 2.1中就已经存在，但是CSS 3说明书表示他们应该使用双冒号“::”，以与伪类区分开来。在CSS 2.1中，他们也是使用单个冒号“:”的。</p>
+<p>::first-line<br />
+::first-line伪元素将匹配block、inline-block、table-caption、table-cell等等级别元素的第一行<br />
+这对在你的文字块上添加一些微妙的排版细节相当有用，比如，将一片文章的第一行文字改成小写字母：<br />
+h1 + p::first-line {font-variant: small-caps;}<br />
+紧紧的跟在H1标签之后(+)的段落会将其第一行文字显示为小写字母。<br />
+你也可以针对相关的div的第一行，而不用针对实际的段落标签(p):<br />
+div.post p::first-line { font-variant: small-caps; }<br />
+或者更进一步，定位某个特低的div的第一个段落的第一行：<br />
+div.post &gt; p:first-child::first-line {font-variant: small-caps;	}<br />
+这里，“>”符号表示你指定的是post div的直接子级元素，这样如果段落被包括在第二级div中，它就不会匹配这个CSS选择器。</p>
+<p>::first-letter<br />
+::first-letter伪元素将会匹配一个文本块的第一个字母，除非在同一行里面包含一些其它元素，比如图片。<br />
+和::first-line伪类一样，::first-letter通常用于给文本元素添加排版细节，比如下沉字母或首字母。<br />
+这里是如何使用::first-letter伪元素创建首字下沉的例子:<br />
+p {	font-size: 12px;	}<br />
+p::first-letter {	font-size: 24px;	float: left;	}<br />
+注意如果你在某些元素中同时使用::first-line 和::first-letter ，::first-letter 属性将覆盖从::first-line中继承下来的某些属性。</p>
+<p>::before 和 ::after<br />
+::before和::after 伪元素用于在一个元素的前面或后面插入内容，纯CSS方法。<br />
+这些元素将继承它们将附加的元素的大部分属性。<br />
+假设你想在你的页面中的图标的描述前面添加文字“Graphic number x:”。你将无需写文字“Graphic number”，或者自己手动添加数字：<br />
+.post {counter-reset: image;	}<br />
+p.description::before {	content: &#8220;Figure number &#8221; counter(image) &#8220;: &#8220;;	counter-increment: image;}<br />
+那么这会产生什么？<br />
+首先，我们告诉HTML来创建“image”计数器。比如我们可以添加该属性到页面的body。同样我们也可以给该计数器起任何一个名字，只要你想，只要我们常常使用同样的名字引用它：自己试试吧！<br />
+那么我们想在class为”description”的每一个段落之前添加这一块内容: “Figure number ” — 注意只有我们在引号里面写的内容才会被创建到页面中，所以我们也要添加一个空格！<br />
+然后，我们就有了counter(image):这将用到我们之前在.post CSS选择器中定义的属性。它默认会从数字1开始。<br />
+下一个属性在那里表示计数器知道对于每一个p.description，它需要将image计数器增加1 (counter-increment: image)。<br />
+::before和::after伪元素常常只使用content属性，来添加一些短语或排版元素，但是这里我们展示了我们如果以一种更加强大的结合counter-reset和counter-increment属性的方式来使用它们。<br />
+有趣的是: ::first-line 和::first-letter 伪元素可以匹配使用::before伪元素生成的内容，如果存在的话。</p>
+<p><strong>浏览器支持</strong><br />
+如果使用单个冒号的话(比如, :first-letter, 而不是::first-letter)，这些伪元素被IE8支持(但是不被IE7或6支持)。但是左右其他的主流浏览器都支持这些CSS选择器。</p>
+<p>参考：<a href="http://paranimage.com/mastering-advanced-css-selectors/" target="_blank">http://paranimage.com/mastering-advanced-css-selectors/<a/></p>
+</body>
+</html>
