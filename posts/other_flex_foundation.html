@@ -1,0 +1,178 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Flex - Foundation</h3>
+<p><span style="text-decoration: underline; color: #0000ff;"><strong>1. Overview</strong></span></p>
+<p><strong>1) Runtime</strong></p>
+<p>ActionScript Virtual Machine (AVM) &#8211; ActionScript3 -&gt; Compiler -&gt; Bytecode instruction set -&gt; AVM.  (Open source project: Tamarin by Molliza Foundation).</p>
+<p>AVM1: ActionScript1, ActionScript2 (&lt; Flash player 9)</p>
+<p>AVM2: ActionScript3 (&gt;= Flash player 9)</p>
+<p><strong>a) Adobe Air </strong>- supporting HTML, Javascript and Actionscript (Power by Webkit and AVM)</p>
+<p><strong>b) Adobe Flash Player</strong> &#8211; including AVM</p>
+<p><em>*. Active X based &#8211; Internet Explorer</em></p>
+<p>&nbsp;</p>
+<p><em>*. Plugin based &#8211; Firefox, Opera, Safari &#8230;</em></p>
+<p>&nbsp;</p>
+<p><em>*. Built-in support &#8211; Google Chrome (type &#8220;about:plugins&#8221; to switch the system plugin version)</em></p>
+<p><strong>c) Adobe Flash Lite</strong> &#8211; a lightweight version of Flash Player, low hardware requirement<em> </em></p>
+<p>&nbsp;</p>
+<p><strong>2) Flex SDK</strong></p>
+<p>Built on the top of Air and Flash player core APIs, supplying UI component, data access componet and so forth.</p>
+<p><strong>3) Flash Builder &#8211; IDE</strong></p>
+<p>Built on the top of Flex SDK, Eclipse based.</p>
+<p><span style="text-decoration: underline; color: #0000ff;"><strong>2. Flex Tools</strong></span></p>
+<p><strong>1) SDK Tools</strong></p>
+<p>a) Flash player</p>
+<p><span style="color: #ff00ff;">mxmlc </span>- Actionscript compiler, accept .mxml or .as files (using flex-conifg.xml), output .swf file</p>
+<p>b) Air</p>
+<p><span style="color: #ff00ff;">amxmlc</span>- Air application builder (using framewords/air-config.xml instead of flex-conifg.xml), calling mxmlc eventually.</p>
+<p><span style="color: #ff00ff;">adl </span>- (Air Debug Launcher), run Air application from XML.</p>
+<p>e.g.: adl HelloWorld-app.xml</p>
+<p><span style="color: #ff00ff;">adt </span>-(Air Developmemt Tool)</p>
+<p>-certificate (generated self-signed certificates): <em>adt –certificate -cn MyCNName 1024-RSA(2048-RSA) MyCertName.pfx MyCertPassword</em></p>
+<p>-package (packing files as Air installation package): <em>adt -package -storetype pkcs12 -keystore MyCertName.pfx HelloWorld.air</em></p>
+<p><em> HelloWorld-app.xml HelloWorld.swf</em></p>
+<p><span style="text-decoration: underline;"><em>The package actually builds a .air Air application (which is needed the Air runtime to work). When it runs, unzip the content files (app.xml and .swf) and generate an OS-specified execution file. The execution will call the Air runtime and pass it with the content files.</em></span></p>
+<p>&nbsp;</p>
+<p><a href="https://www.johnson.uicp.net/wp-content/uploads/2011/05/Adobe-Air-HelloWorld.zip">[Sample Code: Adobe Air HelloWorld]</a></p>
+<p><strong>2) Debug Tools</strong></p>
+<p>a) Flash player debugger: <a href="http://www.adobe.com/support/flashplayer/downloads.html" target="_blank">Latest Flash player debugger</a>, <a href="http://kb2.adobe.com/cps/142/tn_14266.html" target="_blank">Archived Flash player</a></p>
+<p>b) How to use Flash player debugger</p>
+<p>-mm.cfg: Flash player debugger configure file, placed at the user&#8217;s home (e.g. c:\Users\username\) . <a href="http://help.adobe.com/en_US/flex/using/WS2db454920e96a9e51e63e3d11c0bf69084-7fc9.html" target="_blank">How to configure it</a></p>
+<p>c) Firefox &#8211; Firebug extenstion: <strong>Flashbug</strong>, <strong>FlashFirebug</strong></p>
+<p><span style="text-decoration: underline; color: #0000ff;"><strong>3. Flex Development</strong></span></p>
+<p><a href="http://help.adobe.com/en_US/flex/using/index.html" target="_blank">http://help.adobe.com/en_US/flex/using/index.html</a></p>
+<p><a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/index.html" target="_blank">http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/index.html</a></p>
+<p><strong>- Component set</strong></p>
+<p>*. MX (introduced with Flex 3)</p>
+<p>*. Spark (introduced with Flex 4)</p>
+<p><strong>- Debug output</strong></p>
+<p>*. trace(&#8220;messages&#8221;);</p>
+<p>*. mx.controls.Alert.show(&#8220;messages&#8221;, &#8220;title&#8221;);</p>
+<p><strong>- package</strong></p>
+<p>package equals C#&#8217;s namespace, it can be contained in difference .swc file, but must not be nested (class must not be nested either, but function can be nested). Packages in ActionScript 3.0 are implemented with namespaces.</p>
+<p><em><span style="text-decoration: underline;">package</span> [package name] { code&#8230;}</em></p>
+<p><em>package code.subcode {code &#8230;} (mimic nested namespace)</em></p>
+<p>ActionScript 3.0 allows you to include multiple classes in one source file, but only one class in each file can be made available to code that is external to that file. In other words, only one class in each file can be declared inside a package declaration. You must declare any additional classes outside your package definition, which makes those classes invisible to code outside that source file. The name of the class declared inside the package definition must match the name of the source file.</p>
+<p>In ActionScript 3.0, you use the statement to declare a package, which means that you can also declare variables, functions, and namespaces at the top level of a package. You can even include executable statements at the top level of a package. If you do declare variables, functions, or namespaces at the top level of a package, the only attributes available at that level are public and internal, and only one package-level declaration per file can use the public attribute, whether that declaration is a class, variable, function, or namespace.</p>
+<p><strong>- namespace</strong></p>
+<p>Think of the<samp>public</samp>,<samp>private</samp>,<samp>protected,</samp>and<samp>internal</samp>access control specifiers as built-in namespaces. Definitions that can be placed into namespaces include functions, variables, and constants (you cannot place a class into a custom namespace).</p>
+<p>a). Define the namespace. If you omit the URI, the compiler will create a unique internal identification string in place of the URI.</p>
+<pre>namespace version1
+namespace flash_proxy = "http://www.adobe.com/flash/proxy";</pre>
+<p>b). apply your namespace by using it instead of an access control specifier in a property or method declaration</p>
+<pre>version1 var function myFunction(): void</pre>
+<p>c). use it. Once you open a namespace with<samp>use namespace</samp>, it remains open throughout the block of code in which it was opened. There is no way to explicitly close a namespace.</p>
+<pre>use namespace version1; // open the namespace
+myFunction();</pre>
+<p>or</p>
+<pre>version1::myFunction();</pre>
+<p><strong>- Include and Import</strong></p>
+<p>*. <span style="text-decoration: underline;">include</span> &#8220;.as file path&#8221; or <span style="text-decoration: underline;">&lt;fx:script source=&#8221;.as file path&#8221;/&gt;</span>: include statements or function definitions only. The result is the same as if the code were entered there directly.</p>
+<p>*. <span style="text-decoration: underline;">import</span>: import ActionScript class definitions. Just like using built-in ActionScript classes. Including package and class name (class full name). Top-level classes (in a package without a package name) no need to import before being used.<br />
+<span style="text-decoration: underline;">import </span>flash.display.MovieClip<br />
+<span style="text-decoration: underline;">import </span>flash.display.*</p>
+<p><strong>-access specifier<br />
+</strong></p>
+<p>ActionScript 3.0, supports not only classes at the top level of a package, but also variables, functions, and even statements. However, that only two access specifiers,<span style="text-decoration: underline;"><em><samp>public</samp></em></span>and<samp><span style="text-decoration: underline;"><em>internal </em></span></samp>, are allowed at the top level of a package. ActionScript 3.0 supports neither nested nor private classes.</p>
+<p>*. class: <span style="text-decoration: underline;"><em>public</em></span>, <span style="text-decoration: underline;"><em>internal </em></span>(default value),  <span style="text-decoration: underline;"><em>final </em></span>and <span style="text-decoration: underline;"><em>dynamic </em></span>are also available for class.</p>
+<p>*. class member: <span style="text-decoration: underline;"><em>namespace</em></span>, <span style="text-decoration: underline;"><em>private</em></span>, <span style="text-decoration: underline;"><em>protected</em></span>, <span style="text-decoration: underline;"><em>public</em></span>, <span style="text-decoration: underline;"><em>internal </em></span>(default value)</p>
+<p><strong>- final &amp; dynamic &amp; override<br />
+</strong></p>
+<p>*. <span style="text-decoration: underline;"><em>final</em></span>: Classes with the <samp>final</samp>attribute can&#8217;t be extended. Method with the final attribute can&#8217;t be override. (only instance methods can have the override and final modifier)</p>
+<p>*. <span style="text-decoration: underline;"><em>dynamic</em></span>: A dynamic class defines an object that can be altered at run time by adding or changing properties and methods. You cannot add a type annotation to a property that you add in this manner (type checking is done at run time). Also, do not have access to any private properties or methods of the Protean class.</p>
+<p>*. <span style="text-decoration: underline;"><em>override</em></span>: You can use the <samp>override</samp>attribute to redefine an inherited instance method.</p>
+<p>(static methods in ActionScript 3.0 are not inherited.)</p>
+<p><strong>- variable scope</strong></p>
+<p>*. global scope</p>
+<p>*. function scope</p>
+<p>*. class scope</p>
+<p>There is no a block scope. This is because of a technique called <em>hoisting:</em></p>
+<p>Hoisting: the compiler moves all variable declarations to the top of the function, however, will not hoist any assignment statements. This means that you can assign values to variables even before they are declared.</p>
+<p><strong>- Object</strong></p>
+<p>Object should be a dynamic class.</p>
+<pre>// Use new statement and add properties.
+var myObject:Object = new Object();
+myObject.propA = 1;
+myObject.propB = 2;
+myObject.propC = 3; 
+
+// Assign literal directly.
+var myObject:Object = {propA:1, propB:2, propC:3};</pre>
+<p><strong>- Function</strong></p>
+<p>Functions in ActionScript 3.0 are objects. Every function has a read-only property named <samp><em><span style="text-decoration: underline;">length</span></em></samp>that stores the number of parameters defined for the function.</p>
+<p>Functions can be nested inside another function.</p>
+<pre>function getNameAndVersion():String
+{
+    function getVersion():String
+    {
+        return "10";
+    }
+    function getProductName():String
+    {
+        return "Flash Player";
+    }
+    return (getProductName() + " " + getVersion());
+}
+trace(getNameAndVersion()); // Flash Player 10</pre>
+<p>*. function statement</p>
+<pre>function traceParameter(aParam:String)
+{
+  trace(aParam);
+}
+traceParameter("hello"); // hello</pre>
+<p>a delete operation to the function (<em>delete traceParameter</em>) won&#8217;t have effect.</p>
+<p>Function statements are available before they are defined</p>
+<p>*. function expression (anonymous functions)</p>
+<pre>var traceParameter:<strong>Function </strong>= function(aParam:String)
+{
+    trace(aParam);
+};
+traceParameter("hello"); // hello</pre>
+<p>the function expression is attache to the variable (<em>traceParameter</em>), if the variable is deleted (<em>delete traceParameter</em>), the function express will be garbage collected.</p>
+<p>Function expressions are not available before they are defined.</p>
+<p>Can also use the following way to call the class&#8217;s expression function.</p>
+<pre>myExample["methodLiteral"]();</pre>
+<p><strong>- Function parameters</strong></p>
+<p>In ActionScript 3.0, all arguments are passed by reference, because all values are stored as objects. However, objects that belong to the primitive data types, which includes <span style="text-decoration: underline;"><em>Boolean</em></span>, <span style="text-decoration: underline;"><em>Number</em></span>, <span style="text-decoration: underline;"><em>int</em></span>, <span style="text-decoration: underline;"><em>uint</em></span>, and <span style="text-decoration: underline;"><em>String</em></span>, have special operators that make them behave as if they were passed by value.</p>
+<p>*. Default parameter values (optional parameter)</p>
+<pre>function defaultValues(x:int, y:int = 3, z:int = 5):void
+{
+    trace(x, y, z);
+}
+defaultValues(1); // 1 3 5</pre>
+<p>*. The <span style="text-decoration: underline;"><em>arguments </em></span>object</p>
+<p>The <samp><span style="text-decoration: underline;">arguments</span></samp>object is not available if any parameter is named <samp>arguments</samp></p>
+<p>or if you use the &#8230; (rest) parameter.</p>
+<p>a) <span style="text-decoration: underline;"><em>arguments.callee</em></span>:<samp><em> </em></samp>property provides a reference to the function itself.</p>
+<p><em>b) <span style="text-decoration: underline;">arguments.length</span>:</em> property shows the number of the actually passed parameters (not the number of parameters defined for the function).</p>
+<p>*. The <span style="text-decoration: underline;"><em>&#8230; (rest)</em></span> parameter</p>
+<p>the <span style="text-decoration: underline;"><em>&#8230; (rest)</em></span> must be the last parameter.</p>
+<pre>function traceArgArray(x:int, ... args):void
+{
+    for (var i:uint = 0; i &lt; args.length; i++)
+    {
+        trace(args[i]);
+    }
+} 
+
+traceArgArray(1, 2, 3); 
+
+// output:
+// 2
+// 3</pre>
+<p><strong>- this &amp; super</strong></p>
+<p><span style="text-decoration: underline;"><em>this</em></span>: reference to the current class instance.</p>
+<p><span style="text-decoration: underline;"><em>super</em></span>: reference to the superclass instance<strong><br />
+</strong></p>
+<p>Both the <em><samp><span style="text-decoration: underline;">this</span></samp></em>reference and the <em><samp><span style="text-decoration: underline;">super</span></samp></em>reference have meaning only within the context of an instance method.</p>
+<p>If you decide to use both<samp><span style="text-decoration: underline;"><em>super()</em></span></samp>and <em><samp><span style="text-decoration: underline;">super</span></samp></em>in the same constructor body, be sure to call <samp>super()</samp>first.</p>
+<p><strong>- embed resource</strong></p>
+<pre> [<strong>Embed</strong>(source="sound1.mp3")]
+ public var soundCls:<strong>Class</strong>;
+ var mySound:SoundAsset = new soundCls() as SoundAsset;
+ var sndChannel:SoundChannel = mySound.play();</pre>
+</body>
+</html>

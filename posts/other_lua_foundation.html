@@ -1,0 +1,80 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Lua - Foundation</h3>
+
+</body>
+</html><p>p73</p>
+<p>exit: C-z Enter [Win] | C-d [Unix] | os.exit()</p>
+<p>comment: &#8211;this is comment | &#8211;[[ this is multiline comment ]] (usually ends with &#8220;&#8211;]]&#8221;) | &#8211;[==[ ]==] (any count of =, just make the beginning match the ending)</p>
+<p>statement separator: don&#8217;t need statement in a single line, don&#8217;t need a separator, if need, use &#8220;;&#8221;</p>
+<p>run: lua file.lua | dofile(&#8220;filename&#8221;) [in interactive mode]</p>
+<p>_PROMPT: Lua interpreter prompt text</p>
+<p>Env var &#8220;LUA_INIT&#8221;: init script, supports &#8220;@filename&#8221;</p>
+<p>print exp value: = var</p>
+<p>startup arg: global var &#8220;arg&#8221; is a table and contains all the startup values</p>
+<p>chunk: code block, executable</p>
+<p>data type: nil, boolean, number, string, table(ref), userdata(ref), function(ref), thread</p>
+<p>boolean false: false or nil<br />
+boolean true: others except false or nil are true(including 0, &#8220;&#8221;, &#8221;)</p>
+<p>string: &#8221; | &#8220;&#8221; | [[ ]] (don&#8217;t support excape) | [==[ ]==] (any count of =, just make the beginning match the ending)<br />
+concatenate strings: ..<br />
+string length: #string</p>
+<p>Lua store all global var into a table, so no initiated global var is nil<br />
+a = {x = 10, y = 20} <--> a = {}; a["x"] = 10; a.y = 20;<br />
+a.x == a["x"]<br />
+a = {[any_exp] = value}<br />
+a = {&#8220;a&#8221;, &#8220;b&#8221;, } &#8211;can append , to the last<br />
+a = {&#8220;a&#8221;, &#8220;b&#8221;; x = 10,} &#8211;can use &#8220;;&#8221; instead of &#8220;,&#8221;, a[1] = &#8220;a&#8221;, a[2] = &#8220;b&#8221;<br />
+#a: the length of table a (1 index based), if one entry is nil(a table hole) it will treat as the array tail, use &#8220;table.maxn()&#8221; if have non-continued number index<br />
+print(a[#a]): print the last entry value<br />
+a[#a] = nil: remove the last entry<br />
+a[#a+1] = v: append a new entry to the table a</p>
+<p>number operator: +, -, *, /, ^(exponent), %(mode), -(minus)<br />
+math.pi &#8211; math.pi % 0.01 -> 3.14</p>
+<p><, >, <=, >=, ==, ~= (not equal)<br />
+not the same data type, not equal.<br />
+for ref types, only point to the save object is equal<br />
+<, >, <=, >= only apply to the same data type, and can only apply to number and string </p>
+<p>and, or, not<br />
+and: if the first param is false, return the first param, else return the second param<br />
+or: if the first param is true, return the first param, else return the second param<br />
+short-cut evaluation: name = name or &#8220;Johnson&#8221;<br />
+&#8220;a ? b : c&#8221;: a and b or c (&#8220;and&#8221; have a higher priority than &#8220;or&#8221;, so it is equal to &#8220;(a and b) or c&#8221;, b must be a true value)</p>
+<p>a, b = 10, 2*x: multi-assignment<br />
+a, b, c = 0: a == 0, b and c will be nil<br />
+a, b = 0, 1, 2: 2 will be ignored<br />
+x, y = y, x: exchange</p>
+<p>local x &#8211;local var, access local var is faster than global var, and can be GC</p>
+<p>break, return: must be a last statement of a chunk, or just before &#8220;else&#8221;, &#8220;end&#8221;, &#8220;until&#8221;. So could use &#8220;do return end&#8221; to put a &#8220;return&#8221; at anywhere</p>
+<p>function: if the argument is a string or a table constructor, the () can be elided.<br />
+a:foo(x) == A.foo(o,x), a is an instance of A<br />
+arguments to parameters (function calling) is like multi-assignment (don&#8217;t need match one to one)<br />
+multiple return values of a function: if the function invoking is in the middle of a serial expresses, only the first return value is kept. A serial expresses can be multi-assignment, function argument list(in ()), table constructor(in {}) or return statement. Use &#8220;(function())&#8221; to keep the only first return value.<br />
+<strong>unpack</strong>(list, [i, [j]]): unpack a table list, return list items<br />
+&#8230;: variable number of arguments<br />
+<strong>select</strong>(index, &#8230;): return sub items of &#8230;, or return item count of varargs (if index is &#8220;#&#8221;) &#8230;<br />
+&#8220;local arg = select(i, &#8230;)&#8221;: pick the item in i position from a varargs<br />
+named arguments: implemented through putting all arguments into a table</p>
+<p>local function foo(x,y) return x+y end: local foo; foo = function(x, y) return x+y end</p>
+<p>Lib = {}<br />
+function Lib.foo(x,y) return x+y end</p>
+<p>tail-call elimination (return func(params)) &#038; state machine</p>
+<p>generic for: iterator function, invariant state, control variable<br />
+<strong>next</strong>(table, key): return the next key and the current key pointed value, if the key is nill, return the first value</p>
+<p>we say a language is a interpreter language is because its runtime system includes the compliler and it is very easy to compile dynamic codes.</p>
+<p><strong>loadfile</strong>(file): compile the file and return it as a function<br />
+<strong>loadstring</strong>(string): compile the string and return it as a function; load and call it: &#8220;assert(loadstring(string))()&#8221;; no lexical scoping for this funcion; Lua always compile the string in a global env (could not see local vars)<br />
+<strong>dofile</strong>(file): local f = assert(loadfile(file)); return f();</p>
+<p><strong>package.loadlib</strong>(libname, funcname): dynamically links lib</p>
+<p>Exception:<br />
+<strong>error</strong>()<br />
+<strong>assert</strong>()<br />
+n = io.read(&#8220;*number&#8221;); if not n then error(&#8220;invalid input&#8221;) end<br />
+n = assert(io.read(&#8220;*number&#8221;), &#8220;invalid input&#8221;)<br />
+<strong>pcall</strong>(): try catch<br />
+<strong>xpcall</strong>()<br />
+<strong>debug.debug</strong>()<br />
+<strong>debug.traceback</strong>()</p>

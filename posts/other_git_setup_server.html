@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Get - Setup Server on Linux</h3>
+<p>1. add new user</p>
+<pre>
+useradd git
+passwd git
+</pre>
+<p>3. config the ssh login with key file</p>
+<pre>
+ssh-genkey -t rsa
+</pre>
+<p>then save the generated id_rsa.pub to server/home/git/.ssh/authorized_keys</p>
+<p>4. make git repository<br />
+in /home/git</p>
+<pre>
+mkdir admin (optional)
+git init --bare test.git
+</pre>
+<p>5. git clone the repository</p>
+<pre>
+git clone git@domain.com:admin/test.git
+</pre>
+<p>or (if didn&#8217;t make the admin dir)</p>
+<pre>
+git clone git@domain.com:test.git
+</pre>
+<p>ref: <a href="https://www.digitalocean.com/community/articles/how-to-set-up-a-private-git-server-on-a-vps" target="_blank">https://www.digitalocean.com/community/articles/how-to-set-up-a-private-git-server-on-a-vps</a></p>
+</body>
+</html>

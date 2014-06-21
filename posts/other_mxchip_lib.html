@@ -1,0 +1,100 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Mxchip Wifi Lib Functions</h3>
+
+</body>
+</html><p>MXCHIP wifi basic lib &#8211; 《RM0004_mxchipWNet_library_V1.14.pdf》</p>
+<p>&#8211; init &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<br />
+MxchipStatus p12<br />
+lib_config_t p12</p>
+<p>char* <strong>system_lib_version</strong>(void); p14<br />
+void <strong>system_version</strong>(char *str, int len); p14</p>
+<p>void <strong>lib_config</strong>(lib_config_t *conf); p14<br />
+MxchipStatus <strong>mxchipInit</strong>(void); p14<br />
+void <strong>mxchipTick</strong>(void); p14</p>
+<p>&#8211; wifi &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<br />
+UwtPara_str p16<br />
+ApList_str p16<br />
+network_InitTypeDef_st p16<br />
+sta_ap_state_t p17</p>
+<p>void <strong>mxchipStartScan</strong>(void); p18<br />
+void <strong>ApListCallback</strong>(UwtPara_str *pApList); p18</p>
+<p>int <strong>StartNetwork</strong>(network_InitTypeDef_st *pNetworkInitPara); [call twice for dual mode] p18<br />
+void <strong>WifiStatusHandler</strong>(int status); p18</p>
+<p>int <strong>wlan_disconnect</strong>(void); p18<br />
+int <strong>sta_disconnect</strong>(void);<br />
+int <strong>uap_stop</strong>(void);</p>
+<p>int <strong>wifi_power_down</strong>(void); p18<br />
+int <strong>wifi_power_up</strong>(void); p19</p>
+<p>int <strong>CheckNetLink</strong>(sta_ap_state_t *ap_state); p19<br />
+int <strong>wifi_roam_trigger</strong>(int dbm); p19</p>
+<p>void <strong>ps_enable</strong>(void); p19<br />
+void <strong>ps_disable</strong>(void); p19</p>
+<p>int <strong>OpenConfigmodeWPS</strong>(int timeout); p19<br />
+int <strong>CloseConfigmodeWPS</strong>(void); p20<br />
+int <strong>OpenEasylink</strong>(int timeout); p20<br />
+int <strong>OpenEasylink2</strong>(int timeout); p20<br />
+int <strong>CloseEasylink</strong>(void); p20<br />
+int <strong>CloseEasylink2</strong>(void); p20<br />
+void <strong>RptConfigmodeRslt</strong>(network_InitTypeDef_st *nwkpara); p20</p>
+<p>&#8211; network service &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<br />
+WiFi_Interface p21<br />
+net_para_st p21</p>
+<p>int <strong>getNetPara</strong>(net_para_st *pnetpara, WiFi_Interface iface); p22<br />
+void <strong>NetCallback</strong>(net_para_st *pnet); p22<br />
+void <strong>ReallocIP</strong>(void); p23</p>
+<p>int <strong>gethostbyname</strong>(const u8 *hostname, u8 *ip_addr, u8 ipLength); p22<br />
+u32 <strong>dns_request</strong>(char *hostname); p22<br />
+void <strong>dns_ip_set</strong>(u8 *hostname, u32 ip); p23</p>
+<p>&#8211; BSD socket &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<br />
+SOCK_OPT_VAL p24<br />
+sockaddr_t p26<br />
+timeval_t p26<br />
+fd_set p26</p>
+<p>int <strong>socket</strong>(int domain, int type, int protocol); p27<br />
+int <strong>setsockopt</strong>(int sockfd, int level, int optname, const void *optval, socklen_t optlen); p27</p>
+<p>int <strong>bind</strong>(int sockfd, const struct sockaddr_t *addr, socklen_t addrlen); p28<br />
+int <strong>listen</strong>(int sockfd, int backlog); p29<br />
+int <strong>accept</strong>(int sockfd, struct sockaddr_t *addr, socklen_t *addrlen); p30</p>
+<p>int <strong>connect</strong>(int sockdf, const struct sockaddr_t *addr, socklen_t addrlen); p28<br />
+void <strong>socket_connected</strong>(int fd); p29</p>
+<p>int <strong>select</strong>(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval_t *timeout); p30</p>
+<p>int <strong>tx_buf_size</strong>(int sockfd); p31</p>
+<p>ssize_t <strong>send</strong>(int sockfd, const void *buf, ssize_t len, int flags); p31<br />
+int <strong>write</strong>(int sockfd, void *buf, ssize_t len); p31<br />
+ssize_t <strong>sendto</strong>(int sockfd, const void *buf, ssize_t len, int flags, const struct sockaddr_t *dest_addr, socklen_t addrlen); p31</p>
+<p>ssize_t <strong>recv</strong>(int sockfd, void *buf, size_t len, int flags); p32<br />
+int <strong>read</strong>(int sockfd, void *buf, size_t len); p32<br />
+ssize_t <strong>recvfrom</strong>(int sockfd, void *buf, size_t len, int flags, struct sockaddr_t *src_addr, socklen_t *addrlen); p32</p>
+<p>int <strong>close</strong>(int fd); p32</p>
+<p>void <strong>FD_ZERO</strong>(fd_set *fds); p32<br />
+void <strong>FD_SET</strong>(int sockfd, fd_set *fds); p32<br />
+void <strong>FD_CLR</strong>(int sockfd, fd_set *fds); p32<br />
+int <strong>IS_SET</strong>(int sockfd, fd_set *fds); p33</p>
+<p>void <strong>set_tcp_keepalive</strong>(int num, int seconds); p33<br />
+void <strong>get_tcp_keepalive</strong>(int *num, int *seconds); p33</p>
+<p>int <strong>setSslMaxlen</strong>(int len); p33<br />
+int <strong>getSslMaxlen</strong>(void); p33<br />
+int <strong>setSSLmode</strong>(int enable, int sockfd); p34</p>
+<p>&#8211; irq &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<br />
+gpio_irq_trigger_t p35</p>
+<p>int <strong>gpio_irq_enable</strong>(GPIO_TypeDef *gpio_port, uint8_t gpio_pin_number, gpio_irq_trigger_t trigger, gpio_irq_handler_t handler, void *arg); p35<br />
+int <strong>gpio_irq_disable</strong>(GPIO_TypeDef *gpio_port, uint8_t gpio_pin_number); p36</p>
+<p>&#8211; utils &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<br />
+char* <strong>inet_ntoa</strong>(char *s, u32 ip); p37<br />
+u32 <strong>inet_addr</strong>(char *s); p37</p>
+<p>u16 <strong>ntohs</strong>(u16 n); p37<br />
+u32 <strong>ntohl</strong>(u32 n); p37<br />
+u16 <strong>htons</strong>(u16 n); p37<br />
+u32 <strong>htonl</strong>(u32 n); p37</p>
+<p>extern int <strong>MsTimer</strong>; p38<br />
+int <strong>sleep</strong>(int seconds); p38<br />
+int <strong>msleep</strong>(int mseconds); p38<br />
+int <strong>SetTimer</strong>(unsigned long ms, void(*psysTimerHandler)(void)); p38</p>
+<p>void <strong>WatchDog</strong>(void); p38</p>
+<p>int <strong>get_tcp_clients</strong>(void); p39<br />
+void <strong>memory_status</strong>(int *total_free, int *max_len); p39</p>
+<p>void <strong>md5_hex</strong>(u8 *input, u32 len, u8 *output); p39</p>

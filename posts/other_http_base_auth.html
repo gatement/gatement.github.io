@@ -1,0 +1,15 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>HTTP - Base Authentication</h3>
+<p>1) If no credential supply, will return HTTP 401 and challenge for user/pwd by HTTP header:<br />
+WWW-Authenticate: Basic realm=&#8221;credential prompt&#8221;</p>
+<p>2) pass credential by HTTP header:<br />
+Authorization: Basic a2x1b0BtaW1lby5jb206MTIzNDU2Nw==<br />
+Authorization: Basic base64(username:password)</p>
+<p>example:<br />
+restRequest.Headers.Add(&#8220;Authorization&#8221;, &#8220;Basic &#8221; + Convert.ToBase64String(Encoding.ASCII.GetBytes(&#8220;username:password&#8221;)));</p>
+</body>
+</html>

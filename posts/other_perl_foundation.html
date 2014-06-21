@@ -1,0 +1,32 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Perl - Foundation</h3>
+<p><a href="http://www.perl.org" target="_blank">www.perl.org</a></p>
+<hr/>
+<p><strong>perl </strong>file.pl: run .pl file<br />
+<strong>perldoc </strong>command: view help on command</p>
+<p><strong>cpan </strong>module_name: install module<br />
+<strong>cpan App::cpanminus</strong>: install <strong>cpanm</strong><br />
+<strong>cpanm </strong>module_name: get, unpack, build and install modules from CPAN</p>
+<p><strong>.pl</strong>: perl file<br />
+<strong>.pm</strong>: perl module(package) file, usually install via <strong>cpan</strong> and place under <strong>lib</strong> folder in hierarchy folders<br />
+e.g. <em>App::Prove::State::Result::Test</em> will be placed in <em>lib/App/Prove/State/Result</em></p>
+<hr/><strong>@INC &#8211; module search path</strong><br />
+<hr/>
+<strong>perl -V</strong>: view current search path</p>
+<p>env <strong>perl5lib</strong> to add search path in @INC</p>
+<p>Append @INC at perl file：<br />
+#!/usr/bin/perl -w<br />
+push(@INC,&#8221;/home/test&#8221;); </p>
+<p>or</p>
+<p>#!/usr/bin/perl -w<br />
+BEGIN{push(@INC,&#8221;/home/test&#8221;)};</p>
+<p>or</p>
+<p>#!/usr/bin/perl -w<br />
+use lib &#8216;/home/test&#8217;;</p>
+<hr/>
+</body>
+</html>
