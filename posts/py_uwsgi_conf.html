@@ -1,0 +1,76 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Python - uWSGI Configuration</h3>
+<p>pip install uwsgi</p>
+<p>uwsgi &#8211;http :8000 &#8211;wsgi-file test.py<br />
+uwsgi &#8211;http :8000 &#8211;module mysite.wsgi</p>
+<p>uwsgi &#8211;socket :8000 &#8211;module mysite.wsgi<br />
+uwsgi &#8211;socket /var/run/uwsgi/mysite.sock &#8211;module mysite.wsgi &#8211;chmod-socket=666</p>
+<p>uwsgi &#8211;ini /etc/uwsgi/vassals/mysite.ini<br />
+uwsgi &#8211;emperor /etc/uwsgi/vassals</p>
+<p>Edit <strong>/etc/rc.local</strong> to let it run when OS start up.</p>
+<p>Collect static files for django:<br />
+1. update <strong>STATIC_ROOT </strong>in mysite/settings.py<br />
+2.
+<pre>
+python manage.py collectstatic
+</pre>
+<p>mysite.ini</p>
+<pre>
+[uwsgi]
+
+chdir  = /root/test/uwsgi-tutorial/demo-django/mysite # /path/to/your/django/project (full path)
+module = mysite.wsgi # django wsgi module, module = mysite.wsgi:application
+home = /root/test/uwsgi-tutorial # the virtualenv (full path)
+
+master = true
+processes = 3
+socket = /var/run/uwsgi/mysite.sock # /path/to/your/project/mysite.sock (full path)
+chmod-socket = 666
+vaccum = true
+daemonize = /var/log/uwsgi/yourproject.log
+#max-requests = 5000 # respawn processes after serving 5000 requests
+#harakiri = 20 # respawn processes taking more than 20 seconds
+#limit-as = 128 # limit the project to 128 MB
+#pidfile = /tmp/project-master.pid
+</pre>
+<p>nginx.conf</p>
+<pre>
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    upstream django {
+         #server 127.0.0.1:8001;
+         server unix:///var/run/uwsgi/mysite.sock;
+    }
+   
+    server {
+        listen 8000;
+        charset utf-8;
+        #client_max_body_size 75M;
+        location /static {
+            alias /tmp/mysite_static;
+        }
+        location / {
+            uwsgi_pass django;
+            include uwsgi_params;
+        }
+    }
+}
+</pre>
+<p>uwsgi-restart script</p>
+<pre>
+ps aux | grep uwsgi
+killall -9 -e 'uwsgi'
+uwsgi --emperor /etc/uwsgi/vassals &#038;
+sleep 3s
+ps aux | grep uwsgi
+</pre>
+</body>
+</html>

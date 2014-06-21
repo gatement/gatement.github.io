@@ -1,0 +1,31 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Erlang - Ejabberd Setup</h3>
+<p>1. dependency<br />
+Fedora:<br />
+yum install expat expat-devel<br />
+yum install openssl openssl-devel<br />
+yum install zlib zlib-devel<br />
+yum install glibc glibc-devel<br />
+yum install ImageMagick ImageMagick-devel</p>
+<p>2. add running OS user<br />
+useradd ejabberd</p>
+<p>3. compile and install<br />
+./configure &#8211;enable-user=ejabberd<br />
+make<br />
+make install</p>
+<p>4. auto start<br />
+cp ejabberd_source/src/ejabberd.init /etc/init.d/ejabberd<br />
+chkconfig &#8211;add ejabberd</p>
+<p>5. add administrator<br />
+ejabberdctl register user host password<br />
+vi /etc/ejabberd/ejabberd.cfg<br />
+  {acl, admin, {user, &#8220;user&#8221;, &#8220;host&#8221;}}.<br />
+  {access, configure, [{allow, admin}]}.</p>
+<p>6. Admin</p>
+<p>http://localhost:5280/admin</p>
+</body>
+</html>

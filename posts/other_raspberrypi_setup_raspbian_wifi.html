@@ -1,0 +1,27 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>RaspberryPi - Setup Wifi on Raspbian</h3>
+<p>Step 1.<br />
+Boot the Raspberry Pi without the WiFi adapter plugged in.</p>
+<p>Step 2.<br />
+vi /etc/network/interfaces</p>
+<pre>
+auto lo
+ 
+iface lo inet loopback
+iface eth0 inet dhcp
+ 
+allow-hotplug wlan0
+auto wlan0
+ 
+iface wlan0 inet dhcp
+        wpa-ssid "ssid"
+        wpa-psk "password"
+</pre>
+<p>Step 3.<br />
+Plug in WiFi adapter and Reboot</p>
+</body>
+</html>
