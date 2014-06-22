@@ -1,0 +1,84 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>PHP - Foundation</h3>
+<p>file extension:</p>
+<p style="padding-left: 30px;">.php .php3 .phtml</p>
+<p>php block:</p>
+<p style="padding-left: 30px;">&lt;?php &#8230; ?&gt;</p>
+<p>comment:</p>
+<p style="padding-left: 30px;">//comment<br />
+/*&#8230;<br />
+&#8230;<br />
+&#8230;*/</p>
+<p>output:</p>
+<p style="padding-left: 30px;">echo &#8220;text&#8221;; // can omit ()<br />
+print &#8220;text&#8221;; // can omit ()<br />
+print_r(object);<br />
+var_dump(object);<br />
+gettype()<br />
+is_type function</p>
+<p>variable:</p>
+<p style="padding-left: 30px;">start with $<br />
+follow by alphabet or _<br />
+can only contain alphabet, _ or number</p>
+<p>string:</p>
+<p style="padding-left: 30px;">$txt1=&#8221;Hello World&#8221;;<br />
+$txt2=&#8217;1234&#8242;;<br />
+echo $txt1 . &#8221; &#8221; . $txt2; // Hello World 1234<br />
+echo strlen(&#8220;Hello world!&#8221;); //12</p>
+<p>array:</p>
+<p style="padding-left: 30px;">array(value1[,value2])<br />
+array(key =&gt; value [,key =&gt; value])<br />
+key can be integer or string<br />
+$a1 = array(&#8220;Peter&#8221;=&gt;32);<br />
+$a1["Peter"] //32<br />
+$a2 = array(&#8220;Peter&#8221;);<br />
+$a2[0] //&#8221;Peter&#8221;</p>
+<p>function:</p>
+<p style="padding-left: 30px;">function funcName([param1[,param2]])<br />
+{<br />
+&#8230;<br />
+[return ...;]<br />
+}</p>
+<p>stdClass</p>
+<p>$_GET<br />
+$_POST<br />
+$_COOKIE<br />
+$_REQUEST = $_GET + $_POST + $_COOKIE<br />
+$_FILES<br />
+$_SESSION</p>
+<p>include(&#8220;file&#8221;): if error, will continue to process, but will has warnning message<br />
+require(&#8220;file&#8221;): if error, will stop further process</p>
+<p>exit(&#8220;exit message&#8221;);<br />
+die(&#8220;exit message&#8221;);</p>
+<p>A or B: if A is false, execute B</p>
+<p>set_error_handler()<br />
+trigger_error()<br />
+error_log()</p>
+<p>set_exception_handler()<br />
+throw new Exception(&#8220;exception message&#8221;);<br />
+try<br />
+catch</p>
+<p>mysql_connect()<br />
+mysql_pconnect()<br />
+mysql_error()<br />
+mysql_select_db()<br />
+mysql_query()<br />
+mysql_fetch_array()<br />
+mysql_close()</p>
+<p>odbc_connect()<br />
+odbc_exec()<br />
+odbc_fetch_row()<br />
+odbc_result()<br />
+odbc_close()</p>
+<p>array_key_exists()<br />
+property_exists()<br />
+get_class()</p>
+<p>$this-&gt;<br />
+self::<br />
+parent::</p>
+</body>
+</html>
