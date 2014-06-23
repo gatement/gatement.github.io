@@ -1,0 +1,68 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>TCP/IP Foundation</h3>
+<p>|<strong>application layer</strong>|<br />
+&#8220;message&#8221;(user data)</p>
+<p>|<strong>transport layer (TCP/UDP/SCTP)</strong>|<br />
+&#8220;segment&#8221;(source port, target port, control, data), between two computers. If the segment is too large, it will be splited into several packets in the IP protocal.</p>
+<p><strong>UDP</strong>, is conection-less &#8220;send and forget&#8221; protocal.<br />
+Adding source port, target port, and whole data + source ip + target ip checksum,  on top of IP protocal.<br />
+Min header length is 8B(source port 2B,  target port 2B, data length 2B, checksum 2B).</p>
+<p>The data unit is call &#8220;Datagram&#8221;.</p>
+<p>The datagrams might arrive out of order, not at all, or even more than once, but the individual datagrams, if they arrive, will be undamaged (since it has a checksum).</p>
+<p>Large UDP packets might become fragmented as they pass through the network. Fragmentation occurs when the UDP data size is greater than the maximum transfer unit (MTU) size allowed by the routers that the packet passes though when it travels over the network. But the IP protocol will reassemble the fragments before delivering them to the application.</p>
+<p><strong>TCP</strong>, is connection-oriented reliable protocal.<br />
+Adding source port, target port, whole data checksum, byte seq and ack byte seq on top of IP protocal.<br />
+Min header length is 20B(source port 2B, target port 2B, send seq 4B, ack seq 4B, sender rcv window size  2B&#8230;).</p>
+<p>p206</p>
+<p>three-way handshake:<br />
+SYN, SEQ=x: connection reqeust (from client)<br />
+SYN, ACK=X+1, SEQ=y: connection accepted (from server)<br />
+ACK=y+1: connection confirm (from client)</p>
+<p>disconnect:<br />
+FIN, SEQ=X: disconnection reqeust(from client)<br />
+ACK=x+1: agree half-close (from server)<br />
+FIN, SEQ=y, ACK=x+1: disconnection request(from server)<br />
+ACK=y+1: agree half-close, now all closed(disconnected) (from client)</p>
+<p>TCP Status (p211):<br />
+client &#8211; CLOSED, SYNSENT, ESTABLISHED, FIN_WAIT_1, FIN_WAIT_2, TIME_WAIT-CLOSED<br />
+server &#8211; CLOSED, LISTEN, SYN_RCVD, ESTABLISHED, CLOSE_WAIT, LAST_ACK, CLOSED<br />
+CLOSING (closing at the same time)</p>
+<p><strong>SCTP</strong>(Stream Control Transmission Protocol):</p>
+<p>|<strong>network layer (ICMP/IP/IPv6/ARP/RARP)</strong>|<br />
+&#8220;packet&#8221;(source ip, target ip, control, data) transport between two IPs, which may be connected through many nodes [router - router]. </p>
+<p><strong>ICMP</strong>(Internet Control Message Protocal), the whole ICMP data is placed inside IP data(on top of IP). Has a whole data checksum.</p>
+<p><strong>IP</strong>(4B = 32 bits) (only header checksum but not whole data checksum), the header will indicate which protocal(ICMP/TCP/UDP) the data it carrys is, so when it arrived, it can pass it to proper up stream.</p>
+<p>p167</p>
+<p>Min header length is 20B(source ip 4B, target ip 4B&#8230;).</p>
+<p>class A (0&#8230;)[1~126], net-id 8 bits, host-id 24 bits<br />
+class B (10&#8230;)[128~191], net-id 16 bits, host-id 16 bits<br />
+class C (110&#8230;)[192~223],  net-id 24 bits, host-id 8 bits<br />
+class D (1110&#8230;)[224~239], reserved group<br />
+class E (11110&#8230;)[240~247], reserved</p>
+<p>Loopback:<br />
+ 127.x.x.x </p>
+<p>Private IP range:<br />
+ 10.x.x.x (class A)<br />
+ 172.16.x.x (class B)<br />
+ 172.31.x.x (class B)<br />
+ 192.168.x.x (class C)</p>
+<p>0.0.0.0: myself</p>
+<p>255.255.255.255: local network broadcast</p>
+<p><strong>IPv6</strong>(16B = 128 bits = 32 bits * 4)</p>
+<p><strong>ARP</strong>(Address Resolutino Protocal), IP -> MAC, broadcast MAC request in the local network, who own the IP should response, then cache it.</p>
+<p><strong>RARP</strong>(Reverse Address Resolution Protocal), MAC -> IP, example, DHCP</p>
+<p>|<strong>data link layer(LLC/MAC)</strong>|<br />
+&#8220;frame&#8221;(control, data) reliable transport between two nodes [node - node].</p>
+<p><strong>LLC</strong>(Logic Link Control)</p>
+<p><strong>MAC</strong>(Midea Access Control, 6B = 48 bits, top 1 bit is Indiviaual(0)/Group(1) indicator, high 2~24 is Assigned by IEEE, low 24 bits is by manufactors. If data is sent to my MAC, accept it, if not, ignore it.<br />
+Hardware: Hub, Switch, Bridge</p>
+<p>|<strong>physical layer</strong>|<br />
+&#8220;bit&#8221; stream transport. signal modulation</p>
+<p>|<strong>physical media</strong>|<br />
+ to let it connected physically</p>
+</body>
+</html>

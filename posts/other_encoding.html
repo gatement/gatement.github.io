@@ -1,0 +1,27 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Character Encoding</h3>
+<p><span style="color: #0000ff;"><strong>1. Purpose </strong></span></p>
+<p>Encode human characters, so that it can be stored in the computer, be transfered to another person and the target reader program can display it correctly. It is related to human language. It is different from the BASE64 encoding, Url encoding, HTML encoding, which are used for communication between application and application.</p>
+<p><span style="color: #0000ff;"><strong>2. Types</strong></span></p>
+<p>-<strong>ASCII</strong>: (American Standard Code for Information Interchange), 7 bits, including Latin characters (a~z), Arabic numeric (0~9), English symbols and control symbols. (No preamble) (<a href="http://www.asciitable.com/" target="_blank">ASCII table</a>)</p>
+<p>-<strong>EASCII</strong>: Extended ASCII, 8 bits.</p>
+<p>-<strong>Unicode</strong>: Represent most human languages within single  character set (Universal Character Set, UCS). UCS has several UCS Transformation Format (UTF), including UTF-7, UTF-8, UTF-16 and UTF-32. UTF-16 and UTF-32 also have two kind, big-endian (most significant byte first) and little-endian (least significant byte first). We say Unicode usually means UTF-16.</p>
+<p>Have different preamble for each transformation format:</p>
+<ul>
+<li>UTF-8: EF BB BF</li>
+<li>UTF-16 big-endian byte order: FE FF</li>
+<li>UTF-16 little-endian byte order: FF FE</li>
+<li>UTF-32 big-endian byte order: 00 00 FE FF</li>
+<li>UTF-32 little-endian byte order: FF FE 00 00</li>
+</ul>
+<p>-<strong>GB2312</strong>: Simplified Chinese character set, including 6763 Chinese words and other symbols. (No preamble)</p>
+<p>-<strong>GBK</strong>: Extended GB2312, including 20902 Chinese words and other symbols. Can correspond to each Chinese words in Unicode.</p>
+<p>-<strong>BIG5: </strong>Tractional Chinese character set.</p>
+<p>-<strong>ANSI</strong>: Also know as <strong>MBCS</strong> (Multi-Byte Character Set), it is not an actual character encoding. It vary according to System&#8217;s code page setting (AKA default character encoding). Could be GB2312, BIG5 or others.</p>
+<p>&nbsp;</p>
+</body>
+</html>

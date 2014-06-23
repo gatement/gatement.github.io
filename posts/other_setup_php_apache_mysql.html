@@ -1,0 +1,30 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Setup PHP+Mysql+Apache</h3>
+<p>1. copy file &#8220;php.ini-development&#8221; as &#8220;php.ini&#8221; in the php folder<br />
+# need to add the &#8220;c:\php&#8221; to system %path%<br />
+# and the php.ini need to set the &#8220;extension_dir&#8221; value<br />
+# un-comment &#8220;;extension=php_mysql.dll&#8221; to support Mysql (need to add Mysql/lib to the system Path)<br />
+# set date.timezone = UTC  </p>
+<p>2. add the following config to httpd.conf<br />
+Windows:</p>
+<pre>LoadModule php5_module "c:/php/php5apache2_2.dll"
+DirectoryIndex index.html index.php
+PHPIniDir "c:/php"
+AddType application/x-httpd-php .php</pre>
+<p>Linux/Mac:</p>
+<pre>LoadModule php5_module modules/libphp5.so
+DirectoryIndex index.php
+AddHandler php5-script .php
+AddType text/html .php</pre>
+<p>3. new php file to test it: index.php<br />
+<pre>
+&lt;?php
+phpinfo();
+?&gt;
+</pre>
+</body>
+</html>

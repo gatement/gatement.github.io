@@ -1,0 +1,17 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>OpenSSL - Create Certificates</h3>
+<pre>
+openssl req -new -x509 -out cert.pem -keyout key.pem
+</pre>
+<p>or</p>
+<pre>
+umask 077 &amp;&amp; touch host.key host.cer
+openssl genrsa 2048 &gt; host.key
+openssl req -new -x509 -nodes -sha1 -days 10000 -key host.key &gt; host.cer
+</pre>
+</body>
+</html>

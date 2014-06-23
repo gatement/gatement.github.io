@@ -1,0 +1,18 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>WordPress - Change Domain</h3>
+<p>1. Open Site Admin >> Settings >> General<br />
+Change the &#8220;Site Address&#8221; and &#8220;WordPress Address&#8221; to the new domain<br />
+or change it in the DB directly:</p>
+<pre>
+update wp_options set option_value='http://[new domain]' where option_name='siteurl' or option_name='home'
+</pre>
+<p>2. Run the follow SQL in the DB:</p>
+<pre>
+update wp_posts set guid=replace(guid,'[old domain]','[new domain]');
+</pre>
+</body>
+</html>
