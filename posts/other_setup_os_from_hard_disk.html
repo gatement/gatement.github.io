@@ -1,0 +1,74 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Setup OS From Hard Disk</h3>
+<p>== Windows 7 ======================<br />
+1. Install From WinPE:<br />
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;<br />
+1). Extract &#8220;Window7.ISO&#8221; to a none C: partition, like &#8220;d:\windows7\&#8221;<br />
+2). Format C: (optional)<br />
+3). Copy &#8220;d:\windows7\bootmgr&#8221; and &#8220;d:\windows7\boot&#8221; to C:\<br />
+4). Copy &#8220;d:\windows7\sources\boot.wim&#8221; to &#8220;C:\sources\boot.wim&#8221;<br />
+5). Run: &#8220;c:\boot\bootsect.exe /nt60 c:&#8221;<br />
+6). Reboot<br />
+7). select &#8220;Repair My Computer&#8221; -&gt; &#8220;Command Prompt&#8221;, enter DOS command line.<br />
+8). Run: &#8220;d:\windows7\sources\setup.exe&#8221; </p>
+<p>== Fedora 13 =======================</p>
+<p>http://fedoraproject.org</p>
+<p>1. From GRUB<br />
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<br />
+(Refer to http://blog.csdn.net/sabalol/archive/2010/05/27/5629464.aspx)<br />
+1). Copy files:<br />
+	Fedora13.iso/isolinux/vmlinuz, initrd.img -&gt; FAT32 file system (For GRUB does not recognize NTFS file system)<br />
+	Fedora13.iso/images -&gt; file system (FAT32 or NTFS, because that time the kernel has been loaded, but must with Fedora13.iso together)<br />
+2). Boot with GRUB, type &#8220;c&#8221; into command line.<br />
+3). In the GRUB command line:<br />
+	boot(hd0,8)<br />
+	kernel /vmlinuz<br />
+	initrd /initrd.img<br />
+	boot<br />
+4). In the setup guide, select the Fedora13.iso contained partition.<br />
+Note:<br />
+	*. The &#8216;vmlinuz&#8217; and &#8216;initrd.img&#8217; in the Fedora13.iso is different from the ones in Linux &#8216;/boot&#8217;.</p>
+<p>2. From Windows<br />
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<br />
+1). Exact vmlinuz and initrd.img from .ISO file<br />
+2). Copy GRLDR to &#8220;C:\&#8221; (Refer to http://www.linux-wiki.cn/index.php?title=%E7%94%A8Windows_XP/Vista%E5%BC%95%E5%AF%BCgrub&amp;variant=zh-hant)<br />
+3). Edit boot.ini, add a new line at the end: &#8216;C:\GRLDR=&#8221;Linux&#8221;&#8216;<br />
+4). Reboot OS and enter in Grub command line.<br />
+5). Load the kernel (known that Grub count from zero):<br />
+  &gt;kernel (hd0,1)/vmlinuz<br />
+  &gt;initrd (hd0,1)/initrd.img<br />
+  &gt;boot<br />
+6).select the ISO file</p>
+<p>== Ubuntu 10.04 ====================</p>
+<p>http://www.ubuntu.com</p>
+<p>1. Dependancy install<br />
+(Refer to http://www.linux-wiki.cn/index.php?title=Ubuntu%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85&amp;variant=zh-hant)<br />
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<br />
+1). Copy casper/initrd.lz and casper/vmlinuz out from the .ISO file.<br />
+2). Edit Grub menu.lst:<br />
+	title Install Ubuntu<br />
+		root (hd0,0)<br />
+		kernel /vmlinuz boot=casper iso-scan/filename=/ubuntu-10.04-desktop-i386.iso ro quiet splash locale=zh_CN.UTF-8<br />
+		initrd /initrd.lz<br />
+3). Reboot and enter the Live CD system<br />
+4). (Optional: sudo umount -l /isodevice)<br />
+5). Start installation from the shutcut on the desktop</p>
+<p>2. Install in windows partition<br />
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;<br />
+1). Extract wubi.exe from .ISO file and put it beside the .ISO file.<br />
+2). Run wubi.exe.</p>
+<p>== OpenSUSE =======================</p>
+<p>http://opensuse.org</p>
+<p>1. From Windows<br />
+(Refer to http://cn.opensuse.org/OpenSUSE_11_0_NTFS%E5%88%86%E5%8C%BA%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85)<br />
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;<br />
+1). Load the .ISO file in the Virtual CD-ROM (lite DEAMON Lite)<br />
+2). Run openSUSE11_3_LOCAL.exe<br />
+3). Reboot.<br />
+4). (Optional: may need to umount and mount the partition which contains the setup files)</p>
+</body>
+</html>
