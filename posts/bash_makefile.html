@@ -5,7 +5,7 @@
 <body>
 <h3>Makefile</h3>
 File name in searching sequence: <strong>GNUmakefile</strong> <strong>makefile</strong> <strong>Makefile</strong>(prefer)<br/>
-<br/>
+<hr/>
 <strong>targets: prerequisites</strong><br/>
 &lt;Tab&gt;<strong>command</strong><br/>
 <br/>
@@ -17,19 +17,23 @@ or<br/>
 (targets and prerequisites delimited by &lt;space&gt;, and support wildcards)<br/>
 <br/>
 wildcards: <strong>* ?</strong><br/>
+<hr/>
+<strong>VAR=value</strong> (always set with eventually value)<br/>
+<strong>VAR:=value</strong> (always set with current value)<br/>
+<strong>VAR?=value</strong> (only set if it is empty)<br/>
+<strong>VAR+=value</strong> (append value)<br/>
+Blog: <a href="http://www.cnblogs.com/wanqieddy/archive/2011/09/21/2184257.html" target="_blank">Makefile 中:= ?= += =的区别</a><br/>
 <br/>
-<strong>VAR=value</strong> (declare variable)<br/>
 <strong>$(VAR)</strong> (use variable)<br/>
-<br/>
+<strong>$@</strong> (current target name)<br/>
+<strong>$^</strong> (dependencies)<br/>
+<hr/>
 <strong>include</strong> filename1 filename2 (could use wildcards in filenames)<br/>
 <br/>
 <strong>-</strong> (place this before a cmd, means continue if exception)<br/>
 <strong>@</strong> (place this before a cmd, means don't output the cmd to the console)<br/>
 <br/>
 <strong>#</strong> comment<br/>
-<br/>
-<strong>$@</strong> (current target name)<br/>
-<strong>$^</strong> (dependencies)<br/>
 <br/>
 <strong>.PHONY</strong>: target1 target2 (declare fake targets)<br/>
 </body>
