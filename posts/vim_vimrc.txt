@@ -43,6 +43,7 @@ set number
 set nocp
 set is
 set wrap
+set ruler
 "set foldmethod=indent
 "set nofoldenable
 set splitright
