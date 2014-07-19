@@ -9,9 +9,10 @@ openssl req -new -x509 -out cert.pem -keyout key.pem
 </pre>
 <p>or</p>
 <pre>
-umask 077 &amp;&amp; touch host.key host.cer
-openssl genrsa 2048 &gt; host.key
-openssl req -new -x509 -nodes -sha1 -days 10000 -key host.key &gt; host.cer
+openssl genrsa -des3 -out key.pem 2048 // create private key with pwd
+openssl genrsa -out key.pem 2048 // create private key without pwd
+openssl req -new -key key.pem -out cert.csr // create a cert request
+openssl req -new -x509 -key key.pem -out cert.pem -days 3650 // create self-signed cert(signed by key.pem)
 </pre>
 </body>
 </html>
