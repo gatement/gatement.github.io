@@ -23,9 +23,15 @@ function! GetVisual() range	" rang argument???
 	return escaped_selection
 endfunction
 
-" -- MY SETTING --
+"" -- MY SETTING --
+
+"" remember last cursor position
+set viminfo='10,\"100,:20,%,n~/.viminfo
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
 let $LANG='en_US'
 "let $LANG='zh_CN.UTF-8'
+
 color desert
 set guioptions=e
 set guifont=consolas:h13
