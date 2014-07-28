@@ -6,11 +6,11 @@
 <h3>Erlang - High Concurrence Running</h3>
 1. unlimit -n
 <pre>
-/etc/security/limits.conf
+/etc/security/limits.conf:
 * soft nofile 1000000
 * hard nofile 1000000
 
-/etc/rc.local
+/etc/rc.local:
 ulimit -SHn 1000000
 </pre>
 <br/>
@@ -22,18 +22,22 @@ ulimit -SHn 1000000
 cat /proc/sys/fs/file-nr -> 9344 0 592026
 分别为：1.已经分配的文件句柄数，2.已经分配但没有使用的文件句柄数，3.最大文件句柄数
 
-edit /etc/sysctl.conf:
+/etc/sysctl.conf:
 fs.file-max = 1000000
 net.ipv4.ip_conntrack_max = 1000000
 net.ipv4.netfilter.ip_conntrack_max = 1000000
 </pre>
 <br/>
 <br/>
-3. 
-/proc/sys/net/ipv4/ip_local_port_range
+3.  /proc/sys/net/ipv4/ip_local_port_range
+<pre>
+echo 20000 62000 > /proc/sys/net/ipv4/ip_local_port_range
+</pre>
 <br/>
 <br/>
-4.
+4.  erlang params
+<pre>
 erlang +P 1000000 +Q 1000000 +K true
+</pre>
 </body>
 </html>
