@@ -32,7 +32,8 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 let $LANG='en_US'
 "let $LANG='zh_CN.UTF-8'
 
-color desert
+"color desert
+color vividchalk
 set guioptions=e
 set guifont=consolas:h13
 "set guifont=monaco:h16 (Mac)
