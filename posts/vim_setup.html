@@ -1,0 +1,44 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>vim: setup development env</h3>
+1. install pathogen<br/>
+https://github.com/tpope/vim-pathogen
+<pre>
+mkdir -p ~/.vim/autoload
+mkdir -p ~/.vim/bundle
+wget https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+edit ~/.vim/vimrc:
+    call pathogen#infect()
+    call pathogen#helptags()
+</pre>
+(replace "~/.vim" with "~\vimfiles" in windows)<br/>
+(it will manage "runtimepath" and auto ":helptags")<br/>
+<br/>
+2. install plugins<br/>
+https://github.com/jimenezrick/vimerl<br/>
+https://github.com/kien/ctrlp.vim<br/>
+https://github.com/scrooloose/nerdtree<br/>
+https://github.com/jistr/vim-nerdtree-tabs<br/>
+http://www.vim.org/scripts/script.php?script_id=273 (taglist)
+<pre>
+cd ~/.vim/bundle
+git clone ...
+
+(taglist only):
+*nix: yum/apt-get/brew install ctags
+windows: http://sourceforge.net/projects/ctags/ (config it to the PATH)
+</pre>
+<br/>
+3. install color scheme<br/>
+https://github.com/tpope/vim-vividchalk
+<pre>
+mkdir -p ~/.vim/colors
+wget https://raw.githubusercontent.com/tpope/vim-vividchalk/master/colors/vividchalk.vim
+</pre>
+<br/>
+refer to http://blog.erlware.org/2013/09/09/how-to-use-vim-for-erlang-development/
+</body>
+</html>

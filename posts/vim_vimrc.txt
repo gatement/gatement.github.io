@@ -1,4 +1,3 @@
-
 function! EscapeString (string)
 	let string=a:string
 	let string = escape(string, '^$.*\/~[]')
@@ -23,19 +22,16 @@ function! GetVisual() range	" rang argument???
 	return escaped_selection
 endfunction
 
-"" -- MY SETTING --
-
 "" remember last cursor position
 set viminfo='10,\"100,:20,%,n~/.viminfo
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
 let $LANG='en_US'
 "let $LANG='zh_CN.UTF-8'
-
 color desert
 set guioptions=e
 set guifont=consolas:h13
-"set guifont=monaco:h16 (Mac)
+"set guifont=monaco:h16 (mvim)
 set encoding=utf-8
 syntax enable
 set backspace=2
@@ -56,10 +52,8 @@ set splitright
 set nocompatible
 set hls
 filetype plugin indent on
-let NERDTreeIgnore=['\.pyc$']
-"let g:EclimJavaCompleteCaseSensitive=0
 "let Tlist_Use_Right_Window=1
-"map <C-z> :set foldenable!<CR>
+let NERDTreeIgnore=['\.pyc$']
 map <SPACE>f :NERDTreeFind<CR>
 map <SPACE>t :NERDTreeToggle<CR>
 map <SPACE>m :NERDTreeMirror<CR>
@@ -67,7 +61,11 @@ map <SPACE>l <C-w>l
 map <SPACE>h <C-w>h
 map <SPACE>j <C-w>j
 map <SPACE>k <C-w>k
-map ,, :w<CR>
+"" save
+map  ,, :w<CR>
+"" replace selectecd
 vmap ,r <Esc>:%s/<c-r>=GetVisual()<cr>//gc<left><left><left>
+"" replace word
 nmap ,w ve,r
-map ,a <Esc>GVgg
+"" select all
+map  ,a <Esc>GVgg
