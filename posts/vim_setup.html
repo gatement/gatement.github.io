@@ -1,0 +1,46 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>vim: setup development env</h3>
+1. install pathogen<br/>
+<a href="https://github.com/tpope/vim-pathogen" target="_blank">https://github.com/tpope/vim-pathogen</a>
+<pre>
+mkdir -p ~/.vim/autoload
+mkdir -p ~/.vim/bundle
+cd ~/.vim/autoload
+wget https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+edit ~/.vim/vimrc:
+    call pathogen#infect()
+    call pathogen#helptags()
+</pre>
+(replace "~/.vim" with "~\vimfiles" in windows)<br/>
+(it will manage "runtimepath" and auto ":helptags")<br/>
+<br/>
+2. install plugins<br/>
+<a href="https://github.com/jimenezrick/vimerl" target="_blank">https://github.com/jimenezrick/vimerl</a> (vimerl)<br/>
+<a href="https://github.com/kien/ctrlp.vim" target="_blank">https://github.com/kien/ctrlp.vim</a> (ctrlp)<br/>
+<a href="https://github.com/scrooloose/nerdtree" target="_blank">https://github.com/scrooloose/nerdtree</a> (nerdtree)<br/>
+<a href="https://github.com/jistr/vim-nerdtree-tabs" target="_blank">https://github.com/jistr/vim-nerdtree-tabs</a> (nerdtree-tabs)<br/>
+<a href="http://www.vim.org/scripts/script.php?script_id=273" target="_blank">http://www.vim.org/scripts/script.php?script_id=273</a> (taglist)
+<pre>
+cd ~/.vim/bundle
+git clone ...
+
+(taglist only):
+*nix: yum/apt-get/brew install ctags
+windows: http://sourceforge.net/projects/ctags/ (config it to the PATH)
+</pre>
+<br/>
+3. install color scheme<br/>
+<a href="https://github.com/tpope/vim-vividchalk" target="_blank">https://github.com/tpope/vim-vividchalk</a>
+<pre>
+mkdir -p ~/.vim/colors
+cd ~/.vim/colors
+wget https://raw.githubusercontent.com/tpope/vim-vividchalk/master/colors/vividchalk.vim
+</pre>
+<br/>
+refer to <a href="http://blog.erlware.org/2013/09/09/how-to-use-vim-for-erlang-development/" target="_blank">http://blog.erlware.org/2013/09/09/how-to-use-vim-for-erlang-development/</a>
+</body>
+</html>
