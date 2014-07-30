@@ -32,8 +32,8 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 
 let $LANG='en_US'
 "let $LANG='zh_CN.UTF-8'
-"color desert
-color vividchalk
+color desert
+"color vividchalk
 set guioptions=e
 set guifont=consolas:h13
 "set guifont=monaco:h16 (mvim)
@@ -59,7 +59,6 @@ set hls
 filetype plugin indent on
 "let Tlist_Use_Right_Window=1
 let NERDTreeIgnore=['\.pyc$']
-map <SPACE>o :CtrlP<CR>
 map <SPACE>t :NERDTreeToggle<CR>
 map <SPACE>f :NERDTreeFind<CR>
 map <SPACE>r :NERDTreeMirror<CR>
@@ -67,16 +66,16 @@ map <SPACE>l <C-w>l
 map <SPACE>h <C-w>h
 map <SPACE>j <C-w>j
 map <SPACE>k <C-w>k
-map <SPACE>m :tabn<CR>
-map <SPACE>n :tabp<CR>
 "" next tab
 map <SPACE>m :tabn<CR>
 "" previous tab
 map <SPACE>n :tabp<CR>
-"" close
-map ,c :q<CR>
+"" vimerl auto complete
+imap ,, <c-x><c-o>
 "" save
 map  ,, :w<CR>
+"" close
+map ,c :q<CR>
 "" replace selectecd
 vmap ,r <Esc>:%s/<c-r>=GetVisual()<cr>//gc<left><left><left>
 "" replace word
