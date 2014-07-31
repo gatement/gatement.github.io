@@ -9,5 +9,17 @@
 AllowUsers user1 root
 DenyUsers all
 </pre>
+<p>Connection keepalive:</p>
+<pre>
+ssh_config:
+    ServerAliveCountMax 2 # try times
+    ServerAliveInterval 60 # in seconds
+
+or
+
+sshd_config:
+    ClientAliveCountMax 2 # try times
+    ClientAliveInterval 60 # in seconds
+</pre>
 </body>
 </html>
