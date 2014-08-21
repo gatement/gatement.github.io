@@ -87,3 +87,6 @@ map  ,a <Esc>GVgg
 
 "" vimerl auto complete
 imap <c-j> <c-x><c-o>
+
+"" jump between last two frames
+map <SPACE>, <c-^>
