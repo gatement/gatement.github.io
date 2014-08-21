@@ -59,6 +59,8 @@ set hls
 filetype plugin indent on
 "let Tlist_Use_Right_Window=1
 let NERDTreeIgnore=['\.pyc$']
+
+""=== <SPACE> shortcuts ===
 map <SPACE>t :NERDTreeToggle<CR>
 map <SPACE>f :NERDTreeFind<CR>
 map <SPACE>r :NERDTreeMirror<CR>
@@ -70,8 +72,8 @@ map <SPACE>k <C-w>k
 map <SPACE>m :tabn<CR>
 "" previous tab
 map <SPACE>n :tabp<CR>
-"" vimerl auto complete
-imap ,, <c-x><c-o>
+
+""=== , shortcuts ===
 "" save
 map  ,, :w<CR>
 "" close
@@ -82,3 +84,6 @@ vmap ,r <Esc>:%s/<c-r>=GetVisual()<cr>//gc<left><left><left>
 nmap ,w ve,r
 "" select all
 map  ,a <Esc>GVgg
+
+"" vimerl auto complete
+imap <c-j> <c-x><c-o>
