@@ -69,9 +69,9 @@ map <SPACE>h <C-w>h
 map <SPACE>j <C-w>j
 map <SPACE>k <C-w>k
 "" next tab
-map <SPACE>m :tabn<CR>
+map <C-S-l> :tabn<CR>
 "" previous tab
-map <SPACE>n :tabp<CR>
+map <C-S-h> :tabp<CR>
 
 ""=== , shortcuts ===
 "" save
