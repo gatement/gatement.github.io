@@ -1,2 +1,3 @@
 gatement.github.io
 ==================
+blogs
