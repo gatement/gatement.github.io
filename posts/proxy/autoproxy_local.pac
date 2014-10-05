@@ -11,8 +11,7 @@ function FindProxyForURL(url,host)
             shExpMatch(url, "*.google.com*")
       )
     {
-        //return "SOCKS 127.0.0.1:8090";
-        return "SOCKS5 127.0.0.1:8090";
+        return "SOCKS5 127.0.0.1:8090; SOCKS 127.0.0.1:8090";
     }
     return "DIRECT";
 }
