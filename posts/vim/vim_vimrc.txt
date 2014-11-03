@@ -60,6 +60,10 @@ filetype plugin indent on
 "let Tlist_Use_Right_Window=1
 let NERDTreeIgnore=['\.pyc$']
 
+"" textwidth
+set cc=81 "highlight column 80
+set textwidth=80 " use 'gq' to format selected lines
+
 ""=== <SPACE> shortcuts ===
 map <SPACE>t :NERDTreeToggle<CR>
 map <SPACE>f :NERDTreeFind<CR>
