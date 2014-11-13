@@ -61,8 +61,8 @@ filetype plugin indent on
 let NERDTreeIgnore=['\.pyc$']
 
 "" textwidth
-set cc=81 "highlight column 80
-set textwidth=80 " use 'gq' to format selected lines
+set cc=0 "highlight column
+set textwidth=0 " use 'gq' to format selected lines
 
 ""=== <SPACE> shortcuts ===
 map <SPACE>t :NERDTreeToggle<CR>
