@@ -2,7 +2,7 @@
 -module(ssh_tunnel_srv).
 -export([start/0]).
 
--define(CMD, "ssh -vCND 9999 root@domain.com -p 22").
+-define(CMD, "ssh -vCND 127.0.0.1:9999 root@domain.com -p 22").
 
 start() ->
     do().
