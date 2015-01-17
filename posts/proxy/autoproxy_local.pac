@@ -2,6 +2,7 @@ function FindProxyForURL(url,host)
 {
     url = url.toLowerCase();
     if(
+            shExpMatch(url, "*golang.com*") ||
             shExpMatch(url, "*facebook.com*") ||
             shExpMatch(url, "*twimg.com*") ||
             shExpMatch(url, "*twitter.com*") ||
