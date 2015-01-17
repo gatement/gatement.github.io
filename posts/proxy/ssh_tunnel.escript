@@ -5,7 +5,7 @@ main(_) ->
     do(Cmd).
 
 do(Cmd) ->
-    io:format("======== start ========~n", []),
+    io:format("~p: ssh tunnel restart.~n", [calendar:local_time()]),
     os:cmd(Cmd),
     timer:sleep(10000),
     do(Cmd).
