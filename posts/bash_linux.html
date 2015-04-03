@@ -11,6 +11,7 @@
 export LANG=en_US.UTF-8</p>
 <p>cmd:lynx<br />
 A text-based web browser</p>
+
 <p>== Fedora16 ==<br />
 cmd:<span style="color: #0000ff;"><strong>systemctl </strong></span><br />
 /lib/systemd/system/*.service<br />
@@ -22,6 +23,13 @@ cmd:<span style="color: #0000ff;"><strong>systemctl </strong></span><br />
 <strong>stop </strong>sshd.service: stop service</p>
 <p>cmd:<span style="color: #0000ff;"><strong>gnome-terminal </strong></span><br />
 Fefora terminal (cmd/command line)</p>
+
+<p>== Fedora20 ==<br />
+<p>cmd:<span style="color: #0000ff;"><strong>grub2-set-default </strong></span><br />
+set default bootup entry
+sudo cat /boot/grub2/grub.cfg | grep windows
+sudo grub2-set-default 'Windows 7 (loader) (on /dev/sda1)'
+
 <p>== Ubuntu ==<br />
 cmd:<span style="color: #0000ff;"><strong>update-rc.d</strong></span> servicename defaults<br />
 add service to startup service list</p>
