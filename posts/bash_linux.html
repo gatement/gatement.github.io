@@ -12,19 +12,19 @@ export LANG=en_US.UTF-8</p>
 <p>cmd:lynx<br />
 A text-based web browser</p>
 
-<p>== Fedora16 ==<br />
+<p>== Fedora20 ==<br />
 cmd:<span style="color: #0000ff;"><strong>systemctl </strong></span><br />
-/lib/systemd/system/*.service<br />
-<strong>status </strong>sshd.service: view service status<br />
-<strong>enable </strong>sshd.service: enable auto-start<br />
-<strong>disable </strong>sshd.service: disable auto-start<br />
-<strong>start </strong>sshd.service: start service<br />
-<strong>restart </strong>sshd.service: restart service<br />
-<strong>stop </strong>sshd.service: stop service</p>
+<strong>list-unit-files </strong>list available services<br />
+<strong>enable </strong>sshd: enable auto-start<br />
+<strong>start </strong>sshd: start service<br />
+<strong>status </strong>sshd: view service status<br />
+<strong>disable </strong>sshd: disable auto-start<br />
+<strong>restart </strong>sshd: restart service<br />
+<strong>stop </strong>sshd: stop service</p>
+
 <p>cmd:<span style="color: #0000ff;"><strong>gnome-terminal </strong></span><br />
 Fefora terminal (cmd/command line)</p>
 
-<p>== Fedora20 ==<br />
 <p>cmd:<span style="color: #0000ff;"><strong>grub2-set-default </strong></span><br />
 set default bootup entry<br />
 sudo cat /boot/grub2/grub.cfg | grep windows<br />
