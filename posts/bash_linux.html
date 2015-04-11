@@ -294,8 +294,15 @@ p209 set typeset declare<br />
 p212 locale LANG=en_US.utf8 zh_CN.utf8<br />
 p213 read -pt<br />
 p214 declare -iaxr typeset unset</p>
+
 <p>cmd:<span style="color: #0000ff;"><strong>ulimit</strong></span> (p215)<br />
 -a: print all limit info (then can set any limit according to the tip)</p>
+-n 1000000: set max number of open files to 1000000
+-n: get max number of open files
+/etc/security/limits.conf:
+* soft nofile 65535
+* hard nofile 65535
+
 <p>p217 alias unalias<br />
 p218 history -c !number !partname !!<br />
 p224 source (.)<br />
