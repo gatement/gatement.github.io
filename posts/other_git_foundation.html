@@ -7,49 +7,38 @@
 
 git clone https://github.com/gatement/demo.git<br/>
 <br/>
-<br/>
 git add file1.txt<br/>
 git add .<br/>
 git add -A<br/>
 <br/>
-<br/>
 git commit -am &#8220;&#8221;<br/>
 git commit &#8211;amend -am &#8220;&#8221; (amend the previous commit comment)<br/>
 <br/>
-<br/>
 git pull (pull from original repository)<br/>
-<br/>
 <br/>
 git push (push to original repository)<br/>
 git push [-u|--set-upstream] origin newBranch (push currnent active branch to remote, create remote branch if necessary)<br/>
-<br/>
 <br/>
 git branch <new branch name><br/>
 git branch -a (list local and remote branches)<br/>
 git branch [--list] (list local branches)<br/>
 git branch -d <branch name> (delete local branch)<br/>
 <br/>
-<br/>
 git checkout <branch name> (set active branch)<br/>
 git checkout -b <new branch name> (create and swith to new branch)<br/>
-<br/>
 <br/>
 git remote add origin https://github.com/gatement/test.git (add a remote repos reference with name &#8220;origin&#8221;)<br/>
 git remote set-url origin https://github.com/gatement/test.git (set repos url to remote &#8220;origin&#8221;)<br/>
 <br/>
-<br/>
 git merge <src branch> (merge local active branch with local branch2)<br/>
 <br/>
-<br/>
 git fetch -p (sync remote branches to local)<br/>
-<br/>
 <br/>
 git tag -a <tag name> -m &#8220;msg&#8221; (create a new tag locally, need to push it to remote like pushing a new branch)<br/>
 git tag NewTag OldTag (rename tag OldTag to NewTag)<br/>
 git tag -d TagName (delete tag TagName locally)<br/>
-git push origin :refs/tags/OldName (delete tag OldName remotely)
-git push --tags (sync local tags to remote)
-<br/>
+git push origin :refs/tags/OldName (delete tag OldName remotely)<br/>
+git push --tags (sync local tags to remote)<br/>
 <br/>
 </body>
 </html>
