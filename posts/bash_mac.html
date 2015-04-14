@@ -61,5 +61,12 @@ Please copy the plist file to one of the above folder if want it to start automa
 cmd:<span style="color: #0000ff;"><strong>netstat</strong></span> -na<br/>
 view current used tcp/udp ports<br/>
 <br/>
+
+<hr/>
+cmd:<span style="color: #0000ff;"><strong>ulimit</strong></span> -n<br/>
+change max open files<br/>
+&gt; echo "limit maxfiles 1000000 1000000" &gt; /etc/launchd.conf
+&gt; echo "ulimit -n 1000000" &gt; ~/.bash_profile 
+<br/>
 </body>
 </html>
