@@ -633,8 +633,9 @@ netcat. Reads and writes data across network connections using TCP or UDP.<br />
 <p>cmd:<span style="color: #0000ff;"><strong>sysctl</strong></span> -w variable=value<br/>
 /etc/sysctl.conf<br/>
 <br/>
-sysctl net.ipv4.ip_local_port_range<br/>
-sysctl -a<br/>
+sysctl variable: print varivable value<br/>
+sysctl -a: print all current values<br/>
+sysctl -p: reload config from /etc/sysctl.conf<br/>
 <br/>
 sysctl -w net.ipv4.tcp_tw_reuse=1<br/>
 sysctl -w net.ipv4.tcp_tw_recycle=1<br/>
