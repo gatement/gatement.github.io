@@ -631,12 +631,13 @@ netcat. Reads and writes data across network connections using TCP or UDP.<br />
 <p>cmd:<span style="color: #0000ff;"><strong>telnet</strong></span> host port</p>
 
 <p>cmd:<span style="color: #0000ff;"><strong>sysctl</strong></span> -w variable=value<br/>
+sysctl net.ipv4.ip_local_port_range<br/>
+sysctl -a<br/>
+<br/>
 sysctl -w net.ipv4.tcp_tw_reuse=1<br/>
 sysctl -w net.ipv4.tcp_tw_recycle=1<br/>
 sysctl -w net.ipv4.ip_local_port_range="1024 65000"<br/>
 sysctl -w fs.file-max=65000<br/>
-sysctl net.ipv4.ip_local_port_range<br/>
-sysctl -a<br/>
 </p>
 
 </body>
