@@ -637,25 +637,23 @@ netcat. Reads and writes data across network connections using TCP or UDP.<br />
 <p>cmd:<span style="color: #0000ff;"><strong>sysctl</strong></span> -w variable=value<br/>
 /etc/sysctl.conf<br/>
 <br/>
-sysctl variable: print varivable value<br/>
+sysctl {variable}: print varivable value<br/>
 sysctl -a: print all current values<br/>
 sysctl -p: reload config from /etc/sysctl.conf<br/>
 <br/>
 sysctl -w net.ipv4.ip_local_port_range="1024 65000"<br/>
-<br/>
-net.ipv4.tcp_syncookies = 1
-net.ipv4.tcp_tw_reuse = 1
-net.ipv4.tcp_tw_recycle = 1
-net.ipv4.tcp_fin_timeout = 30
-net.ipv4.tcp_keepalive_time = 1200
-net.ipv4.ip_local_port_range = 1024 65000
-net.ipv4.tcp_max_syn_backlog = 8192
-net.ipv4.ip_conntrack_max = 655360
-net.ipv4.netfilter.ip_conntrack_tcp_timeout_established = 180
-fs.file-max = 65000
-<br/>
 <div>
-<p>调整/etc/sysctl.conf</p>
+<p>调整/etc/sysctl.conf: </p>
+net.ipv4.tcp_syncookies = 1<br/>
+net.ipv4.tcp_tw_reuse = 1<br/>
+net.ipv4.tcp_tw_recycle = 1<br/>
+net.ipv4.tcp_fin_timeout = 30<br/>
+net.ipv4.tcp_keepalive_time = 1200<br/>
+net.ipv4.ip_local_port_range = 1024 65000<br/>
+net.ipv4.tcp_max_syn_backlog = 8192<br/>
+net.ipv4.ip_conntrack_max = 655360<br/>
+net.ipv4.netfilter.ip_conntrack_tcp_timeout_established = 180<br/>
+fs.file-max = 65000<br/>
 <p>net.ipv4.tcp_syncookies = 1<br>
 表示开启SYN Cookies。当出现SYN等待队列溢出时，启用cookies来处理，可防范少量SYN攻击，默认为0，表示关闭；</p>
 <p>net.ipv4.tcp_tw_reuse = 1<br>
@@ -672,9 +670,7 @@ fs.file-max = 65000
 表示SYN队列的长度，默认为1024，加大队列长度为8192，可以容纳更多等待连接的网络连接数。</p>
 <p>net.ipv4.tcp_max_tw_buckets = 5000 <br>
 表示系统同时保持TIME_WAIT套接字的最大数量，如果超过这个数字，TIME_WAIT套接字将立刻被清除并打印警告信息。默认为180000，改为5000。</p>
-<br>
-<p>
-如果高负载系统使用了netfilter/iptables，调整以下参数</p>
+<p>如果高负载系统使用了netfilter/iptables，调整以下参数</p>
 <p>net.ipv4.ip_conntrack_max = 655360 <br>
 在内核内存中netfilter可以同时处理的“任务”（连接跟踪条目）</p>
 <p>net.ipv4.netfilter.ip_conntrack_tcp_timeout_established = 180<br>
