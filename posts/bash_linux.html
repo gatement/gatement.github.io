@@ -210,10 +210,14 @@ mean: show all running jobs</p>
 <p>P351 free<br />
 p351 uname -r<br />
 p351 uptime</p>
+
 <p>cmd:<strong>netstat</strong> (p352)<br />
 mean: show all active service ports<br />
 -tupln: show listening tcp/udp ports<br />
--tpln: show connecting tcp sockets</p>
+-tpln: show connecting tcp sockets<br/>
+print conn statistic: netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'<br/>
+</p>
+
 <p>p353 dmesg<br />
 /var/log/dmesg<br />
 p353 sar -ur<br />
