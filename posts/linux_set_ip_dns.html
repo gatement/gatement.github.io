@@ -4,21 +4,46 @@
 </head>
 <body>
 <h3>Linux - Set IP/DNS</h3>
+
 <p>1. Set static ip<br />
 Edit <span style="text-decoration: underline;"><em>/etc/sysconfg/network-scripts/ifcfg-eth0</em></span></p>
-<pre>DEVICE="eth0"
-BOOTPROTO="static"
-HWADDR="xx:xx:xx:xx:xx:xx"
-ONBOOT="yes"
-UUID="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx"
-IPADDR=192.168.1.102
-NETMASK=255.255.255.0
-GATEWAY=192.168.1.1</pre>
+<pre>
+DEVICE="eth0" 
+BOOTPROTO="static" 
+HWADDR="00:22:4D:7A:EC:71" 
+NM_CONTROLLED="yes" 
+ONBOOT="yes" 
+TYPE="Ethernet" 
+UUID="e05e5c26-2f48-4228-97c4-953fe6ad0e54" 
+IPADDR=192.168.1.10 
+NETMASK=255.255.255.0 
+GATEWAY=192.168.1.1 
+</pre>
+
 <p>2. Set DNS<br />
 Edit <span style="text-decoration: underline;"><em>/etc/resolv.conf</em></span></p>
-<pre>nameserver 8.8.8.8 
-nameserver 8.8.4.4</pre>
-<p>3. Set gateway for the machine (optional)<br />
-Edit <span style="text-decoration: underline;"><em>/etc/sysconfig/network</em></span></p>
+<pre>
+nameserver 8.8.8.8 
+nameserver 8.8.4.4
+</pre>
+
+<p>3. Adding secondary IP Addresses(optional)<br />
+Add <span style="text-decoration: underline;"><em>/etc/sysconfig/ifcfg-eth0:1</em></span> (eth0 is the primary adapter, physical, :1is the virtual adapter sequence)</p>
+<pre>
+DEVICE="eth0:1"
+BOOTPROTO="static"
+ONBOOT="yes"
+IPADDR=192.168.1.9
+NETMASK=255.255.255.0
+</pre>
+then start it by
+<pre>
+ifup eth0:1
+</pre>
+or by
+<pre>
+service network restart
+</pre>
+
 </body>
 </html>
