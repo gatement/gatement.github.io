@@ -675,6 +675,8 @@ fs.file-max = 65000<br/>
 在内核内存中netfilter可以同时处理的“任务”（连接跟踪条目）</p>
 <p>net.ipv4.netfilter.ip_conntrack_tcp_timeout_established = 180<br>
 跟踪的连接超时结束时间</p>
+<p> fs.file-max= 65000<br>
+ulimit -n 设置的是单个进程的最大打开文件数限制。fs.file-max设置的是全局的(kernel-leverl)限制。可以通过cat /proc/sys/fs/file-nr开查看当前值。具体请看文档man proc。一般需要同时设置fs.inode-max值（3-4 times of fs.file-max）</p>
 <p>然后执行/sbin/sysctl -p让参数生效</p>
 </div>
 </p>
