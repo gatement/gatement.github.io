@@ -211,6 +211,20 @@ mean: show all running jobs</p>
 p351 uname -r<br />
 p351 uptime</p>
 
+<p>cmd:<span style="color: #0000ff;"><strong>ssh</strong></span><br />
+.ssh/config:
+<pre>
+Host myhost
+  IdentityFile /root/.ssh/id_rsa
+  Port 2222
+  HostName 203.195.157.188(Host)
+  User root
+</pre>
+<pre>
+ssh-agent bash -c 'ssh-add /home/user/.ssh/myproj/id_rsa; git clone git@github.com:TheUser/TheProject.git'
+</pre>
+</p>
+
 <p>cmd:<strong>netstat</strong> (p352)<br />
 mean: show all active service ports<br />
 -tupln: show listening tcp/udp ports<br />
