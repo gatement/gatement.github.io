@@ -44,7 +44,8 @@ int main(void)
 <pre>
 gcc -c util.c (generate util.o)
 ar crv libutil.a util.o (generate libutil.a)
-gcc -o main -I util -L util -lutil main.c
+gcc -o main -I util main.c util/libutil.a (generate execute in centos)
+gcc -o main -I util -L util -lutil main.c (generate execute in mac)
 </pre>
 
 <strong>compile dynamic lib (.so)</strong>
