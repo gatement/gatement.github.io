@@ -5,6 +5,58 @@
 <body>
 <h3>C - GCC编译动态库和静态库</h3>
 <p>原文： <a href="http://blog.csdn.net/gogor/article/details/4650795" target="_blank">http://blog.csdn.net/gogor/article/details/4650795</a></p>
+
+<p>
+<strong>sample code</strong>
+<hr />
+main.h
+<pre>
+#ifndef _MAIN_H_  
+#define _MAIN_H_  
+
+int myadd(int a, int b);
+
+#endif  
+</pre>
+main.c
+<pre>
+#include <stdio.h>
+#include "main.h"
+
+int main(void)
+{
+   printf("hello world\n"); 
+}
+</pre>
+
+<strong>gcc options</strong>
+<hr />
+<pre>
+-o output_name
+-c (only build to object file)
+-I header_file_dir
+-L lib_dir
+-l lib_name (libxxx.a or libxxx.so)
+</pre>
+
+<strong>compile static lib (.a)</strong>
+<hr />
+<pre>
+gcc -c util.c (generate util.o)
+ar crv libutil.a util.o (generate libutil.a)
+gcc -o main -I util -L util -lutil main.c
+</pre>
+
+<strong>compile dynamic lib (.so)</strong>
+<hr />
+<pre>
+gcc -c util.c (generate util.o)
+gcc -shared -fPIC -o libutil.so util.c (generate libutil.so)
+gcc -o main -I util -L util -lutil main.c
+</pre>
+</p>
+
+<hr />
 <p>我们通常把一些公用函数制作成函数库，供其它程序使用。函数库分为静态库和动态库两<br />
 种。静态库在程序编译时会被连接到目标代码中，程序运行时将不再需要该静态库。动态<br />
 库在程序编译时并不会被连接到目标代码中，而是在程序运行是才被载入，因此在程序运<br />
@@ -169,8 +221,9 @@ ed object file: No such file or directory</p>
 -fPIC：表示编译为位置独立的代码，不用此选项的话编译后的代码是位置相关的所以动态载入时是通过代码拷贝的方式来满足不同进程的需要，而不能达到真正代码段共享的目的。<br />
 -L.：表示要连接的库在当前目录中<br />
 -ltest：编译器查找动态连接库时有隐含的命名规则，即在给出的名字前面加上lib，后面加上.so来确定库的名称<br />
+<br />
 <strong>LD_LIBRARY_PATH</strong>：这个环境变量指示动态连接器可以装载动态库的路径。<br />
-l 当然如果有root权限的话，可以修改<strong>/etc/ld.so.conf</strong>文件，然后调用 <strong>/sbin/ldconfig</strong>来达到同样的目的，不过如果没有root权限，那么只能采用输出LD_LIBRARY_PATH的方法了。调用动态库的时候有几个问题会经常碰到，有时，明明已经将库的头文件所在目录 通过 “-I” include进来了，库所在文件通过 “-L”参数引导，并指定了“-l”的库名，但通过ldd命令察看时，就是死活找不到你指定链接的so文件，这时你要作的就是通过修改 LD_LIBRARY_PATH或者/etc/ld.so.conf文件来指定动态库的目录。通常这样做就可以解决库无法链接的问题了。</p>
+当然如果有root权限的话，可以修改<strong>/etc/ld.so.conf</strong>文件，然后调用 <strong>/sbin/ldconfig</strong>来达到同样的目的，不过如果没有root权限，那么只能采用输出LD_LIBRARY_PATH的方法了。调用动态库的时候有几个问题会经常碰到，有时，明明已经将库的头文件所在目录 通过 “-I” include进来了，库所在文件通过 “-L”参数引导，并指定了“-l”的库名，但通过ldd命令察看时，就是死活找不到你指定链接的so文件，这时你要作的就是通过修改 LD_LIBRARY_PATH或者/etc/ld.so.conf文件来指定动态库的目录。通常这样做就可以解决库无法链接的问题了。</p>
 <p>more GCC help please check &#8220;gcc &#8211;help -v&#8221;</p>
 </body>
 </html>
