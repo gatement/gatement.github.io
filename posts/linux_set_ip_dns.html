@@ -28,7 +28,7 @@ nameserver 8.8.4.4
 </pre>
 
 <p>3. Adding secondary IP Addresses(optional)<br />
-Add <span style="text-decoration: underline;"><em>/etc/sysconfig/ifcfg-eth0:1</em></span> (eth0 is the primary adapter, physical, :1is the virtual adapter sequence)</p>
+Add <span style="text-decoration: underline;"><em>/etc/sysconfig/network-scripts/ifcfg-eth0:1</em></span> (eth0 is the primary adapter, physical, :1 is the virtual adapter sequence)</p>
 <pre>
 DEVICE="eth0:1"
 BOOTPROTO="static"
