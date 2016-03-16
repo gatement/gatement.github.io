@@ -5,6 +5,17 @@
 <body>
 <h3>Java - Maven</h3>
 
+<p>- Initialize project</p>
+<pre>
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+</pre>
+after that, add the following lines to the pom.xml
+<pre>
+&lt;properties&gt;
+  &lt;project.build.sourceEncoding&gt;UTF-8</project.build.sourceEncoding&gt;
+&lt;/properties&gt;
+</pre>
+
 <p>- Copy dependent libs to folder</p>
 <pre>
 mvn dependency:copy-dependencies -DoutputDirectory=target/folder  -DincludeScope=runtime
