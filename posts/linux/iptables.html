@@ -1,0 +1,32 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>iptables</h3>
+<p>
+examples
+<pre>
+iptables -P INPUT ACCEPT
+iptables -F
+iptables -A INPUT -s 127.0.0.1 -p tcp --dport 9200 -j ACCEPT # localhost
+iptables -A INPUT -p tcp --dport 9200 -j DROP
+</pre>
+</p>
+
+<p>
+list rules
+<pre>
+iptables -L
+</pre>
+</p>
+
+<p>
+connection count limit
+<pre>
+iptables -I INPUT -p tcp --dport 10000 -m connlimit --connlimit-above 2 -j DROP
+</pre>
+</p>
+
+</body>
+</html>
