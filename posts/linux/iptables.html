@@ -4,27 +4,53 @@
 </head>
 <body>
 <h3>iptables</h3>
+(test under iptables v1.4.21)
 <p>
-examples
+<h4>examples</h4>
+<hr/>
+flush rules and only allow ip 1.2.3.4 to access tcp:10000
 <pre>
 iptables -P INPUT ACCEPT
 iptables -F
-iptables -A INPUT -s 127.0.0.1 -p tcp --dport 9200 -j ACCEPT # localhost
-iptables -A INPUT -p tcp --dport 9200 -j DROP
+iptables -A INPUT -s 1.2.3.4 -p tcp --dport 10000 -j ACCEPT
+iptables -A INPUT -p tcp --dport 10000 -j DROP
 </pre>
-</p>
-
-<p>
 list rules
 <pre>
-iptables -L
+iptables -L -n --line-numbers
 </pre>
 </p>
 
 <p>
-connection count limit
+<h4>connection count limit</h4>
+<hr/>
+set max 2 connections for each ip
 <pre>
-iptables -I INPUT -p tcp --dport 10000 -m connlimit --connlimit-above 2 -j DROP
+iptables -A INPUT -p tcp --dport 10000 -m connlimit --connlimit-above 2 -j DROP
+</pre>
+set no limit for ip 1.2.3.4, max 2 connections for other ips
+<pre>
+iptables -A INPUT -p tcp -s 1.2.3.4 --dport 10000 -j ACCEPT
+iptables -A INPUT -p tcp --dport 10000 -m connlimit --connlimit-above 2 -j DROP
+</pre>
+set no limit for ip 1.2.3.4, max 3 connections for ip 1.1.1.1, max 2 connections for other ips
+<pre>
+iptables -N MY_CHAIN
+iptables -A MY_CHAIN -p tcp -s 1.1.1.1 --dport 10000 -m connlimit --connlimit-above 3 -j DROP
+iptables -A MY_CHAIN -p tcp -s 1.1.1.1 --dport 10000 -j ACCEPT
+iptables -A INPUT -p tcp -s 1.1.1.1 --dport 10000 -j MY_CHAIN
+iptables -A INPUT -p tcp -s 1.2.3.4 --dport 10000 -j ACCEPT
+iptables -A INPUT -p tcp --dport 10000 -m connlimit --connlimit-above 2 -j DROP
+</pre>
+</p>
+
+<p>
+<h4>rate limit</h4>
+<hr/>
+icmp package rate limit
+<pre>
+iptables -A INPUT -p icmp -m limit --limit 6/m --limit-burst 5 -j ACCEPT # /second /minute /hour /day
+iptables -A INPUT -p icmp -j DROP
 </pre>
 </p>
 
