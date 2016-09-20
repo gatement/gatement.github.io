@@ -6,7 +6,7 @@
 <h3>iptables</h3>
 (test under iptables v1.4.21)
 <p>
-<h4>examples</h4>
+<h4>Examples</h4>
 <hr/>
 flush rules and only allow ip 1.2.3.4 to access tcp:10000
 <pre>
@@ -22,7 +22,7 @@ iptables -L -n --line-numbers
 </p>
 
 <p>
-<h4>connection count limit</h4>
+<h4>Connection count limit</h4>
 <hr/>
 set max 2 connections for each ip
 <pre>
@@ -45,7 +45,7 @@ iptables -A INPUT -p tcp --dport 10000 -m connlimit --connlimit-above 2 -j DROP
 </p>
 
 <p>
-<h4>rate limit</h4>
+<h4>Rate limit</h4>
 <hr/>
 icmp package rate limit
 <pre>

@@ -1,0 +1,79 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Java - Maven</h3>
+
+<p>
+<h4>Initialize project</h4>
+<hr/>
+create <strong>jar</strong> project myapp (a folder named myapp will be created)
+<pre>
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=myapp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+</pre>
+create <strong>war</strong> project myweb (a folder named myweb will be created)
+<pre>
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=myweb -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp
+</pre>
+after that, add the following lines to the pom.xml
+<pre>
+&lt;properties&gt;
+  &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+&lt;/properties&gt;
+&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+    &lt;version&gt;3.1.0&lt;/version&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;build&gt;
+  &lt;finalName&gt;myweb&lt;/finalName&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+      &lt;version&gt;3.3&lt;/version&gt;
+      &lt;configuration&gt;
+        &lt;source&gt;1.8&lt;/source&gt;
+        &lt;target&gt;1.8&lt;/target&gt;
+        &lt;optimize&gt;true&lt;/optimize&gt;
+        &lt;debug&gt;false&lt;/debug&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;
+</pre>
+</p>
+
+<p>
+<h4>Copy dependent libs to folder</h4>
+<hr/>
+<pre>
+mvn dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/folder
+</pre>
+</p>
+
+<p>
+<h4>Runing the application</h4>
+<hr/>
+<pre>
+mvn exec:java -Dexec.mainClass=net.johnsonlau.app.Demo
+</pre>
+which equals to
+<pre>
+java -cp target/classes:target/dependency/* net.johnsonlau.app.Demo
+</pre>
+</p>
+
+<p>
+<h4>Install jar to local repository</h4>
+<hr/>
+<pre>
+mvn install:install-file -DgroupId=org.elasticsearch.plugin -DartifactId=shield -Dversion=2.3.2 -Dpackaging=jar -Dfile=lib/shield-2.3.2.jar
+</pre>
+</p>
+
+</body>
+</html>
