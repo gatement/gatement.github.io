@@ -1,0 +1,47 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>OpenSSL</h3>
+
+<p>
+<h4>Create certificate</h4>
+<hr/>
+generate self-signed certificate
+<pre>
+openssl req -new -x509 -out cert.pem -keyout key.pem
+</pre>
+create private key
+<pre>
+openssl genrsa -out key.pem 2048
+</pre>
+create private key with password protected
+<pre>
+openssl genrsa -des3 -out key.pem 2048
+</pre>
+generate self-signed certificate by key.pem
+<pre>
+openssl req -new -x509 -key key.pem -out cert.pem -days 3650
+</pre>
+create certificate request
+<pre>
+openssl req -new -key key.pem -out cert.csr
+</pre>
+</p>
+
+<p>
+<h4>View certificate</h4>
+<hr/>
+view PEM certficate
+<pre>
+openssl x509 -in cert.pem -inform pem -noout -text
+</pre>
+view DER certficate
+<pre>
+openssl x509 -in cert.der -inform der -noout -text
+</pre>
+</p>
+
+</body>
+</html>
