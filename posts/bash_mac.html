@@ -68,5 +68,52 @@ change max open files<br/>
 &gt; echo "limit maxfiles 1000000 1000000" &gt; /etc/launchd.conf<br/>
 &gt; echo "ulimit -n 1000000" &gt; ~/.bash_profile<br/>
 <br/>
+
+<hr/>
+cmd:<span style="color: #0000ff;"><strong>ls</strong></span> -l<br/>
+list directory files<br/>
+<br/>
+color displaying:
+add this to .bash_profile
+<pre>
+export CLICOLOR=1
+export LSCOLORS=1212121212121212121212
+</pre>
+each 12 stands for the forground and background color of the following items
+<pre>
+1.  directory
+2.  symbolic link
+3.  socket
+4.  pipe
+5.  executable
+6.  block special
+7.  character special
+8.  executable with setuid bit set (setuid=Set User ID)
+9.  executable without setgid bit set
+10. directory writable to others, with sticky bit
+11. directory writable to others, without sticky bit
+</pre>
+each 1 or 2 can be one of the following value
+<pre>
+a  black
+b  red
+c  green
+d  brown
+e  blue
+f  magenta
+g  cyan
+h  light grey
+A  bold black, usually shows up as dark grey
+B  bold red
+C  bold green
+D  bold brown, usually shows up as yellow
+E  bold blue
+F  bold magenta
+G  bold cyan
+H  bold light grey; looks like bright white
+x  default foreground or background
+</pre>
+<br/>
+
 </body>
 </html>
