@@ -6,8 +6,7 @@
 <h3>Linux Tuning</h3>
 <p><strong>- TCP kernel parameters</strong></p>
 <pre>
-# Abort(reset) on connection backlog overflow.
-# Queue for ESTABLISHED connections (before application accept the connection).
+# Abort(reset) on connection backlog (Queue for ESTABLISHED connections (before application accept the connection)) overflow.
 # Once set, if this ESTABLISHED connection backlog is full, send RST to client after exchanging SYN, SYN ACK, ACK messages.
 # It will disable setting tcp_max_syn_backlog or tcp_syncookies.
 sysctl -w net.ipv4.tcp_abort_on_overflow=1
