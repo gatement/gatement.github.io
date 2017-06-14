@@ -9,7 +9,7 @@
 # Abort(reset) on connection backlog (Queue for ESTABLISHED connections (before application accept the connection)) overflow.
 # Once set, if this ESTABLISHED connection backlog is full, send RST to client after exchanging SYN, SYN ACK, ACK messages.
 # It will disable setting tcp_max_syn_backlog or tcp_syncookies.
-sysctl -w net.ipv4.tcp_abort_on_overflow=1
+sysctl -w net.ipv4.tcp_abort_on_overflow=0
 
 # If set, when the syn backlog (SYN_RECV connection backlog) is full, it will enlarge the syn backlog (will see more SYN_RECV connections) to some extent.
 sysctl -w net.ipv4.tcp_syncookies=0 
@@ -18,7 +18,7 @@ sysctl -w net.ipv4.tcp_syncookies=0
 # Even after exchanging SYN, SYN ACK, ACK messages, the socket still under SYN_RECV state if the ESTABLISHED connection backlog is full.
 # Once after the connection enroll this queue, it will resend SYN ACK message for tcp_synack_retries times with exponential backoff(1s, 2s, 4s, 8s, 16s), and timeout after that in 63s.
 # If this syn backlog queue is full, new SYN request will be silently ignored (clients will re-send the SYN requests).
-sysctl -w net.ipv4.tcp_max_syn_backlog=1
+sysctl -w net.ipv4.tcp_max_syn_backlog=128
 
 # Don't enable this options for they break MSL and TIME_WAIT policy.
 sysctl -w net.ipv4.tcp_tw_recycle=0 
