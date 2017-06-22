@@ -26,6 +26,12 @@ sysctl -w net.ipv4.tcp_tw_reuse=0
 
 # useful for clients that need to open many client ports
 sysctl -w net.ipv4.ip_local_port_range="1024 60000"
+
+# others
+sysctl -w net.ipv4.inet_peer_threshold=1001000
+sysctl -w net.netfilter.nf_conntrack_max=1001000
+sysctl -w net.nf_conntrack_max=1001000
+sysctl -w vm.max_map_count=1001000
 </pre>
 <p><strong>- SSD disks</strong></p>
 <pre>
