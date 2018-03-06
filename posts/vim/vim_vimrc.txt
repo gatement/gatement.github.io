@@ -119,8 +119,7 @@ nmap <SPACE>k <C-w>k
 nmap <c-j> <c-^>
 
 ""wrap text
-nmap <SPACE>o <Esc>:set nowrap<CR>
-nmap <SPACE>p <Esc>:set wrap<CR>
+nmap <SPACE>o <Esc>:set wrap!<CR>
 
 ""replace selected in current file
 vmap <SPACE>r <Esc>:%s/<c-r>=GetVisual()<cr>//gc<left><left><left>
