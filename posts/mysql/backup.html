@@ -1,0 +1,26 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>history recorder</h3>
+
+<h4>steps:</h4>
+<ol>
+<li>my.cnf: log_bin</li>
+<li>my.cnf: server-id = 1</li>
+<li>full backup: mysqldump -uroot -p --all-databases --single-transaction --master-data=2 > b1.sql</li>
+<li>increment backup: cp /var/lib/mysql/vmcentos-bin.* .</li>
+<li>restore full backup: mysql -uroot -p < b1.sql</li>
+<li>restore increment backup: mysqlbinlog --start-position=1872 vmcentos-bin.000002  | mysql -uroot -p (check b1.sql for start-position)</li>
+</ol>
+
+<h4>useful commands:</h4>
+<ul>
+<li>show master status</li>
+<li>show master logs</li>
+<li>show binlog events in '{binlog filename}'</li>
+</ul>
+
+</body>
+</html>
