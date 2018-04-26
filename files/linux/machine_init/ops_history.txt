@@ -1,0 +1,24 @@
+#history
+HISTDIR=/var/log/.history
+
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+export HISTTIMEFORMAT="[%F %T]"
+export PROMPT_COMMAND="history -a"
+
+USER_IP=`who -u am i 2>/dev/null| awk '{print $NF}'|sed -e 's/[()]//g'`
+if [ -z $USER_IP ]
+  then
+  USER_IP=`hostname`
+fi
+
+if [ ! -d $HISTDIR/${LOGNAME} ]
+  then
+  mkdir -p $HISTDIR/${LOGNAME}
+  chmod 300 $HISTDIR/${LOGNAME}
+fi
+
+DT=`date +%Y%m%d_%H%M%S`
+export HISTFILE="$HISTDIR/${LOGNAME}/${USER_IP}.hist.$DT"
+chmod 600 $HISTDIR/${LOGNAME}/*.hist* 2>/dev/null
+
