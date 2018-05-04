@@ -1,0 +1,39 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Migrate git project from one remote repository to another</h3>
+<pre>
+#!/bin/sh
+## version: 0.1.0
+
+if [ $# == 2 ] ; then
+    OLD_URL=$1
+    NEW_URL=$2
+    echo "moving \"$OLD_URL\" to \"$NEW_URL\""
+
+    APP_NAME0=$(basename ${OLD_URL})
+    APP_NAME=${APP_NAME0%.*} # remove the '.git' subfix
+
+    git clone $OLD_URL
+    cd $APP_NAME
+    
+    git remote set-url origin $NEW_URL
+
+    # git checkout branches
+    for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master`; do
+        git branch --track ${branch##*/} $branch
+    done
+
+    git push --all
+    git push --tags
+
+    cd ..
+    echo "== done =="
+else
+    echo "usage: $0 \"old_url\" \"new_url\""
+fi
+</pre>
+</body>
+</html>
