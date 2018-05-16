@@ -12,13 +12,13 @@ DenyUsers all
 <p>Connection keepalive:</p>
 <pre>
 ssh_config:
-    ServerAliveCountMax 2 # try times
+    ServerAliveCountMax 2 # the keepalive msg to send before disconnected
     ServerAliveInterval 60 # in seconds
 
 or
 
 sshd_config:
-    ClientAliveCountMax 2 # try times
+    ClientAliveCountMax 2 # the keepalive msg to send before disconnected
     ClientAliveInterval 60 # in seconds
 </pre>
 </body>
