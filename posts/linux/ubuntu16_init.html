@@ -1,0 +1,25 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Ubuntu 16.04 initializing</h3>
+<ol>
+  <li>
+    disable firewall
+    <pre>
+      systemctl disable ufw
+    </pre>
+  </li>
+  <li>
+    add another network interface
+    <pre>
+      run 'lshw -c network' to get logical name
+      'vi /etc/network/interfaces' to copy and enable the secondary network interface
+    </pre>
+  </li>
+</ol>
+<pre>
+</pre>
+</body>
+</html>
