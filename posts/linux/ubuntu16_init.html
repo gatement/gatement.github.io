@@ -14,8 +14,11 @@
   <li>
     add another network interface
     <pre>
-      run 'lshw -c network' to get logical name
-      'vi /etc/network/interfaces' to copy and enable the secondary network interface
+      # get logical name
+      lshw -c network 
+
+      # copy and enable the secondary network interface
+      vi /etc/network/interfaces
     </pre>
   </li>
 </ol>
