@@ -6,21 +6,21 @@
 <h3>SSH Tunnel</h3>
 <ul>
   <li>
-    Local Port Forwarding: listening on ssh client, forwarding from ssh server
+    <strong>Local Port Forwarding</strong>: listening on ssh client, forwarding from ssh server
     <pre>
     # -f is running in background, optinal
     ssh -NfL [bind_address:]port:host:hostport] johnson@jserver
     </pre>
   </li>
   <li>
-    Remote Port Forwarding: listening on ssh server, forwarding from ssh client
+    <strong>Remote Port Forwarding</strong>: listening on ssh server, forwarding from ssh client
     <pre>
     # -f is running in background, optinal
     ssh -NfR [bind_address:]port:host:hostport] johnson@jserver
     </pre>
   </li>
   <li>
-    Dynamic Port Forwarding: listening on ssh client, forwarding from ssh server, target host:port is determined by SOCKS4/SOCKS4 (useful with Google 'Proxy SwitchyOmega' extension or 'tsocks' command line tool)
+    <strong>Dynamic Port Forwarding</strong>: listening on ssh client, forwarding from ssh server, target host:port is determined by SOCKS4/SOCKS4 (useful with Google 'Proxy SwitchyOmega' extension or 'tsocks' command line tool)
     <pre>
     # -f is running in background, optinal
     ssh -NfD [bind_address:]port johnson@jserver
