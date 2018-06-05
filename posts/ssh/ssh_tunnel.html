@@ -1,0 +1,31 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>SSH Tunnel</h3>
+<ul>
+  <li>
+    <strong>Local Port Forwarding</strong>: listening on ssh client, forwarding from ssh server
+    <pre>
+    # -f is running in background, optinal
+    ssh -NfL [bind_address:]port:host:hostport] johnson@jserver
+    </pre>
+  </li>
+  <li>
+    <strong>Remote Port Forwarding</strong>: listening on ssh server, forwarding from ssh client
+    <pre>
+    # -f is running in background, optinal
+    ssh -NfR [bind_address:]port:host:hostport] johnson@jserver
+    </pre>
+  </li>
+  <li>
+    <strong>Dynamic Port Forwarding</strong>: listening on ssh client, forwarding from ssh server, target host:port is determined by SOCKS4/SOCKS4 (useful with Google 'Proxy SwitchyOmega' extension or 'tsocks' command line tool)
+    <pre>
+    # -f is running in background, optinal
+    ssh -NfD [bind_address:]port johnson@jserver
+    </pre>
+  </li>
+</ul>
+</body>
+</html>
