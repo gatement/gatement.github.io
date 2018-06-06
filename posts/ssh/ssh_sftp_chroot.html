@@ -1,0 +1,46 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>SSH Tunnel</h3>
+<ol>
+  <li>
+    create chroot folder
+    <pre>
+    mkdir -p /chroot-dir
+    chmod root.root /chroot-dir
+    chmod go-w /chroot-dir
+    </pre>
+  </li>
+  <li>
+    create sftp user
+    <pre>
+    useradd -s /bin/false -d /chroot-dir sftp-user1
+    </pre>
+  </li>
+  <li>
+    creat user working directory
+    <pre>
+    mkdir /chroot-dir/sftp-user1
+    chown sftp-user1.sftp-user1 /chroot-dir/sftp-user1
+    chmod go-w /chroot-dir/sftp-user1
+    </pre>
+  </li>
+  <li>
+    vi /etc/ssh/sshd_config
+    <pre>
+    Match User sftp-user1
+        ChrootDirectory %h
+        ForceCommand internal-sftp
+    </pre>
+  </li>
+  <li>
+    restart sshd
+    <pre>
+    systemctl restart sshd
+    </pre>
+  </li>
+</ul>
+</body>
+</html>
