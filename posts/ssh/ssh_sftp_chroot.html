@@ -30,6 +30,7 @@
   <li>
     vi /etc/ssh/sshd_config
     <pre>
+    # Match Group sftp-user-group
     Match User sftp-user1
         ChrootDirectory %h
         ForceCommand internal-sftp
