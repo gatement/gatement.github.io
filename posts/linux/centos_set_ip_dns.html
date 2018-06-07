@@ -23,6 +23,23 @@ GATEWAY=192.168.1.1
 
 centos7:
 <pre>
+# init settings
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=dhcp
+#DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=enp0s8
+UUID=ce9b158a-b1aa-4fdc-b46f-0ce0acf911ce
+DEVICE=enp0s8
+ONBOOT=yes
+
 # add the following
 BOOTPROTO="static"
 IPADDR=192.168.56.11
