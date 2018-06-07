@@ -1,0 +1,29 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Mount disk</h3>
+<ol>
+  <li>
+    find disk
+    <pre>
+      fdisk -l
+    </pre>
+  </li>
+  <li>
+    format disk 
+    <pre>
+      mkfs -t ext4 /dev/vdb
+    </pre>
+  </li>
+  <li>
+    mount disk 
+    <pre>
+      mkdir /data
+      mount [-t ext4] /dev/vdb /data
+    </pre>
+  </li>
+</ol>
+</body>
+</html>
