@@ -7,6 +7,7 @@
 
 <p>1. Set static ip<br />
 Edit <span style="text-decoration: underline;"><em>/etc/sysconfig/network-scripts/ifcfg-eth0</em></span></p>
+centos6:
 <pre>
 DEVICE="eth0" 
 BOOTPROTO="static" 
@@ -18,6 +19,16 @@ UUID="e05e5c26-2f48-4228-97c4-953fe6ad0e54"
 IPADDR=192.168.1.10 
 NETMASK=255.255.255.0 
 GATEWAY=192.168.1.1 
+</pre>
+
+centos7:
+<pre>
+# add the following
+BOOTPROTO="static"
+IPADDR=192.168.56.11
+GATEWAY=192.168.56.1
+NETMASK=255.255.255.0
+DNS1=192.168.56.1
 </pre>
 
 <p>2. Set DNS<br />
