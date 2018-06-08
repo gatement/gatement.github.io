@@ -20,6 +20,17 @@ IMAP (Internet Message Access Protocol) &#8211; Send and receive
 MUA --SMTP/IMAP--> MTA --SMTP--> ... -> MTA --SMTP--> MDA --POP/IMAP--> MUA
 </p>
 
+<h3>postfix</h3>
+useful settings:
+<pre>
+myhostname = smtp.johnsonlau.net
+mydomain = johnsonlau.net
+# SMTP 25 listen on all interfaces
+inet_interfaces = all
+# SMTP 25 listen on 127.0.0.1
+inet_interfaces = localhost
+</pre>
+
 <p>
 <a href="http://www.5dmail.net/html/2006-10-27/20061027111753.htm" target="_blank">Reference1</a>
 <a href="https://www.liaoxuefeng.com/article/00137387674890099a71c0400504765b89a5fac65728976000" target="_blank">Reference2</a>
