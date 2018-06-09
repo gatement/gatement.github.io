@@ -32,7 +32,8 @@ inet_interfaces = 127.0.0.1
 </pre>
 sendmail client:
 <pre>
-sendmail -f {sender-email} -F {sender-name} gatement@163.com
+cat file | sendmail -f {sender-email} -F {sender-name} {receiver-email}
+sendmail -f {sender-email} -F {sender-name} {receiver-email}
 > subject: {this is subject}
 > {this is body}
 > .
