@@ -1,0 +1,31 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<ul>
+<li>
+backup /etc/yum.repos.d/CentOS-Base.repo
+<pre>
+cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
+</pre>
+</li>
+<li>
+install aliyun CentOS-Base.repo
+<pre>
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+yum clean all
+yum makecache
+</pre>
+</li>
+<li>
+install EPEL (Extra Packages for Enterprise Linux) repo
+<pre>
+yum -y install epel-release
+yum clean all
+yum makecache
+</pre>
+</li>
+</ul>
+</body>
+</html>
