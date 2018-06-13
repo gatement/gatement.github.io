@@ -20,12 +20,26 @@
     </pre>
   </li>
   <li>
-    <strong>Dynamic Port Forwarding</strong>: listening on ssh client, forwarding from ssh server, target host:port is determined by SOCKS4/SOCKS4 (useful with Google 'Proxy SwitchyOmega' extension or 'tsocks' command line tool)
+    <strong>Dynamic Port Forwarding</strong>: listening on ssh client, forwarding from ssh server, target host:port is determined by SOCKS4/SOCKS5 (useful with Google 'Proxy SwitchyOmega' extension or 'tsocks' command line tool)
     <pre>
     # -f is running in background, optinal
     ssh -NfD [bind_address:]port johnson@jserver
     </pre>
   </li>
 </ul>
+<hr/>
+<h3>privoxy: SOCKS4/SOCKS5 =&gt; HTTP proxy</h3>
+<pre>
+yum install epel-release
+yum install privoxy
+
+# vim /etc/privoxy/conf
+forward-socks5 / 127.0.0.1:1080 .
+
+systemctl start privoxy.service
+
+# vim /etc/yum.conf
+proxy=http://127.0.0.1:8118
+</pre>
 </body>
 </html>
