@@ -55,5 +55,24 @@ iptables -A INPUT -p icmp -j DROP
 </pre>
 </p>
 
+<p>
+<h4>save iptables config</h4>
+<hr/>
+save the config
+<pre>
+service iptables save
+</pre>
+for CentOS7 only:
+<pre>
+systemctl stop firewalld
+systemctl disable firewalld
+yum install iptables-services
+systemctl enable iptables
+systemctl start iptables
+service iptables save
+</pre>
+</p>
+
+
 </body>
 </html>
