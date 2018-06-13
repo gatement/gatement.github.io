@@ -66,13 +66,17 @@ for CentOS7 only:
 <pre>
 systemctl stop firewalld
 systemctl disable firewalld
+
 yum install iptables-services
 systemctl enable iptables
 systemctl start iptables
+
 service iptables save
+
+# after OS restarted,do:
+systemctl restart iptables
 </pre>
 </p>
-
 
 </body>
 </html>
