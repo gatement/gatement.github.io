@@ -64,13 +64,16 @@ service iptables save
 </pre>
 for CentOS7 only:
 <pre>
+# disable firewalld
 systemctl stop firewalld
 systemctl disable firewalld
 
+# install iptables-services
 yum install iptables-services
 systemctl enable iptables
 systemctl start iptables
 
+# save config
 service iptables save
 
 # after OS restarted,do:
