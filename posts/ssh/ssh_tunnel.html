@@ -29,6 +29,33 @@
   </li>
 </ul>
 
+<h3>start up as CentOS7 systemd service</h3>
+<hr/>
+<ol>
+  <li>
+    create service file
+    <pre>
+    # vi /usr/lib/systemd/system/myproxy.service
+    [Unit]
+    Description=SSH tunnel to proxy server
+    Wants=network-online.target
+    After=network-online.target
+
+    [Service]
+    Type=forking
+    ExecStart=/usr/bin/ssh -NfD 1080 -i /root/.ssh/id_rsa johnson@jserver
+
+    [Install]
+    WantedBy=multi-user.target
+    </pre>
+  </li>
+  <li>
+    systemctl enable myproxy.service
+    systemctl start myproxy.service
+  </li>
+</ul>
+
+
 <h3>proxy tools</h3>
 <hr/>
 <ul>
