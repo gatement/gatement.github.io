@@ -54,8 +54,10 @@
     <pre>
     # vi /etc/ssh/ssh_config
     Host *
-        ServerAliveCountMax 2 # the keepalive msg to send before disconnected
-        ServerAliveInterval 60 # in seconds
+        # the keepalive msg to send before disconnected
+        ServerAliveCountMax 2
+        # in seconds
+        ServerAliveInterval 60
     </pre>
   </li>
   <li>
