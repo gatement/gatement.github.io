@@ -50,6 +50,15 @@
     </pre>
   </li>
   <li>
+    config ssh client keepalive
+    <pre>
+    # vi /etc/ssh/ssh_config
+    Host *
+        ServerAliveCountMax 2 # the keepalive msg to send before disconnected
+        ServerAliveInterval 60 # in seconds
+    </pre>
+  </li>
+  <li>
     enable service
     <pre>
     systemctl enable myproxy.service
