@@ -6,7 +6,6 @@ if [ ! -d $HISTDIR ]
   chmod 777 $HISTDIR
 fi
 
-
 # update /etc/profile
 if [ ! -f /etc/profile.bak ]
   then
