@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>useful scripts</h3>
+
+<ul>
+
+<li>create user
+<pre>
+CREATE USER 'root'@'localhost' IDENTIFIED BY '123456';
+CREATE USER 'root'@'%' IDENTIFIED BY '123456';
+</pre>
+</li>
+
+<li>drop user
+<pre>
+DROP USER 'root'@'localhost';
+</pre>
+</li>
+
+<li>grant permissions
+<pre>
+GRANT ALL ON *.* TO 'root'@'localhost';
+GRANT ALL ON db1.* TO 'root'@'%';
+</pre>
+</li>
+
+</ol>
+
+</body>
+</html>

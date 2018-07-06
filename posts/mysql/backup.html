@@ -13,24 +13,27 @@
 log_bin
 server-id=1
 </pre>
+</li>
 
 <li>full backup
 <pre>
 mysqldump -uroot -p --single-transaction --master-data=2 --databases {db1 db2} > b1.sql
 mysqldump -uroot -p --single-transaction --master-data=2 --all-databases > b1.sql
 </pre>
+</li>
 
-<li>increment backup</li>
+<li>increment backup
 <pre>
 rsync -a --delete -e "ssh -p9812" --progress /var/lib/mysql/{hostname}-bin.* johnson@jserver:/dest/dir
 </pre>
+</li>
 
 <li>restore full backup
 <pre>
 mysql -uroot -p < b1.sql
 </pre>
-
 </li>
+
 <li>restore increment backup
 <pre>
 mysqlbinlog --start-position={start-position} {hostname}-bin.000002 | mysql -uroot -p (check b1.sql for start-position)
