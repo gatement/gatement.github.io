@@ -7,21 +7,46 @@
 
 <h4>steps:</h4>
 <ol>
-<li>my.cnf: log_bin</li>
-<li>my.cnf: server-id = 1</li>
-<li>full backup: mysqldump -uroot -p --all-databases --single-transaction --master-data=2 > b1.sql</li>
-<li>increment backup: cp /var/lib/mysql/vmcentos-bin.* .</li>
-<li>restore full backup: mysql -uroot -p < b1.sql</li>
-<li>restore increment backup: mysqlbinlog --start-position=1872 vmcentos-bin.000002  | mysql -uroot -p (check b1.sql for start-position)</li>
+
+<li>vi /etc/my.cnf
+<pre>
+log_bin
+server-id=1
+</pre>
+
+<li>full backup
+<pre>
+mysqldump -uroot -p --single-transaction --master-data=2 {db1} > b1.sql
+mysqldump -uroot -p --single-transaction --master-data=2 --databases {db1 db2} > b1.sql
+mysqldump -uroot -p --single-transaction --master-data=2 --all-databases > b1.sql
+</pre>
+
+<li>increment backup</li>
+<pre>
+rsync -a --delete -e "ssh -p9812" --progress /var/lib/mysql/{hostname}-bin.* johnson@jserver:/dest/dir
+</pre>
+
+<li>restore full backup
+<pre>
+mysql -uroot -p < b1.sql
+</pre>
+
+</li>
+<li>restore increment backup
+<pre>
+mysqlbinlog --start-position={start-position} {hostname}-bin.000002 | mysql -uroot -p (check b1.sql for start-position)
+</pre>
+</li>
+
 </ol>
 
 <h4>useful commands:</h4>
-<ul>
-<li>show master status;</li>
-<li>show master logs;</li>
-<li>show binlog events in '{binlog filename}';</li>
-<li>show processlist;</li>
-</ul>
+<pre>
+show master status;
+show master logs;
+show binlog events in '{binlog filename}';
+show processlist;
+</pre>
 
 </body>
 </html>
