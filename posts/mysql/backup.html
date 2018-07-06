@@ -16,7 +16,6 @@ server-id=1
 
 <li>full backup
 <pre>
-mysqldump -uroot -p --single-transaction --master-data=2 {db1} > b1.sql
 mysqldump -uroot -p --single-transaction --master-data=2 --databases {db1 db2} > b1.sql
 mysqldump -uroot -p --single-transaction --master-data=2 --all-databases > b1.sql
 </pre>
