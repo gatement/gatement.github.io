@@ -1,0 +1,42 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Delete image from docker-registry</h3>
+<ol>
+  <li>
+    get image tags
+    <pre>
+    curl -s -i -u {username:password} "https://{docker-registry:port}/v2/{image-name}/tags/list"
+    </pre>
+  </li>
+  <li>
+    get each tag digest
+    <pre>
+    curl -s -i -u {username:password} -H "Accept: application/vnd.docker.distribution.manifest.v2+json" "https://{docker-registry:port}/v2/{image-name}/manifests/{tag-name}"| grep "Digest"
+    </pre>
+  </li>
+  <li>
+    delete each image tag
+    <pre>
+    curl -XDELETE -s -i -u {username:password} "https://{docker-registry:port}/v2/{image-name}/manifests/{digest}"
+    </pre>
+  </li>
+  <li>
+    remote the image repository folder (optional)
+    <pre>
+    # go to the docker-registry server
+    # cd registry data foler
+    rm -rf ./docker/registry/v2/repositories/{image-name}
+    </pre>
+  </li>
+  <li>
+    check if the image is still there
+    <pre>
+    curl -s -i -u {username:password} "https://{docker-registry:port}/v2/_catalog"
+    </pre>
+  </li>
+</ul>
+</body>
+</html>
