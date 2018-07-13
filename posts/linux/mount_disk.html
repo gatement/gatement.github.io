@@ -24,6 +24,13 @@
       mount [-t ext4] /dev/vdb /data
     </pre>
   </li>
+  <li>
+    auto-mount on OS start
+    <pre>
+      # vi /etc/fstab
+      /dev/vdb /data ext4 defaults 1 2
+    </pre>
+  </li>
 </ol>
 </body>
 </html>
