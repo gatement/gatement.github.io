@@ -14,7 +14,7 @@
   <li>
     get each tag digest
     <pre>
-    curl -s -i -u {username:password} -H "Accept: application/vnd.docker.distribution.manifest.v2+json" "https://{docker-registry:port}/v2/{image-name}/manifests/{tag-name}"| grep "Digest"
+    curl -s -i -u {username:password} -H "Accept: application/vnd.docker.distribution.manifest.v2+json" "https://{docker-registry:port}/v2/{image-name}/manifests/{tag-name}" | grep "Digest"
     </pre>
   </li>
   <li>
@@ -24,7 +24,7 @@
     </pre>
   </li>
   <li>
-    remote the image repository folder (optional)
+    remove the image repository folder (optional)
     <pre>
     # go to the docker-registry server
     # cd registry data foler
