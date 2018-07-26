@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Setup Kubernetes private docker registry key</h3>
+<ol>
+  <li>
+    Create keys on Kubernetes master
+    <pre>
+    kubectl create secret  docker-registry KEY_NAME --docker-username=NAME --docker-password=PASSWORD --docker-email=EMAIL --docker-server=REGISTRY_SERVER
+    kubectl get secret
+    </pre>
+  </li>
+  <li>
+    Refer to it
+    <pre>
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: foo
+      namespace: default
+    spec:
+      containers:
+        - name: foo
+          image: janedoe/awesomeapp:v1
+      imagePullSecrets:
+        - name: myregistrykey
+    </pre>
+  </li>
+</ul>
+</body>
+</html>
