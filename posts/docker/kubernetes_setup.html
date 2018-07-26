@@ -1,0 +1,35 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>setup kubernetes</h3>
+<ol>
+  <li>
+    instatll CentOS 7
+  </li>
+  <li>
+    config OS
+    <pre>
+    systemctl disable firewalld.service
+    systemctl stop firewalld.service
+
+    # vi /etc/selinux/config
+    SELINUX=disabled
+    </pre>
+  </li>
+  <li>
+    install softwares
+    <pre>
+    yum install kubernetes etcd flannel docker
+    </pre>
+  </li>
+  <li>
+    config flannel
+    <pre>
+    etcdctl set /atomic.io/network/config '{ "Network": "192.168.0.0/16" }'
+    </pre>
+  </li>
+</ul>
+</body>
+</html>
