@@ -18,11 +18,13 @@
         <li>GIT plugin</li>
         <li>GitHub plugin</li>
         <li>HTML Publisher plugin</li>
+        <li>gitlab</li>
+        <li>gitlab hook (depend on 'gitlab' plugin)</li>
     </ul>
 </p>
 
 <p>
-    <strong><span style="color: #0000ff;">3. Useful System Properties</span></strong><br />
+    <strong><span style="color: #0000ff;">3. Useful System Properties (Add to JAVA_ARGS)</span></strong><br />
     <ul>
         <li>-Dhudson.udp=-1 (disable UDP broadcast/multicast at defaupt port 33848)</li>
         <li>-Dhudson.DNSMultiCast.disabled=true (disable DNS multicast at default port 5353)</li>
@@ -36,6 +38,14 @@
         <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Features+controlled+by+system+properties" target="_brank">Jenkins Features Controlled with System Properties</a></li>
         <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Auto-discovering+Jenkins+on+the+network" target="_brank">Auto-discovering Jenkins on the network</a></li>
     </ul>
+</p>
+
+<p><strong><span style="color: #0000ff;">5. Update Log Level</span></strong><br />
+    <pre>
+    # Manage Jenkins - System Log - Log Levels (on the left)
+    Name: javax.jmdns
+    Level: off
+    </pre>
 </p>
 
 </body>
