@@ -29,6 +29,9 @@
         <li>-Dhudson.udp=-1 (disable UDP broadcast/multicast at defaupt port 33848)</li>
         <li>-Dhudson.DNSMultiCast.disabled=true (disable DNS multicast at default port 5353)</li>
     </ul>
+    <pre>
+    JAVA_ARGS="-Djava.awt.headless=true -Dhudson.DNSMultiCast.disabled=true -Dhudson.udp=-1"
+    </pre>
 </p>
 
 <p><strong><span style="color: #0000ff;">4. Useful Links</span></strong><br />
@@ -45,6 +48,26 @@
     # Manage Jenkins - System Log - Log Levels (on the left)
     Name: javax.jmdns
     Level: off
+    </pre>
+</p>
+
+<p><strong><span style="color: #0000ff;">6. Look for Help</span></strong><br />
+    <pre>
+    java -jar /usr/share/jenkins/jenkins.war --help
+    </pre>
+</p>
+
+<p><strong><span style="color: #0000ff;">7. HTTPS</span></strong><br />
+    <pre>
+    --httpsPort=$HTTPS_PORT
+    --httpsPrivateKey=$HTTPS_PRIVATE_KEY
+    --httpsCertificate=$HTTPS_CERTIFICATE
+    </pre>
+</p>
+
+<p><strong><span style="color: #0000ff;">8. Disable HTTP</span></strong><br />
+    <pre>
+    --httpPort=-1
     </pre>
 </p>
 
