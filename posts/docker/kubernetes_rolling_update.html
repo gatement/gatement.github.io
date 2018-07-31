@@ -1,0 +1,23 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Kubernetes rolling-update</h3>
+<ul>
+  <li>
+    rolling-update
+    <pre>
+    kubectl rolling-update RC_NAME1 -f NEW_RC_FILE.yaml
+    </pre>
+  </li>
+  <li>
+    Notes:
+    <ol>
+      <li>The RC name must be different</li>
+      <li>There must be at least one different items in Selector of RC</li>
+    <ol>
+  </li>
+</ul>
+</body>
+</html>
