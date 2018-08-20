@@ -1,0 +1,32 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Docker netstat</h3>
+
+we can't list container's ESTABLISHED connections on the host OS.<br/>
+to do that, we need: <br/>
+
+<ol>
+  <li>
+    get image pid
+    <pre>
+    docker inspect {container_id} | grep Pid
+    </pre>
+    or
+    <pre>
+    docker inspect -f '{{.State.Pid}}' {container_id}
+    </pre>
+  </li>
+  <li>
+    exec commands
+    <pre>
+     nsenter -t {pid} -n netstat | grep ESTABLISHED
+     nsenter -t {pid} -n netstat -tpn | grep 3306
+     nsenter -t {pid} -n ip addr
+    </pre>
+  </li>
+</ol>
+</body>
+</html>
