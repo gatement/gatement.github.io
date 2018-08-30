@@ -83,7 +83,7 @@
     yum install epel-release
     yum install privoxy
 
-    # vim /etc/privoxy/conf
+    # vim /etc/privoxy/config
     forward-socks5 / 127.0.0.1:1080 .
 
     systemctl start privoxy.service
