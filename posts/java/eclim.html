@@ -1,0 +1,40 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Java vim IDE - eclim</h3>
+<ol>
+  <li>install: <a href="http://eclim.org/" target="_blank">eclim.org</a></li>
+  <li>start eclimd</li>
+  <li>
+    usage:
+    <pre>
+    :PingEclim - ping Eclimd
+
+    :MvnRepo - init project
+    :ProjectCreate /path/to/my_project -n java - create the .project
+    :ProjectImport /path/to/new/project - import project
+    :ProjectList - list projects
+
+    :JavaImport - import package
+    :JavaImportOrganize - import packages
+
+    :JavaSearchContext - open declaration / find references
+    :JavaHierarchy - open java inheritance hierarchy tree
+    :JavaOutline - open current file outline window
+    :JavaCallHierarchy - show caller tree
+    :JavaCallHierarchy -s PROJECT - only show caller tree in project PROJECT
+    :JavaCallHierarchy! - show callee tree
+
+    :JavaRename NEW_NAME - rename cursor variable to NEW_NAME
+
+    :lopen - open error/warnings panel (local window)
+    :lclose - close error/warnings panel (local window)
+
+    ctl-x, ctl-u, ctl-n, ctl-p - starts the completion mode
+    </pre>
+  </li>
+</ol>
+</body>
+</html>
