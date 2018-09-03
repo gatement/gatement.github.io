@@ -28,14 +28,6 @@ sc delete ServerName
 <br/>
 
 <hr/>
-cmd:<span style="color: #0000ff;"><strong>netstat </strong></span><br/>
-View machine net connection/listening status.<br/>
-<pre>
-netstat -aon | findstr "&lt;port&gt;"
-</pre>
-<br/>
-
-<hr/>
 cmd:<span style="color: #0000ff;"><strong>netsh </strong></span><br/>
 - Enable/disable network interface:<br/>
 <pre>
@@ -45,8 +37,19 @@ netsh interface set interface "Wireless Network Connection" ENABLED
 <br/>
 
 <hr/>
+cmd:<span style="color: #0000ff;"><strong>netstat </strong></span><br/>
+View machine net connection/listening status.<br/>
+<pre>
+netstat -aon | findstr "&lt;port&gt;"
+</pre>
+<br/>
+
+<hr/>
 cmd:<span style="color: #0000ff;"><strong>tasklist</strong></span><br/>
 Displays a list of currently running processes on either a local or remote machine.<br/>
+<pre>
+tasklist | findstr "&lt;pid&gt;"
+</pre>
 <br/>
 
 <hr/>
