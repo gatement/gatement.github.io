@@ -30,6 +30,12 @@
     etcdctl set /atomic.io/network/config '{ "Network": "192.168.0.0/16" }'
     </pre>
   </li>
+  <li>
+    config iptables
+    <pre>
+    iptables -P FORWARD ACCEPT
+    </pre>
+  </li>
 </ul>
 </body>
 </html>
