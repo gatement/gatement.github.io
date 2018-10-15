@@ -7,19 +7,22 @@
 <hr/>
 <ul>
   <li>
-    <strong>Local Port Forwarding</strong>: listening on ssh client, forwarding from ssh server
-    <pre>
-    # -f is running in background, optinal
-    # -v is printing debugging messages
-    ssh -NL [bind_address:]port:host:hostport] johnson@jserver
-    </pre>
-  </li>
-  <li>
     <strong>Dynamic Port Forwarding</strong>: listening on ssh client, forwarding from ssh server, target host:port is determined by SOCKS4/SOCKS5
     <pre>
     # -f is running in background, optinal
     # -v is printing debugging messages
     ssh -ND [bind_address:]port johnson@jserver
+
+    # example: set up a SOCKS5 proxy at localhost
+    ssh -vND 1080 johnson@jserver
+    </pre>
+  </li>
+  <li>
+    <strong>Local Port Forwarding</strong>: listening on ssh client, forwarding from ssh server
+    <pre>
+    # -f is running in background, optinal
+    # -v is printing debugging messages
+    ssh -NL [bind_address:]port:host:hostport] johnson@jserver
     </pre>
   </li>
   <li>
