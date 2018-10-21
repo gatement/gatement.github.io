@@ -1,0 +1,65 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>tcpdump - A network traffic monitoring tool</h3>
+<hr/>
+<ul>
+  <li>
+    <strong>usage</strong>
+    <pre>
+    tcpdump [options] [expressions]
+    </pre>
+  </li>
+  <li>
+    <strong>useful options</strong>: 
+    <pre>
+    -i interface
+    -w file      Write to raw file
+    -r file      Read from raw file
+
+    -n           Don't convert host addresses to names
+    -nn          Don't convert protocol and port numbers etc. to names either.
+
+    --number     Print an optional packet number at the beginning of the line.
+
+    -t           Don't print a timestamp on each dump line.
+    -tt          Print the timestamp, as seconds since January 1, 1970, 00:00:00, UTC, and fractions of a second since that time, on each dump line.
+    -ttt         Print a delta (micro-second resolution) between current and previous line on each dump line.
+    -tttt        Print a timestamp, as hours, minutes, seconds, and fractions of a second since midnight, preceded by the date, on each dump line.
+    -ttttt       Print a delta (micro-second resolution) between current and first line on each dump line.
+
+    -v           verbose output.
+    -vv          Even more verbose output.
+    -vvv         Even even more verbose output.
+
+    -x           Print the data of each packet (minus its link level header) in hex.
+    -xx          Print the data of each packet, including its link level header, in hex.
+    -X           Print the data of each packet (minus its link level header) in hex and ASCII.
+    -XX          Print the data of each packet, including its link level header, in hex and ASCII.
+    </pre>
+  </li>
+  <li>
+    <strong>pcap-filter syntax</strong>
+    <pre>
+    expression = primitive1 (and | or | not) primitive2 ...
+    primitive = qualifier1 qualifier2 qualifier3 id
+    qualifier = type-qualifier | dir-qualifier | proto-qualifier
+    type-qualifier = host(default) | net | port | portrange
+    dir-qualifier = src | dst | src or dst(default) | src and dst
+    proto-qualifier = ip | ip6 | tcp | udp (default all proto)
+    id = name | number
+    </pre>
+  </li>
+  <li>
+    <strong>examples</strong>
+    <pre>
+    tcpdump -i eth0 -w tcpdump.pcap dst host 1.2.3.4 # capture target ip to file
+    tcpdump -i eth0 -nn --number -XX dst host 1.2.3.4 and tcp port 80 # capture target ip and tcp port
+    </pre>
+  </li>
+</ul>
+</body>
+</html>
+
