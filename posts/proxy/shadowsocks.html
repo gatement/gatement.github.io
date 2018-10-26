@@ -1,0 +1,39 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Shadowsocks</h3>
+<hr/>
+
+<ul>
+  <li>
+    install
+    <pre>
+    pip install shadowsocks
+    </pre>
+  </li>
+  <li>
+    config
+    <pre>
+    # vi /etc/shadowsocks.json
+    {
+        "server": "0.0.0.0",
+        "server_port": 8388,
+        "password": "mypassword",
+        "timeout": 300,
+        "method": "aes-256-cfb",
+        "fast_open": false
+    }
+    </pre>
+  </li>
+  <li>
+    start
+    <pre>
+    ssserver -c /etc/shadowsocks.json -d start # log to /var/log/shadowsocks.log
+    </pre>
+  </li>
+</ul>
+
+</body>
+</html>
