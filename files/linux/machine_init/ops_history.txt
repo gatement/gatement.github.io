@@ -1,9 +1,11 @@
 
 ## history
+ACTUAL_USER=${SUDO_USER:-${LOGNAME}}
 HISTDIR=/var/log/.history
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 export HISTTIMEFORMAT="[%F %T]"
 export PROMPT_COMMAND="history -a"
-export HISTFILE="$HISTDIR/${LOGNAME}"
-chmod 600 $HISTDIR/${LOGNAME} 2>/dev/null
+export HISTFILE="$HISTDIR/${ACTUAL_USER}"
+chmod 600 $HISTDIR/${ACTUAL_USER} 2>/dev/null
+
