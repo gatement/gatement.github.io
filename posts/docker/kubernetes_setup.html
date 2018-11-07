@@ -25,9 +25,33 @@
     </pre>
   </li>
   <li>
+    config etcd
+    <pre>
+    # vim /etc/etcd/etcd.conf
+    ETCD_DATA_DIR="/var/lib/etcd/default.etcd"
+    ETCD_LISTEN_PEER_URLS="http://0.0.0.0:2380"
+    ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
+    ETCD_NAME="lpdmaster01"
+    ETCD_INITIAL_ADVERTISE_PEER_URLS="http://lpdmaster01:2380"
+    ETCD_ADVERTISE_CLIENT_URLS="http://lpdmaster01:2379"
+    ETCD_INITIAL_CLUSTER="lpdmaster01=http://lpdmaster01:2380,lpdmaster02=http://lpdmaster02:2380,lpdmaster03=http://lpdmaster03:2380"
+    ETCD_INITIAL_CLUSTER_TOKEN="123456"
+    ETCD_INITIAL_CLUSTER_STATE="new"
+
+    # check if working
+    etcdctl cluster-health
+    etcdctl member list
+    </pre>
+  </li>
+  <li>
     config flannel
     <pre>
     etcdctl set /atomic.io/network/config '{ "Network": "192.168.0.0/16" }'
+
+    # vim /etc/sysconfig/flanneld
+    FLANNEL_ETCD_ENDPOINTS="http://lpdmaster01:2379,http://lpdmaster02:2379,http://lpdmaster03:2379"
+    FLANNEL_ETCD_PREFIX="/atomic.io/network"
+    FLANNEL_OPTIONS="-iface eth0"
     </pre>
   </li>
   <li>
