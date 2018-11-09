@@ -55,6 +55,52 @@
     </pre>
   </li>
   <li>
+    config kubernetes-master
+    <pre>
+    # vim /etc/kubernetes/config
+    KUBE_LOGTOSTDERR="--logtostderr=true"
+    KUBE_LOG_LEVEL="--v=0"
+    KUBE_ALLOW_PRIV="--allow-privileged=false"
+    KUBE_MASTER="--master=http://127.0.0.1:8080"
+
+    # vim /etc/kubernetes/apiserver
+    KUBE_API_ADDRESS="--insecure-bind-address=0.0.0.0"
+    KUBE_API_PORT="--port=8080"
+    KUBELET_PORT="--kubelet-port=10250"
+    KUBE_ETCD_SERVERS="--etcd-servers=http://lpdmaster01:2379,http://lpdmaster02:2379,http://lpdmaster03:2379"
+    KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.254.0.0/16"
+    KUBE_ADMISSION_CONTROL=""
+    KUBE_API_ARGS=""
+
+    # vim /etc/kubernetes/controller-manager
+    KUBE_CONTROLLER_MANAGER_ARGS=""
+
+    # vim /etc/kubernetes/scheduler
+    KUBE_SCHEDULER_ARGS=""
+    </pre>
+  </li>
+  <li>
+    config kubernetes-node
+    <pre>
+    # vim /etc/kubernetes/config
+    KUBE_LOGTOSTDERR="--logtostderr=true"
+    KUBE_LOG_LEVEL="--v=0"
+    KUBE_ALLOW_PRIV="--allow-privileged=false"
+    KUBE_MASTER="--master=http://kuberneteslbs:8080"
+
+    # vim /etc/kubernetes/kubelet
+    KUBELET_ADDRESS="--address=0.0.0.0"
+    KUBELET_PORT="--port=10250"
+    KUBELET_HOSTNAME="--hostname-override=172.16.8.121" (local ip)
+    KUBELET_API_SERVER="--api-servers=http://kuberneteslbs:8080"
+    KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest" (after setup, better to pull this img manually)
+    KUBELET_ARGS=""
+
+    # vim /etc/kubernetes/proxy
+    KUBE_PROXY_ARGS="--hostname-override 172.16.8.121 --cluster-cidr 192.168.0.0/16" (cluster-cidr is flannel config)
+    </pre>
+  </li>
+  <li>
     config iptables
     <pre>
     iptables -P FORWARD ACCEPT
