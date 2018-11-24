@@ -48,7 +48,7 @@
     qualifier = type-qualifier | dir-qualifier | proto-qualifier
     type-qualifier = host(default) | net | port | portrange
     dir-qualifier = src | dst | src or dst(default) | src and dst
-    proto-qualifier = ip | ip6 | tcp | udp (default all proto)
+    proto-qualifier = icmp | ip | ip6 | tcp | udp (default all proto)
     id = name | number
     </pre>
   </li>
@@ -57,6 +57,7 @@
     <pre>
     tcpdump -i eth0 -w tcpdump.pcap dst host 1.2.3.4 # capture target ip to file
     tcpdump -i eth0 -nn --number -XX dst host 1.2.3.4 and tcp port 80 # capture target ip and tcp port
+    tcpdump -i eth0 -nn icmp # capture by protocol type
     </pre>
   </li>
 </ul>
