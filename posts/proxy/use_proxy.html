@@ -26,9 +26,18 @@
     File - Settings - Appearance & Behavior - System Settings - HTTP Proxy
 
     # vim ~/.gradle/gradle.properties
+    # socks5
     org.gradle.jvmargs=-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080 
     systemProp.socks.proxyHost=127.0.0.1 
     systemProp.socks.proxyPort=1080
+
+    # http
+    systemProp.http.proxyHost=127.0.0.1 
+    systemProp.http.proxyPort=1080
+
+    # https
+    systemProp.https.proxyHost=127.0.0.1 
+    systemProp.https.proxyPort=1080 
     </pre>
   </li>
 </ul>
