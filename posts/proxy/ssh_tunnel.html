@@ -32,10 +32,10 @@
     # -v is printing debugging messages
     ssh -NR [bind_address:]port:host:hostport] johnson@jserver
 
-    # example: remote access LAN server
-    # 1. on the LAN server, port 10000 will listen on remote server, 22 is the LAN server ssh port
+    # example: remote SSH access local server which is inside a firewall
+    # 1. exec on the local server, port 10000 will listen on remote server, 22 is the local server ssh port
     ssh -vNR 10000:localhost:22 remote_server_user@jserver
-    # 2. one the remove server
+    # 2. exec on the remove server
     ssh -p10000 lan_server_user@localhost
     </pre>
   </li>
