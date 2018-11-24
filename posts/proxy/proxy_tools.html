@@ -1,0 +1,28 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Proxy Tools</h3>
+<hr/>
+<ul>
+  <li>
+    <strong>privoxy</strong>: turn SOCKS4/SOCKS5 into HTTP proxy
+    <pre>
+    yum install epel-release
+    yum install privoxy
+
+    # vim /etc/privoxy/config
+    forward-socks5 / 127.0.0.1:1080 .
+
+    systemctl start privoxy.service
+
+    # it will listen on TCP 8118
+    </pre>
+  </li>
+  <li>
+    <strong>SwitchyOmega</strong>: Google Chrome extension, good with SOCKS4/SOCKS5
+  </li>
+</ul>
+</body>
+</html>

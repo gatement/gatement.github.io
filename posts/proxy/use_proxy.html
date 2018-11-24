@@ -1,0 +1,36 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Use Proxy</h3>
+<hr/>
+<ul>
+  <li>
+    <strong>yum</strong>
+    <pre>
+    # vim /etc/yum.conf
+    proxy=http://127.0.0.1:8118
+    </pre>
+  </li>
+
+  <li>
+    <strong>docker</strong>: 
+    <a href="https://docs.docker.com/config/daemon/systemd/#httphttps-proxy">https://docs.docker.com/config/daemon/systemd/#httphttps-proxy</a>
+  </li>
+
+  <li>
+    <strong>Android Studio</strong>: 
+    <pre>
+    # Android Studio
+    File - Settings - Appearance & Behavior - System Settings - HTTP Proxy
+
+    # vim ~/.gradle/gradle.properties
+    org.gradle.jvmargs=-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080 
+    systemProp.socks.proxyHost=127.0.0.1 
+    systemProp.socks.proxyPort=1080
+    </pre>
+  </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Start up as CentOS7 systemd service</h3>
+<hr/>
+<ol>
+  <li>
+    create service file
+    <pre>
+    # vi /usr/lib/systemd/system/myproxy.service
+    [Unit]
+    Description=SSH tunnel to proxy server
+    Wants=network-online.target
+    After=network-online.target
+
+    [Service]
+    Type=forking
+    ExecStart=/usr/bin/ssh -NfD 1080 -i /root/.ssh/id_rsa johnson@jserver
+
+    [Install]
+    WantedBy=multi-user.target
+    </pre>
+  </li>
+  <li>
+    config ssh client keepalive
+    <pre>
+    # vi /etc/ssh/ssh_config
+    Host *
+        # the keepalive msg to send before disconnected
+        ServerAliveCountMax 2
+        # in seconds
+        ServerAliveInterval 60
+    </pre>
+  </li>
+  <li>
+    enable service
+    <pre>
+    systemctl enable myproxy.service
+    </pre>
+  </li>
+  <li>
+    start service
+    <pre>
+    systemctl start myproxy.service
+    </pre>
+  </li>
+</ol>
+</body>
+</html>
