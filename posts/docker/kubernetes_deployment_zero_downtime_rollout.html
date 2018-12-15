@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 <body>
-<h3>Kubernetes Deployment Rollout</h3>
+<h3>Kubernetes Deployment Zero-Downtime Rollout</h3>
 <pre>
 apiVersion: extensions/v1beta1 # for versions after 1.6.0 use apps/v1
 kind: Deployment
@@ -36,7 +36,7 @@ spec:
         lifecycle:
           preStop:
             exec:
-              command: ["sleep", "10"]
+              command: ["sleep", "10"] # let the processing requests get done
 </pre>
 </body>
 </html>
