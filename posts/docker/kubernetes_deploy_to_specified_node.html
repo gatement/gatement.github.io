@@ -6,31 +6,34 @@
 <h3>Kubernetes Deploy To Specified Node</h3>
 <ol>
   <li>
+    <pre>
+kubectl label node 10.1.2.3 server=node01
+    </pre>
   </li>
   <li>
     <pre>
-    apiVersion: extensions/v1beta1 # for versions after 1.6.0 use apps/v1
-    kind: Deployment
+apiVersion: extensions/v1beta1 # for versions after 1.6.0 use apps/v1
+kind: Deployment
+metadata:
+  name: johnsontest
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: johnsontest
+  template:
     metadata:
-      name: johnsontest
+      labels:
+        app: johnsontest
     spec:
-      replicas: 3
-      selector:
-        matchLabels:
-          app: johnsontest
-      template:
-        metadata:
-          labels:
-            app: johnsontest
-        spec:
-          nodeSelector:
-            server: node01
-          containers:
-          - name: johnsontest
-            image: nginx:1.14.0
-            ports:
-            - name: http
-              containerPort: 8080
+      nodeSelector:
+        server: node01
+      containers:
+      - name: johnsontest
+        image: nginx:1.14.0
+        ports:
+        - name: http
+          containerPort: 8080
     </pre>
   </li>
 </ol>
