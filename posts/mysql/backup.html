@@ -43,17 +43,5 @@ mysqlbinlog --start-position={start-position} {hostname}-bin.000002 | mysql -uro
 </li>
 
 </ol>
-
-<h4>useful commands:</h4>
-<pre>
-show master status;
-show master logs;
-show binlog events in '{binlog filename}';
-show processlist;
-show global variables like 'log_bin';
-show global variables like 'binlog_format';
-set global binlog_format=ROW;
-</pre>
-
 </body>
 </html>
