@@ -1,0 +1,26 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Server GPU Driver Installation</h3>
+
+<ul>
+<li>Install GPU driver
+  <pre>
+install ELRepo (http://elrepo.org/tiki/tiki-index.php)
+(¡®yum install -y nvidia-detect¡¯ and run 'nvidia-detect' to check GPU driver version)
+¡®yum install -y kmod-nvidia¡¯
+¡®reboot¡¯ OS
+(run 'nvidia-smi' to verify GPU driver)
+  </pre>
+</li>
+<li>Install nvidia-docker for docker
+  <pre>
+https://github.com/NVIDIA/nvidia-docker
+  </pre>
+</li>
+</ul>
+
+</body>
+</html>
