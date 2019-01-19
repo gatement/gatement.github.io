@@ -6,10 +6,38 @@
 <h3>Java - Command Line</h3>
 
 <p>
-<h4>java advanced options</h4>
+<h4>java</h4>
 <hr/>
 <pre>
--XX:+TraceClassLoading
+java -XX:+TraceClassLoading
+java -XX:+PrintFlagsFinal -version | grep manageable # print running updatable options
+</pre>
+</p>
+
+<p>
+<h4>jps</h4>
+<hr/>
+<pre>
+jps # java ps, print java process list
+</pre>
+</p>
+
+<p>
+<h4>jmap</h4>
+<hr/>
+<pre>
+jmap -heap {pid} # print JVM memory statistic
+</pre>
+</p>
+
+<p>
+<h4>jinfo</h4>
+<hr/>
+<pre>
+jinfo -flag +{Option} {pid} # dynamically enable {option}
+jinfo -flag -{Option} {pid} # dynamically disable {option}
+jinfo -flag +PrintGCDetails {pid} ; jinfo -flag +PrintGC {pid} # enable GC log
+jinfo -flag -PrintGCDetails {pid} ; jinfo -flag -PrintGC {pid} # disable GC log
 </pre>
 </p>
 
