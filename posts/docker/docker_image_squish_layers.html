@@ -1,0 +1,22 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Docker: squish image layers</h3>
+<ol>
+  <li>
+    docker export
+    <pre>
+    docker export -o {file.tar} {container_id}
+    </pre>
+  </li>
+  <li>
+    docker import
+    <pre>
+    docker import {file.tar} {image:tag}
+    </pre>
+  </li>
+</ol>
+</body>
+</html>
