@@ -1,0 +1,16 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Syntax highlight nginx.conf</h3>
+<pre>
+mkdir -p ~/.vim/syntax/
+cd ~/.vim/syntax/
+wget http://www.vim.org/scripts/download_script.php?src_id=14376 -O nginx.vim
+
+# vim ~/.vim/filetype.vim
+au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
+</pre>
+</body>
+</html>

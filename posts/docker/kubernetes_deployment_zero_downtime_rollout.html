@@ -1,0 +1,42 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/site.css">
+</head>
+<body>
+<h3>Kubernetes Deployment Zero-Downtime Rollout</h3>
+<pre>
+apiVersion: extensions/v1beta1 # for versions after 1.6.0 use apps/v1
+kind: Deployment
+metadata:
+  name: johnsontest
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: johnsontest
+  template:
+    metadata:
+      labels:
+        app: johnsontest
+    spec:
+      #terminationGracePeriodSeconds: 40
+      containers:
+      - name: johnsontest
+        image: nginx:1.14.0
+        ports:
+        - name: http
+          containerPort: 8080
+        readinessProbe:
+          httpGet:
+             path: /alive
+             port: 8080
+             #initialDelaySeconds: 5
+             #periodSeconds: 5
+             #successThreshold: 1
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sleep", "10"] # let the processing requests get done
+</pre>
+</body>
+</html>
