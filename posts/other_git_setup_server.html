@@ -9,18 +9,18 @@
 useradd git
 passwd git
 </pre>
-<p>3. config the ssh login with key file</p>
+<p>2. config the ssh login with key file</p>
 <pre>
 ssh-genkey -t rsa
 </pre>
 <p>then save the generated id_rsa.pub to server/home/git/.ssh/authorized_keys</p>
-<p>4. make git repository<br />
+<p>3. make git repository<br />
 in /home/git</p>
 <pre>
 mkdir admin (optional)
 git init --bare test.git
 </pre>
-<p>5. git clone the repository</p>
+<p>4. git clone the repository</p>
 <pre>
 git clone git@domain.com:admin/test.git
 </pre>
