@@ -53,7 +53,7 @@ gcc -o main -I util -L util -lutil main.c (generate execute in mac)
 <hr />
 <pre>
 gcc -c util.c (generate util.o)
-gcc -shared -fPIC -o libutil.so util.c (generate libutil.so)
+gcc -shared -fPIC -o libutil.so util.o (generate libutil.so)
 gcc -o main -I util -L util -lutil main.c
 </pre>
 </p>
